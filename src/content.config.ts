@@ -8,13 +8,13 @@ import {
   integration,
   pages,
   pricing,
-} from "./types/pages.collections";
+} from './types/pages.collections';
 import {
   ctaSection,
   faqSection,
   integrationSection,
   pricingSection,
-} from "./types/sections.collections";
+} from './types/sections.collections';
 
 // Export collections
 export const collections = {

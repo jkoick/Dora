@@ -1,13 +1,40 @@
 ---
-import AnimatedCircles from "@/components/AnimatedCircles.astro";
-import DotTitle from "@/components/DotTitle.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import { getEntry, type CollectionEntry } from "astro:content";
+import AnimatedCircles from '@/components/AnimatedCircles.astro';
+import DotTitle from '@/components/DotTitle.astro';
+import ImageMod from '@/components/ImageMod.astro';
+import DynamicIcon from '@/helpers/DynamicIcon';
+import { markdownify } from '@/lib/utils/textConverter';
+import { getEntry, type CollectionEntry } from 'astro:content';
 
 const { features } = (
-  (await getEntry("homepage", "-index")) as CollectionEntry<"homepage">
+  (await getEntry('homepage', '-index')) as CollectionEntry<'homepage'>
 ).data;
+
+const exampleList = [
+  {
+    heading: 'Examples of Test Types Performed',
+    items: [
+      'Penetration testing (from microenterprise-tier to TLPT)',
+      'Vulnerability scans',
+      'Open-source analyses',
+      'Network security assessments',
+      'Gap analyses',
+      'Physical security reviews',
+      'Source code reviews',
+      'Scenario-based tests',
+      'Compatibility testing',
+      'Performance testing',
+      'End-to-end testing',
+    ],
+  },
+  {
+    heading: 'Auxiliary Services',
+    items: [
+      'Audit-ready reports and regulatory mapping',
+      'Ad-hoc regulatory advisory',
+    ],
+  },
+];
 ---
 
 {
@@ -29,7 +56,7 @@ const { features } = (
               )}
             </div>
 
-            {features.list.map(
+            {/* {features.list.map(
               (
                 {
                   enable,
@@ -49,7 +76,8 @@ const { features } = (
                 enable && (
                   <div
                     class="shadow bg-white text-center px-5 py-7 md:px-10 md:py-14 lg:py-12 xl:px-7 xl:py-9 mb-10 2xl:mb-16"
-                    data-aos={`${index % 2 === 0 ? "fade-right-sm" : "fade-left-sm"}`}>
+                    data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                  >
                     {icon && (
                       <div class="flex justify-center mb-7">
                         <div class="bg-primary p-3 2xl:p-6 rounded-full inline-block">
@@ -81,7 +109,33 @@ const { features } = (
                     )}
                   </div>
                 )
-            )}
+            )} */}
+
+            {exampleList.map((group, groupIndex) => (
+              <div class="mb-10" key={group.heading}>
+                <h4 class="h5 mb-6 text-primary" data-aos="fade-up-sm">
+                  {group.heading}
+                </h4>
+                <ul
+                  class="text-text-dark font-normal"
+                  data-aos={`${groupIndex % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                >
+                  {group.items.map((item, itemIndex) => (
+                    <li class="relative mb-4 flex items-start" key={itemIndex}>
+                      <div class="pr-2 mt-[5px]">
+                        <span class="bg-primary w-5 h-5 grid place-items-center rounded-full">
+                          <DynamicIcon
+                            icon="FaCheck"
+                            className="text-white text-xs inline-block"
+                          />
+                        </span>
+                      </div>
+                      <span set:html={markdownify(item)} class="text-lg" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
             {features.cta.enable && (
               <div class="relative isolate" data-aos="fade-up-sm">
@@ -104,7 +158,8 @@ const { features } = (
                 </div>
                 <div
                   class="absolute bottom-0! left-1/2 -translate-x-1/2 translate-y-1/2 -z-10"
-                  data-aos="fade-in">
+                  data-aos="fade-in"
+                >
                   <AnimatedCircles scale={75} />
                 </div>
               </div>

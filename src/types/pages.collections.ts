@@ -17,13 +17,13 @@ export const about = defineCollection({
           enable: z.boolean(),
           label: z.string(),
           link: z.string(),
-        }),
+        })
       ),
       statistics: z.array(
         z.object({
           title: z.string(),
           description: z.string(),
-        }),
+        })
       ),
     }),
     whyJoinUs: z
@@ -36,7 +36,7 @@ export const about = defineCollection({
             icon: z.string(),
             title: z.string(),
             description: z.string(),
-          }),
+          })
         ),
       })
       .optional(),
@@ -64,7 +64,7 @@ export const about = defineCollection({
         z.object({
           position: z.enum(["left", "right"]),
           src: z.string(),
-        }),
+        })
       ),
     }),
     team: z.object({
@@ -81,9 +81,9 @@ export const about = defineCollection({
               name: z.string(),
               icon: z.string(),
               link: z.string(),
-            }),
+            })
           ),
-        }),
+        })
       ),
     }),
   }),
@@ -155,7 +155,7 @@ export const careers = defineCollection({
             source: z.string(),
             image: z.string(),
             alt: z.string(),
-          }),
+          })
         ),
       })
       .optional(),
@@ -168,7 +168,7 @@ export const careers = defineCollection({
           z.object({
             position: z.string(),
             src: z.string(),
-          }),
+          })
         ),
       })
       .optional(),
@@ -219,7 +219,7 @@ export const contact = defineCollection({
         z.object({
           city: z.string(),
           address: z.string(),
-        }),
+        })
       ),
     }),
     draft: z.boolean(),
@@ -242,7 +242,7 @@ export const features = defineCollection({
           title: z.string(),
           value: z.union([z.number(), z.string()]),
           suffix: z.string(),
-        }),
+        })
       ),
       leads: z.object({
         title: z.string(),
@@ -257,7 +257,7 @@ export const features = defineCollection({
         z.object({
           name: z.string(),
           image: z.string(),
-        }),
+        })
       ),
     }),
     features: z.object({
@@ -296,7 +296,7 @@ export const homepage = defineCollection({
         z.object({
           label: z.string(),
           link: z.string(),
-        }),
+        })
       ),
       benefits: z.array(z.string()),
     }),
@@ -307,13 +307,14 @@ export const homepage = defineCollection({
         z.object({
           image: z.string(),
           alt: z.string(),
-        }),
+        })
       ),
     }),
     features: z.object({
       title: z.string(),
       subtitle: z.string(),
       description: z.string(),
+      listOptions: z.array(z.string()).optional(),
       cta: z.object({
         enable: z.boolean(),
         title: z.string(),
@@ -330,7 +331,7 @@ export const homepage = defineCollection({
           image: z.string(),
           title: z.string(),
           description: z.string(),
-        }),
+        })
       ),
     }),
     about: z
@@ -348,7 +349,7 @@ export const homepage = defineCollection({
               link: z.string(),
             })
             .optional(),
-        }),
+        })
       )
       .optional(),
     testimonials: z.object({
@@ -365,9 +366,9 @@ export const homepage = defineCollection({
               title: z.string(),
               image: z.string(),
               description: z.string(),
-            }),
+            })
           ),
-        }),
+        })
       ),
     }),
     draft: z.boolean().optional(),
@@ -445,7 +446,7 @@ export const pricing = defineCollection({
         z.object({
           title: z.string(),
           price: z.optional(z.string()),
-        }),
+        })
       ),
       rows: z.array(
         z.object({
@@ -457,7 +458,7 @@ export const pricing = defineCollection({
               z.object({
                 value: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
             button: z.optional(
               z.object({
@@ -465,7 +466,7 @@ export const pricing = defineCollection({
                 label: z.string(),
                 link: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
           }),
           standard: z.object({
@@ -475,7 +476,7 @@ export const pricing = defineCollection({
               z.object({
                 value: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
             button: z.optional(
               z.object({
@@ -483,7 +484,7 @@ export const pricing = defineCollection({
                 label: z.string(),
                 link: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
           }),
           executive: z.object({
@@ -493,7 +494,7 @@ export const pricing = defineCollection({
               z.object({
                 value: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
             button: z.optional(
               z.object({
@@ -501,10 +502,10 @@ export const pricing = defineCollection({
                 label: z.string(),
                 link: z.string(),
                 style: z.optional(z.string()),
-              }),
+              })
             ),
           }),
-        }),
+        })
       ),
     }),
   }),

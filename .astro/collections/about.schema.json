@@ -1,0 +1,301 @@
+{
+  "$ref": "#/definitions/about",
+  "definitions": {
+    "about": {
+      "type": "object",
+      "properties": {
+        "banner": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "buttons": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "enable": {
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "enable",
+                  "label",
+                  "link"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "statistics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "image",
+            "description",
+            "buttons",
+            "statistics"
+          ],
+          "additionalProperties": false
+        },
+        "whyJoinUs": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "icon",
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "subtitle",
+            "list"
+          ],
+          "additionalProperties": false
+        },
+        "clientFeedback": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            },
+            "designation": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "button": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label",
+                "link"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "subtitle",
+            "image",
+            "description",
+            "author",
+            "designation",
+            "quote",
+            "button"
+          ],
+          "additionalProperties": false
+        },
+        "gallery": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "position": {
+                    "type": "string",
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  "src": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "position",
+                  "src"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "subtitle",
+            "images"
+          ],
+          "additionalProperties": false
+        },
+        "team": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "designation": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "social": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "icon": {
+                          "type": "string"
+                        },
+                        "link": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "icon",
+                        "link"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "designation",
+                  "image",
+                  "social"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "subtitle",
+            "members"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "banner",
+        "gallery",
+        "team"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

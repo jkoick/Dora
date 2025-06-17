@@ -1,0 +1,217 @@
+{
+  "$ref": "#/definitions/features",
+  "definitions": {
+    "features": {
+      "type": "object",
+      "properties": {
+        "banner": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "stats": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "suffix": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "value",
+                  "suffix"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "leads": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "description",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "graph": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "team_members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "image"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "title",
+            "subtitle",
+            "description",
+            "stats",
+            "leads",
+            "graph",
+            "team_members"
+          ],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "image": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "enable",
+            "image",
+            "title",
+            "subtitle",
+            "description",
+            "list"
+          ],
+          "additionalProperties": false
+        },
+        "integrations": {
+          "type": "object",
+          "properties": {
+            "enable": {
+              "type": "boolean"
+            },
+            "image": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "button": {
+              "type": "object",
+              "properties": {
+                "enable": {
+                  "type": "boolean"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "enable",
+                "label",
+                "link"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "enable",
+            "image",
+            "title",
+            "subtitle",
+            "description",
+            "button"
+          ],
+          "additionalProperties": false
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "banner",
+        "features",
+        "integrations",
+        "draft"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

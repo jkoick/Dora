@@ -1,11 +1,11 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import ImageMod from '@/components/ImageMod.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 const { banner } = (
-  (await getEntry("homepage", "-index")) as CollectionEntry<"homepage">
+  (await getEntry('homepage', '-index')) as CollectionEntry<'homepage'>
 ).data;
 ---
 
@@ -20,19 +20,25 @@ const { banner } = (
               data-aos="fade-up-sm"
               set:html={markdownify(banner.title)}
             />
+            <p class="mb-8 text-center" data-aos="fade-up-sm">
+              Independent ICT testing services for financial entities in
+              compliance with Regulation (EU) 2022/2554 on digital operational
+              resilience for the financial sector (DORA).
+            </p>
 
             {banner.buttons && (
               <div
                 class="flex gap-x-7 justify-center flex-wrap gap-y-4"
                 data-aos="fade-up-sm"
-                data-aos-delay="100">
+                data-aos-delay="100"
+              >
                 {banner.buttons.map((btn, index) => (
                   <a
                     href={btn.link}
                     class={
                       index === 0
-                        ? "btn btn-primary"
-                        : "btn btn-outline-primary"
+                        ? 'btn btn-primary'
+                        : 'btn btn-outline-primary'
                     }
                     set:html={markdownify(btn.label)}
                   />
@@ -45,15 +51,17 @@ const { banner } = (
               <ul class="flex items-center flex-wrap gap-y-4 justify-center text-text-dark/80 text-xs md:text-sm border-t border-border pt-5 mt-8">
                 {banner.benefits.map((benefit, index) => (
                   <li
-                    class={`justify-center flex items-center gap-x-2 ${banner.benefits && index === banner.benefits.length - 1 ? "" : "border-r border-border pr-2 mr-2 md:pr-5 md:mr-5"}`}
+                    class={`justify-center flex items-center gap-x-2 ${banner.benefits && index === banner.benefits.length - 1 ? '' : 'border-r border-border pr-2 mr-2 md:pr-5 md:mr-5'}`}
                     data-aos="fade-in"
-                    data-aos-delay="350">
+                    data-aos-delay="350"
+                  >
                     <svg
                       width="21"
                       height="20"
                       viewBox="0 0 21 20"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <g clip-path="url(#clip0_3650_15614)">
                         <path
                           d="M18.4009 1.95733C17.9207 1.47712 17.1423 1.47712 16.662 1.95733L6.663 11.9561L4.33797 9.63131C3.85776 9.1511 3.07933 9.1511 2.59909 9.63131L0.860159 11.3702C0.379947 11.8504 0.379947 12.6288 0.860159 13.1091L4.05466 16.3036L5.79355 18.0425C6.27377 18.5227 7.05246 18.5227 7.53244 18.0425L9.27133 16.3036L20.1398 5.43511C20.62 4.95489 20.62 4.17643 20.1398 3.69622L18.4009 1.95733Z"
@@ -82,7 +90,8 @@ const { banner } = (
           <div
             data-aos-delay="200"
             data-aos="fade-left-sm"
-            class="absolute -z-0 top-5 left-0 select-none w-[250px] xl:w-[350px]">
+            class="absolute -z-0 top-5 left-0 select-none w-[250px] xl:w-[350px]"
+          >
             <ImageMod
               class="w-full"
               src="/images/svg/shapes/hero-shape-1.svg"
@@ -92,7 +101,8 @@ const { banner } = (
           <div
             class="absolute -z-0 top-0 right-0 select-none w-[80px] xl:w-[110px]"
             data-aos-delay="200"
-            data-aos="fade-right-sm">
+            data-aos="fade-right-sm"
+          >
             <ImageMod
               class="w-full"
               src="/images/shapes/shape-2.png"
@@ -102,7 +112,8 @@ const { banner } = (
           <div
             class="absolute -z-0 left-5 bottom-14 md:bottom-16 select-none w-[280px] xl:w-[400px]"
             data-aos-delay="200"
-            data-aos="fade-left-sm">
+            data-aos="fade-left-sm"
+          >
             <ImageMod
               class="w-full"
               src="/images/shapes/shape-3.png"
@@ -112,7 +123,8 @@ const { banner } = (
           <div
             class="absolute -z-0 top-1/3 right-5 select-none w-[320px] xl:w-[450px]"
             data-aos-delay="200"
-            data-aos="fade-right-sm">
+            data-aos="fade-right-sm"
+          >
             <ImageMod
               class="w-full"
               src="/images/svg/shapes/hero-shape-4.svg"

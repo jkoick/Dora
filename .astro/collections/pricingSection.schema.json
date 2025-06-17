@@ -1,0 +1,116 @@
+{
+  "$ref": "#/definitions/pricingSection",
+  "definitions": {
+    "pricingSection": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pricing_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "monthly",
+                  "yearly"
+                ]
+              },
+              "image": {
+                "type": "string"
+              },
+              "title_prefix": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "plan_prefix": {
+                "type": "string"
+              },
+              "plan": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              },
+              "price_suffix": {
+                "type": "string"
+              },
+              "button": {
+                "type": "object",
+                "properties": {
+                  "enable": {
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "enable",
+                  "label",
+                  "link"
+                ],
+                "additionalProperties": false
+              },
+              "list": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "image",
+              "title_prefix",
+              "title",
+              "plan_prefix",
+              "plan",
+              "price",
+              "price_suffix",
+              "button",
+              "list"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enable",
+        "subtitle",
+        "title",
+        "description",
+        "pricing_types",
+        "pricing"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
