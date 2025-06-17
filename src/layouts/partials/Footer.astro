@@ -1,0 +1,199 @@
+---
+import AnimatedCircles from "@/components/AnimatedCircles.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import Logo from "@/components/Logo.astro";
+import Social from "@/components/Social.astro";
+import config from "@/config/config.json";
+import menu from "@/config/menu.json";
+import social from "@/config/social.json";
+import { markdownify } from "@/lib/utils/textConverter";
+
+// Footer Menu Type
+interface NavigationLink {
+  name: string;
+  url: string;
+}
+
+const { footer }: { footer: any[] } = menu;
+
+// Function to replace {year} this from string to year
+function replaceYear(text: string) {
+  const year = new Date().getFullYear();
+
+  return text.replace("{year}", year.toString());
+}
+---
+
+<footer class="bg-light hidden">
+  <div class="container">
+    <div class="row items-center py-10">
+      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
+        <Logo />
+      </div>
+      <div class="mb-8 text-center lg:col-6 lg:mb-0">
+        <ul>
+          {
+            footer.map(
+              (menu) =>
+                menu.name && (
+                  <li class="m-3 inline-block">
+                    <a href={menu.url} set:html={markdownify(menu.name)} />
+                  </li>
+                )
+            )
+          }
+        </ul>
+      </div>
+      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
+        <Social source={social.main} className="social-icons" />
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-border py-7">
+    <div class="container text-center text-text-light">
+      <p set:html={markdownify(config.params.copyright)} />
+    </div>
+  </div>
+</footer>
+
+<footer class="text-white overflow-hidden">
+  <!-- FOOTER TOP PART -->
+  <div class="bg-dark relative isolate">
+    <div class="container-sm">
+      <div class="row py-10 lg:pt-32">
+        <div class="lg:text-left lg:col-6">
+          <!-- LOGO -->
+          <a
+            class="inline-block mb-5 lg:mb-10"
+            aria-label="go to home page"
+            href="/">
+            <ImageMod
+              src="/images/logo-green.png"
+              width={154}
+              height={28}
+              alt="Logo"
+            />
+          </a>
+
+          <!-- SOCIAL LINKS -->
+          <Social source={social.main} className="social-icons" />
+        </div>
+        {
+          config.params.locations && (
+            <div class="lg:text-left lg:col-6 text-white mt-10 lg:mt-0">
+              <div class="flex flex-col md:flex-row gap-y-10">
+                {config.params.locations.map((location) => {
+                  return (
+                    <div class="flex-1">
+                      <h3 class="h6 mb-4 text-white font-bold">
+                        {location.title}
+                      </h3>
+                      <div class="text-text-light/80 font-normal">
+                        <p class="mb-3 text-sm text-text-light/80">
+                          {location.address}
+                        </p>
+                        <p class="text-text-light/80">
+                          <a href={`mailto:${location.email}`} class="text-sm">
+                            {location.email}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      {
+        config.subscription.enable && (
+          <div class="row border-t-[#343B51] border-t-[1px] py-16">
+            <div class="lg:col-6">
+              <h3
+                class="h6 mb-4 text-white font-bold"
+                set:html={markdownify(config.subscription.title)}
+              />
+              <div class="text-text-light">
+                <p
+                  class="mb-3 text-sm font-normal text-text-light/80 has-highlight-text"
+                  set:html={markdownify(config.subscription.description)}
+                />
+              </div>
+            </div>
+            <div class="lg:col-6">
+              <form
+                action={config.subscription.form_action}
+                method="post"
+                class="flex flex-col sm:flex-row gap-y-2 gap-x-3 max-w-[520px] xl:max-w-full">
+                <div class="w-full">
+                  <input
+                    type="text"
+                    placeholder="Enter Your Email Address"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    class="text-text-dark/60 focus:border-primary focus:ring-primary transition-all text-base-sm w-full md:max-w-lg lg:max-w-full h-full min-h-11"
+                  />
+                </div>
+                <div class="min-w-max">
+                  <button
+                    type="submit"
+                    class="btn btn-primary min-w-max text-center text-text-dark/80">
+                    Get A Quote
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="absolute top-0 left-0 -z-10 hidden xl:block">
+      <AnimatedCircles />
+    </div>
+  </div>
+
+  <!-- FOOTER BOTTOM PART -->
+  <div class="bg-[#0D193E] relative isolate">
+    <div class="container-sm py-16 border-b border-[#343B51] z-10">
+      <div
+        class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 gap-x-20">
+        <!-- MENU -->
+        {
+          footer.map((menu) => (
+            <div>
+              <h3 class="h6 text-white pb-4 text-base font-normal">
+                {menu.title}
+              </h3>
+              <ul class="space-y-3 text-base-sm text-text-light/60 footer-ul">
+                {menu.links.map((menuItem: NavigationLink) => (
+                  <li>
+                    <a href={menuItem.url} set:html={menuItem.name} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {
+      config.params.copyright && (
+        <div
+          class="text-center py-10 font-primary text-text-light/60 text-sm font-extralight has-link"
+          set:html={markdownify(replaceYear(config.params.copyright))}
+        />
+      )
+    }
+
+    <ImageMod
+      src="/images/shapes/bottom-left-triangles.png"
+      class="absolute bottom-0 right-0 xl:translate-x-2/3 2xl:translate-x-1/2 translate-x-1/2 -z-10 hidden xl:block"
+      alt="Shape"
+    />
+  </div>
+</footer>

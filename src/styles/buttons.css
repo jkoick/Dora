@@ -1,0 +1,19 @@
+.btn {
+  @apply inline-block border border-transparent px-5 py-3  lg:px-8 lg:py-3 font-medium capitalize transition text-sm font-sans cursor-pointer;
+}
+
+.btn-sm {
+  @apply px-6 py-3 text-sm;
+}
+
+.btn-lg {
+  @apply px-5 py-3 md:px-10 md:py-5 text-base;
+}
+
+.btn-primary {
+  @apply border-primary bg-primary hover:bg-white hover:text-primary active:bg-primary/10 text-dark;
+}
+
+.btn-outline-primary {
+  @apply border-text-dark bg-transparent text-text-dark hover:bg-text-dark! hover:text-white!;
+}

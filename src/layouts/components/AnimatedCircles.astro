@@ -1,0 +1,26 @@
+---
+const { scale } = Astro.props;
+---
+
+<div class={`relative ${scale ? "scale-" + scale : ""}`}>
+  <div
+    class="opacity-0 animate-scale-circle-3 h-[120px] w-[120px] scale-150 rounded-full ring-4 ring-(--color-primary)"
+    data-aos="animate-circle-3"
+    data-aos-offset="5">
+  </div>
+  <div
+    class="opacity-0 animate-scale-circle-2 h-[90px] w-[90px] scale-150 rounded-full ring-4 ring-(--color-primary)"
+    data-aos="animate-circle-2"
+    data-aos-offset="5">
+  </div>
+  <div
+    class="opacity-0 animate-scale-circle-1 h-[60px] w-[60px] scale-150 rounded-full ring-4 ring-(--color-primary)"
+    data-aos="animate-circle-1"
+    data-aos-offset="5">
+  </div>
+  <div
+    class="h-5 w-5 rounded-full bg-black"
+    data-aos="animate-circles"
+    data-aos-offset="5">
+  </div>
+</div>

@@ -1,0 +1,106 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { banner } = (
+  (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+).data;
+---
+
+{
+  banner && banner.enable && (
+    <section class="pt-8 pb-14 lg:pb-20">
+      <div class="container mx-auto">
+        {banner.title && (
+          <div class="lg:col-10 mx-auto">
+            <h1
+              class="mb-8 md:mb-2 lg:mb-4 sm:px-10 text-center leading-tight"
+              set:html={markdownify(banner.title)}
+            />
+          </div>
+        )}
+        {banner.image && (
+          <div class="grid place-items-center">
+            <div
+              class="inline-block md:p-10 relative aos-init aos-animate"
+              data-aos="zoom-out-sm">
+              <div class="yt-container">
+                <img
+                  id="yt-custom-thumb"
+                  src={banner.image}
+                  alt="Youtube Video Thumbnail"
+                />
+
+                {banner.video && banner.video.enable && (
+                  <iframe
+                    id="yt-iframe"
+                    src={banner.video.link}
+                    style="display: none"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              {banner.video && banner.video.enable && (
+                <div
+                  class="absolute inset-0 grid place-items-center"
+                  id="yt-custom-thumb-btn">
+                  <button>
+                    <span class="wave-btn is-play">
+                      <span class="wave-btn-outer-circle has-scale-animation" />
+                      <span class="wave-btn-outer-circle has-scale-animation has-delay-short" />
+                      <span class="wave-btn-icon is-play">
+                        <svg height="100%" width="100%" class="fill-[#061237]">
+                          <polygon
+                            class="wave-btn-triangle"
+                            points="5,0 30,15 5,30"
+                          />
+                          <path
+                            class="path stroke-[#061237]"
+                            d="M5,0 L30,15 L5,30z"
+                            fill="none"
+                            stroke-width="1"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              )}
+
+              <div class="absolute inset-0 hidden md:block -z-10">
+                <ImageMod
+                  src="/images/shapes/bottom-left-triangles.png"
+                  alt="Shape"
+                  class="absolute bottom-0 left-0 xl:scale-75 2xl:scale-100"
+                />
+                <ImageMod
+                  src="/images/shapes/circles.png"
+                  alt="Shape"
+                  class="absolute top-1/2 -translate-y-2/3 -right-5 xl:scale-75 2xl:scale-100"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<script>
+  function ytVideoInit() {
+    const customBtn = document.getElementById("yt-custom-thumb-btn");
+    const ytIframe = document.getElementById("yt-iframe");
+
+    if (customBtn && ytIframe) {
+      customBtn.addEventListener("click", () => {
+        customBtn.style.display = "none";
+        ytIframe.style.display = "block";
+      });
+    }
+  }
+
+  document.addEventListener("astro:page-load", ytVideoInit);
+</script>

@@ -1,0 +1,59 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const ctaSection = (await getEntry(
+  "ctaSection",
+  "call-to-action"
+)) as CollectionEntry<"ctaSection">;
+const { enable, title, image, subtitle, buttons } = ctaSection.data;
+---
+
+{
+  enable && (
+    <section class="section isolate">
+      <div class="container-sm card-box">
+        <div class="bg-dark p-6 xl:p-14 text-white">
+          <div class="row items-center justify-between">
+            {image && (
+              <div
+                class="mb-10 md:col-5 lg:col-6 md:order-2 md:mb-0"
+                data-aos="zoom-out-sm">
+                <ImageMod
+                  class="w-full xl:scale-125"
+                  src={image}
+                  alt="cta-image"
+                />
+              </div>
+            )}
+            <div class="md:col-6 md:order-1" data-aos="fade-left-sm">
+              {subtitle && (
+                <div class="flex items-center gap-x-3 mb-5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+                  <span class="text-sm" set:html={markdownify(subtitle)} />
+                </div>
+              )}
+
+              {title && (
+                <h2 class="mb-8 text-white" set:html={markdownify(title)} />
+              )}
+
+              <div class="flex items-center gap-x-5 gap-y-2 flex-wrap">
+                {buttons &&
+                  buttons.map((button, index) => (
+                    <a
+                      href={button.link}
+                      class={`${index === 0 ? "btn-primary" : "btn-outline-primary bg-white text-text-dark"} btn`}
+                      set:html={markdownify(button.label)}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

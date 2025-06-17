@@ -1,0 +1,18 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+const { img, title, description } = Astro.props;
+---
+
+<div class="row items-center justify-between">
+  {
+    img && (
+      <div class="md:col-5 mb-10 xl:mb-0">
+        <img src={img} alt="new-subscribers" class="mx-auto" />
+      </div>
+    )
+  }
+  <div class="md:col-7">
+    {title && <h2 class="mb-6" set:html={markdownify(title)} />}
+    {description && <p set:html={markdownify(description)} />}
+  </div>
+</div>

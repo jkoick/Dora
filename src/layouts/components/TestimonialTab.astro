@@ -1,0 +1,50 @@
+---
+import DynamicIcon from "@/helpers/DynamicIcon";
+import type { CollectionEntry } from "astro:content";
+import TestimonialCard from "./TestimonialCard.astro";
+
+type Props = {
+  testimonials: CollectionEntry<"homepage">["data"]["testimonials"];
+};
+
+const { testimonials } = Astro.props;
+---
+
+<div class="c-tab" data-tab-group="tab-group-name">
+  <ul
+    class="c-tab-nav flex justify-center items-center gap-4 lg:gap-x-6 flex-wrap"
+    data-tab-nav>
+    {
+      testimonials.list.map(({ tab_button }, index) => (
+        <li
+          class="c-tab-nav-item shadow"
+          tabindex="-1"
+          data-tab={index}
+          data-aos="-ifaden"
+          data-aos-delay={`${index} * 100`}>
+          <div class="c-tab-nav-item-icon">
+            <DynamicIcon icon={tab_button.icon} />
+          </div>
+          <span class="c-tab-nav-item-text" set:html={tab_button.title} />
+        </li>
+      ))
+    }
+  </ul>
+  <div class="c-tab-content col-12 mt-11" data-tab-content>
+    {
+      testimonials.list.map(({ tab_content }, index) => (
+        <div
+          class="c-tab-content-panel active p-5 lg:p-12 !bg-white box-shadow"
+          data-tab-panel={index}>
+          {tab_content.map(({ title, image, description }) => (
+            <TestimonialCard
+              title={title}
+              img={image}
+              description={description}
+            />
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</div>

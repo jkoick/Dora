@@ -1,0 +1,127 @@
+---
+import config from "@/config/config.json";
+import dateFormat from "@/lib/utils/dateFormat";
+import {
+  humanize,
+  markdownify,
+  plainify,
+  slugify,
+} from "@/lib/utils/textConverter";
+import Share from "@/components/Share.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  layout?: "large" | "horizontal" | "boxed";
+}
+
+const {
+  summary_length,
+  blog_folder,
+}: { summary_length: number; blog_folder: string } = config.settings;
+
+const { post, layout } = Astro.props;
+const { title, image, date, excerpt, categories } = post.data;
+---
+
+{
+  layout === "horizontal" ? (
+    <article class="row gy-4 sm:items-center group">
+      <div class="sm:col-5">
+        {image && (
+          <div class="relative">
+            <a href={`/${blog_folder}/${post.id}/`}>
+              <ImageMod
+                src={image}
+                alt="Blog Image"
+                class={`w-full object-cover h-[225px]`}
+              />
+            </a>
+            <Share classname="group-hover:opacity-100 opacity-0" />
+          </div>
+        )}
+      </div>
+      <div class="sm:col-7">
+        {title && (
+          <h3 class={`md:mb-3 mb-2 inline-block h6`}>
+            <a
+              href={`/${blog_folder}/${post.id}/`}
+              set:html={markdownify(title)}
+            />
+          </h3>
+        )}
+
+        {excerpt && (
+          <p class="text-sm mb-2 text-text-dark/60">
+            {plainify(excerpt?.slice(0, Number(summary_length)))}
+          </p>
+        )}
+
+        {layout && (
+          <span
+            class="bg-text-dark/5 px-3 py-1 text-xs text-text-dark inline-block my-3"
+            set:html={dateFormat(date!)}
+          />
+        )}
+      </div>
+    </article>
+  ) : (
+    <article
+      class={`group min-h-full ${layout === "boxed" ? "p-4 group border" : "mb-8 last:mb-0"}`}>
+      {image && (
+        <div class="relative">
+          <a href={`/${blog_folder}/${post.id}/`}>
+            <ImageMod
+              src={image}
+              alt="Blog Image"
+              class={`w-full object-cover mb-4 ${
+                layout === "large"
+                  ? "h-[400px]"
+                  : layout === "boxed"
+                    ? "h-[200px]"
+                    : "h-[225px]"
+              }`}
+            />
+          </a>
+          <Share classname="group-hover:opacity-100 opacity-0" />
+        </div>
+      )}
+      <div class={`${layout === "boxed" ? "md:p-4 pb-0" : ""}`}>
+        {categories && (
+          <span class="mb-2 inline-block">
+            {categories.map((category: string, index: number) => (
+              <a
+                href={`/categories/${slugify(category)}/`}
+                class="text-xs uppercase">
+                {humanize(category)}
+                {index !== categories.length - 1 && ` · `}
+              </a>
+            ))}
+          </span>
+        )}
+        {title && (
+          <h3 class={`text-text-dark/90 ${layout === "large" ? "" : "h6"}`}>
+            <a
+              href={`/${blog_folder}/${post.id}/`}
+              set:html={markdownify(title)}
+            />
+          </h3>
+        )}
+
+        {layout && (
+          <span
+            class="bg-text-dark/5 px-3 py-1 text-xs text-text-dark inline-block my-4"
+            set:html={dateFormat(date!)}
+          />
+        )}
+
+        {excerpt && layout && (
+          <p class="text-sm text-text-dark/60">
+            {plainify(excerpt?.slice(0, Number(summary_length)))}
+          </p>
+        )}
+      </div>
+    </article>
+  )
+}

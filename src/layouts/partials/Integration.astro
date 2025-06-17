@@ -1,0 +1,59 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const featuresIndex = (await getEntry(
+  "features",
+  "-index"
+)) as CollectionEntry<"features">;
+const { integrations } = featuresIndex.data;
+---
+
+{
+  integrations && integrations.enable && (
+    <section class="section-sm pb-5 md:py-14">
+      <div class="container">
+        <div class="row items-center">
+          {integrations.image && (
+            <div class="md:col-6 order-2 md:order-1 flex justify-center items-center">
+              <img
+                src={integrations.image}
+                alt="Tools Images"
+                width="560"
+                height="620"
+                class="w-full"
+                draggable="false"
+              />
+            </div>
+          )}
+          <div class="md:col-6 order-1 md:order-2" data-aos="fade-right-sm">
+            {integrations.subtitle && (
+              <DotTitle title={integrations.subtitle} />
+            )}
+            {integrations.title && (
+              <h2
+                class="mb-4 lg:mb-6 xl:col-11 h1"
+                set:html={markdownify(integrations.title)}
+              />
+            )}
+            {integrations.description && (
+              <p
+                class="mb-8"
+                set:html={markdownify(integrations.description)}
+              />
+            )}
+            {integrations.button && integrations.button.enable && (
+              <a
+                href={integrations.button.link}
+                class="btn btn-primary"
+                set:html={markdownify(integrations.button.label)}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

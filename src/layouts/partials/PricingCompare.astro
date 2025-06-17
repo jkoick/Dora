@@ -1,0 +1,159 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { pricing_compare } = (
+  (await getEntry("pricing", "-index")) as CollectionEntry<"pricing">
+).data;
+---
+
+{
+  pricing_compare && (
+    <section class="section">
+      <div class="container">
+        {pricing_compare.subtitle && (
+          <div class="flex justify-center" data-aos="fade-up-sm">
+            <DotTitle title={pricing_compare.subtitle} />
+          </div>
+        )}
+        {pricing_compare.title && (
+          <h2
+            class="mb-8 lg:mb-10 text-center xl:col-8 mx-auto md:px-10"
+            data-aos="fade-up-sm"
+            data-aos-delay="100"
+            set:html={markdownify(pricing_compare.title)}
+          />
+        )}
+
+        <table
+          class="text-left pricing-table md:mx-auto lg:col-10"
+          data-aos="fade-up-sm">
+          {pricing_compare.columns && (
+            <thead>
+              <tr>
+                {pricing_compare.columns.map((column, index) => (
+                  <th
+                    data-label={column.title}
+                    class={`${index === 0 ? "max-md:flex max-md:!justify-end max-md:gap-x-1.5 max-md:!items-center" : ""}`}>
+                    {column.price && (
+                      <>
+                        <span
+                          class="font-normal"
+                          set:html={markdownify(column.price)}
+                        />
+                        <br />
+                      </>
+                    )}
+                    {column.title && column.title}
+
+                    {index === 0 && (
+                      <span class="md:hidden">
+                        <DynamicIcon
+                          icon="FaCircleQuestion"
+                          className="text-primary me-0"
+                        />
+                      </span>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+          )}
+          <tbody>
+            {pricing_compare.rows.map((row) => (
+              <tr>
+                <td data-label={row.basic.title}>
+                  <span class="md:hidden">
+                    <DynamicIcon
+                      icon="FaCircleQuestion"
+                      className="text-primary me-0"
+                    />
+                  </span>
+                  {markdownify(row.title)}
+                </td>
+
+                {/* For Basic Plan */}
+                {row.basic.value && (
+                  <td
+                    data-label={row.basic.title}
+                    set:html={markdownify(row.basic.value)}
+                  />
+                )}
+                {row.basic.icon && row.basic.icon.value && (
+                  <td data-label={row.basic.title}>
+                    <DynamicIcon
+                      className={`text-base lg:text-h5 ${row.basic.icon.style ? row.basic.icon.style : "text-dark/20"}`}
+                      icon={row.basic.icon.value}
+                    />
+                  </td>
+                )}
+                {row.basic.button && row.basic.button.enable && (
+                  <td class="!py-6 md:py-0" data-label={row.basic.title}>
+                    <a
+                      href={row.basic.button.link}
+                      class={`btn btn-sm ${row.basic.button.style ? row.basic.button.style : "btn-outline-primary"} my-4`}
+                      set:html={markdownify(row.basic.button.label)}
+                    />
+                  </td>
+                )}
+
+                {/* For Standard Plan */}
+                {row.standard.value && (
+                  <td
+                    data-label={row.standard.title}
+                    set:html={markdownify(row.standard.value)}
+                  />
+                )}
+                {row.standard.icon && row.standard.icon.value && (
+                  <td data-label={row.standard.title}>
+                    <DynamicIcon
+                      className={`text-base lg:text-h5 ${row.standard.icon.style ? row.standard.icon.style : "text-dark/20"}`}
+                      icon={row.standard.icon.value}
+                    />
+                  </td>
+                )}
+                {row.standard.button && row.standard.button.enable && (
+                  <td class="!py-6 md:py-0" data-label={row.standard.title}>
+                    <a
+                      href={row.standard.button.link}
+                      class={`btn btn-sm ${row.standard.button.style ? row.standard.button.style : "btn-outline-primary"} my-4`}
+                      set:html={markdownify(row.standard.button.label)}
+                    />
+                  </td>
+                )}
+
+                {/* For Executive Plan */}
+                {row.executive.value && (
+                  <td
+                    data-label={row.executive.title}
+                    set:html={row.executive.value}
+                  />
+                )}
+                {row.executive.icon && row.executive.icon.value && (
+                  <td data-label={row.executive.title}>
+                    <DynamicIcon
+                      className={`text-base lg:text-h5 ${row.executive.icon.style ? row.executive.icon.style : "text-dark/20"}`}
+                      icon={row.executive.icon.value}
+                    />
+                  </td>
+                )}
+                {row.executive.button && row.executive.button.enable && (
+                  <td class="!py-6 md:py-0" data-label={row.executive.title}>
+                    <a
+                      href={row.executive.button.link}
+                      class={`btn btn-sm ${row.executive.button.style ? row.executive.button.style : "btn-outline-primary"} my-4`}
+                      set:html={markdownify(row.executive.button.label)}
+                    />
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}

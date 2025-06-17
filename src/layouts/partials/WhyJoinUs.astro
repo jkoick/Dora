@@ -1,0 +1,53 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import OurStrengthCard from "@/components/OurStrengthCard.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { whyJoinUs } = (
+  (await getEntry("about", "-index")) as CollectionEntry<"about">
+).data;
+---
+
+{
+  whyJoinUs && whyJoinUs.enable && (
+    <section class="section">
+      <div class="container relative isolate bg-light">
+        <div class="container-inner relative z-10">
+          <div>
+            {whyJoinUs.subtitle && (
+              <div class="flex justify-center" data-aos="fade-up-sm">
+                <DotTitle title={whyJoinUs.subtitle} />
+              </div>
+            )}
+            {whyJoinUs.title && (
+              <h2
+                class="mb-6 lg:mb-12 text-center xl:col-10 mx-auto"
+                data-aos="fade-up-sm"
+                set:html={markdownify(whyJoinUs.title)}
+              />
+            )}
+          </div>
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {whyJoinUs.list.map((card, index) => (
+              <OurStrengthCard
+                icon={card.icon}
+                title={card.title}
+                description={card.description}
+                delay={index < 3 ? index * 100 : (index - 3) * 100}
+              />
+            ))}
+          </div>
+        </div>
+
+        <ImageMod
+          src="/images/shapes/bottom-left-triangles.png"
+          alt="Shape"
+          class="absolute bottom-14 right-14 scale-95 hidden lg:inline"
+        />
+      </div>
+    </section>
+  )
+}

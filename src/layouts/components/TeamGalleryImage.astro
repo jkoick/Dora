@@ -1,0 +1,20 @@
+---
+import ImageMod from "./ImageMod.astro";
+
+const { src, alt, delay } = Astro.props;
+---
+
+<div
+  class="relative group overflow-hidden"
+  data-aos="zoom-out-sm"
+  data-aos-delay={delay}>
+  <ImageMod
+    src={src}
+    alt={alt}
+    class="w-full h-auto group-hover:scale-125 group-hover:rotate-6 transition-all duration-300"
+  />
+
+  <div
+    class="absolute bg-primary/20 top-0 left-0 w-full h-full hidden group-hover:grid place-items-center transition-all duration-300">
+  </div>
+</div>

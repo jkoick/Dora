@@ -1,0 +1,47 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import ImageMod from "@/components/ImageMod.astro";
+import DynamicIcon from "@/helpers/DynamicIcon";
+
+interface Props {
+  title?: string;
+  rating_description?: string;
+  img?: string;
+  alt?: string;
+  delay?: number;
+  rating?: number;
+}
+const { title, rating_description, img, alt, delay } = Astro.props;
+---
+
+<div
+  class="border xl:py-11 p-8 flex flex-col items-center gap-y-1 md:gap-y-4 w-full"
+  data-aos="fade-up-sm"
+  data-aos-delay={delay}>
+  {
+    title && (
+      <span
+        class="text-h2 text-text-dark font-extrabold leading-none"
+        set:html={markdownify(title)}
+      />
+    )
+  }
+
+  <div class="flex justify-center gap-x-2">
+    <DynamicIcon icon={"FaStar"} className={"text-[#FFC804] text-lg"} />
+    <DynamicIcon icon={"FaStar"} className={"text-[#FFC804] text-lg"} />
+    <DynamicIcon icon={"FaStar"} className={"text-[#FFC804] text-lg"} />
+    <DynamicIcon icon={"FaStar"} className={"text-[#FFC804] text-lg"} />
+    <DynamicIcon icon={"FaStar"} className={"text-[#FFC804] text-lg"} />
+  </div>
+
+  {
+    rating_description && (
+      <span
+        class="text-base font-normal text-text-dark"
+        set:html={markdownify(rating_description)}
+      />
+    )
+  }
+  {img && <ImageMod src={img} alt={alt || title || "Logo"} />}
+</div>

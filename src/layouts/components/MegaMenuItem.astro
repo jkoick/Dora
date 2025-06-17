@@ -1,0 +1,32 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+
+interface Props {
+  image: string;
+  title: string;
+  href: string;
+  description: string;
+}
+const { image, title, href, description } = Astro.props;
+---
+
+<div class="mega-dropdown-item-lg">
+  {image && <img src={image} alt="Logo" />}
+  <div>
+    {
+      title && (
+        <a href={href} class="link-card text-text-dark">
+          <span
+            class="font-semibold h6 inline-block"
+            set:html={markdownify(title)}
+          />
+        </a>
+      )
+    }
+    {
+      description && (
+        <p class="text-base-sm mt-2" set:html={markdownify(description)} />
+      )
+    }
+  </div>
+</div>

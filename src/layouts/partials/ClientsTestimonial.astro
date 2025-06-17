@@ -1,0 +1,38 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import Marquee from "@/components/Marquee.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const homepage = (await getEntry(
+  "homepage",
+  "-index"
+)) as CollectionEntry<"homepage">;
+const { clients } = homepage.data;
+---
+
+{
+  clients.enable && (
+    <section class="mt-6 lg:mt-12 mb-7 lg:mb-16 relative">
+      <ImageMod
+        alt="Shape"
+        src="/images/shapes/triangles.png"
+        class="max-w-[197px] absolute right-0 top-1/2 hidden lg:block -z-10 scale-75 xl:scale-100"
+      />
+      {clients.title && (
+        <h2
+          class="text-center mb-8 h5"
+          data-aos="fade-up-sm"
+          set:html={markdownify(clients.title)}
+        />
+      )}
+
+      {clients.list && (
+        <div class="marquee-container our-tools !col-9 mx-auto overflow-x-hidden !pb-0">
+          <Marquee marqueeContents={clients.list} gutter="10" />
+        </div>
+      )}
+    </section>
+  )
+}

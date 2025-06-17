@@ -1,0 +1,44 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import OfficeLocationCard from "@/components/OfficeLocationCard.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const contact = (await getEntry(
+  "contact",
+  "-index"
+)) as CollectionEntry<"contact">;
+const { locations } = contact.data;
+---
+
+{
+  locations && (
+    <section class="section">
+      <div class="container-sm text-center">
+        {locations.subtitle && (
+          <div class="flex justify-center" data-aos="fade-up-sm">
+            <DotTitle title={locations.subtitle} />
+          </div>
+        )}
+        <div class="lg:col-9 mx-auto" data-aos="fade-up-sm" data-aos-delay="50">
+          {locations.title && (
+            <h2 class="mb-6" set:html={markdownify(locations.title)} />
+          )}
+          {locations.description && (
+            <p class="mb-10" set:html={markdownify(locations.description)} />
+          )}
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {locations.list &&
+            locations.list.map((location) => (
+              <OfficeLocationCard
+                city={location.city}
+                address={location.address}
+              />
+            ))}
+        </div>
+      </div>
+    </section>
+  )
+}

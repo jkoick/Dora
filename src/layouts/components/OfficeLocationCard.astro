@@ -1,0 +1,17 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+
+interface Props {
+  city: string;
+  address: string;
+}
+const { city, address } = Astro.props;
+---
+
+<div
+  class="border border-border w-full h-full p-4 sm:px-8 sm:py-12"
+  data-aos="zoom-out-sm">
+  {city && <h3 class="h5" set:html={markdownify(city)} />}
+  <hr class="divider my-3" />
+  {address && <p class="text-h6 px-6" set:html={markdownify(address)} />}
+</div>

@@ -1,0 +1,21 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import ImageMod from "./ImageMod.astro";
+
+const { icon, title, description, delay } = Astro.props;
+---
+
+<div data-aos="zoom-out-sm" data-aos-delay={delay}>
+  <div
+    class="px-5 py-10 text-center border bg-light hover:bg-white hover:shadow hover:border-transparent transition-card">
+    <ImageMod
+      src={icon}
+      alt="Shape"
+      width={88}
+      height={88}
+      class="p-4 bg-primary rounded-full mx-auto mb-6"
+    />
+    {title && <h3 class="h5 mb-5" set:html={markdownify(title)} />}
+    {description && <p class="text-base" set:html={markdownify(description)} />}
+  </div>
+</div>

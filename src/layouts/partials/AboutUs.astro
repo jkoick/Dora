@@ -1,0 +1,84 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import WavePlayButton from "@/components/WavePlayButton.astro";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import DotTitle from "@/components/DotTitle.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const { about } = (
+  await getEntry("homepage", "-index") as CollectionEntry<"homepage">
+).data;
+---
+
+{
+  about && (
+    <section class="section overflow-hidden">
+      <div class="container-sm">
+        {about.map(({ enable, image, title, subtitle, description, list, video }, index) => (
+          enable && (
+            <div class={`row gy-4 items-center justify-between ${(index % 2 === 0) ? '' : 'mt-12 xl:mt-16'}`}>
+              {image && (
+                <div
+                  class={`md:col-5 lg:col-6 ${video && video.enable ? 'relative' : ''} ${(index % 2 === 0) ? 'order-1 md:order-1' : 'order-2 md:order-2'}`}>
+                  <ImageMod
+                    src={image}
+                    alt={title}
+                    class="w-full object-cover"
+                    data-aos="zoom-out-sm"
+                  />
+                  {video && video.enable && (
+                    <div class="absolute inset-0 grid place-items-center">
+                      <button aria-label="Play Video" data-modal-open>
+                        <WavePlayButton />
+                      </button>
+                      <div class="modal" data-modal="">
+                        <div class="modal-overlay" data-modal-close="" data-modal-overlay=""></div>
+                        <div class="modal-content w-[950px]">
+                          <button class="modal-close grid place-items-center z-10" data-modal-close="">
+                            <DynamicIcon icon={"FaXmark"} />
+                          </button>
+                          <div class="video-container">
+                            <iframe id="youtube-iframe" src="https://www.youtube.com/embed/ResipmZmpDU" loading="lazy"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              <div class={`md:col-7 lg:col-6 px-5 ${(index % 2 === 0) ? 'order-2 md:order-2' : 'order-1 md:order-1'}`}>
+                {subtitle && (
+
+                <div data-aos={`${(index % 2 === 0) ? 'fade-right-sm' : 'fade-left-sm'}`}>
+                  <DotTitle title={subtitle} />
+                </div>
+                )}
+                {title && <h2 class="mb-6" data-aos={`${(index % 2 === 0) ? 'fade-right-sm' : 'fade-left-sm'}`} set:html={markdownify(title)} />}
+                {description && <p data-aos={`${(index % 2 === 0) ? 'fade-right-sm' : 'fade-left-sm'}`} set:html={markdownify(description)} />}
+
+                {list && (
+                  <hr class="my-6 border-border" />
+                  <ul class="text-text-dark font-normal" data-aos={`${(index % 2 === 0) ? 'fade-right-sm' : 'fade-left-sm'}`}>
+                    {list.map((value) => (
+                      <li class="relative mb-4 flex items-start">
+                        <div class="pr-2 mt-[5px]">
+                          <span
+                            class="bg-primary w-5 h-5 grid place-items-center rounded-full">
+                              <DynamicIcon icon="FaCheck" className="text-white text-xs inline-block" />
+                          </span>
+                        </div>
+                        { value && <span set:html={markdownify(value)}  class="text-lg" /> }
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          )
+        ))}
+      </div>
+    </section>
+  )
+}

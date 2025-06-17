@@ -1,0 +1,88 @@
+---
+import config from "@/config/config.json";
+
+const { base_url }: { base_url: string } = config.site;
+const {
+  title,
+  classname,
+  description,
+  slug,
+}: { title?: string; description?: string; slug?: string; classname?: string } =
+  Astro.props;
+---
+
+<div
+  class={`absolute top-5 right-5 transition-all duration-300 ${classname || ""}`}>
+  <div class="relative isolate">
+    <button
+      class="w-10 h-10 bg-text-dark/20 hover:bg-text-dark rounded-full grid place-items-center group/share">
+      <img src="/images/svg/icons/share-icon.svg" alt="Share Now" />
+
+      <ul
+        class="items-center min-w-max absolute right-full top-1/2 -translate-y-1/2 gap-2 rounded-md bg-white/50 px-2 pr-5 translate-x-10 -z-10 py-1 hidden group-hover/share:flex transition-all group-hover/share:translate-x-3">
+        <li>
+          <a
+            aria-label="facebook share button"
+            href={`https://facebook.com/sharer/sharer.php?u=${base_url}/${slug}`}
+            target="_blank">
+            <img
+              src="/images/svg/icons/fb.svg"
+              alt="Facebook"
+              width="30px"
+              height="30px"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label="twitter share button"
+            href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${base_url}/${slug}`}
+            target="_blank">
+            <img
+              src="/images/svg/icons/x.svg"
+              alt="Twitter"
+              width="30px"
+              height="30px"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label="pinterest share button"
+            href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
+            target="_blank">
+            <img
+              src="/images/svg/icons/pinterest.svg"
+              alt="Pinterest"
+              width="30px"
+              height="30px"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label="linkedin share button"
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}/${slug}&title=${title}&summary=${description}&source=${base_url}`}
+            target="_blank">
+            <img
+              src="/images/svg/icons/linkedin.svg"
+              alt="LinkedIn"
+              width="30px"
+              height="30px"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img
+              src="/images/svg/icons/instagram.svg"
+              alt="Instagram"
+              width="30px"
+              height="30px"
+            />
+          </a>
+        </li>
+      </ul>
+    </button>
+  </div>
+</div>

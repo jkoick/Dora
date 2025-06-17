@@ -1,0 +1,46 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ImageMod from "@/layouts/components/ImageMod.astro";
+import { humanize, markdownify } from "@/lib/utils/textConverter";
+
+const { title = "" }: { title?: string } = Astro.props;
+---
+
+<section class="mt-7">
+  <div class="container text-center">
+    <div
+      class="bg-light px-5 lg:px-8 py-10 lg:py-24] relative isolate overflow-hidden">
+      {
+        title && (
+          <h1
+            class="page-header-title"
+            data-aos="fade-up-sm"
+            set:html={markdownify(humanize(title))}
+          />
+        )
+      }
+      <Breadcrumbs
+        className="breadcrumb mt-4 md:px-8 flex justify-center items-start"
+      />
+
+      <!--FLOATING SHAPES-->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute -translate-y-1/2 -right-16 -top-5 md:top-0 md:right-0">
+          <ImageMod
+            src="/images/shapes/shape-2.png"
+            alt="Shape"
+            data-aos="fade-down-left-sm"
+          />
+        </div>
+        <div class="absolute bottom-0 left-0 hidden xl:block">
+          <ImageMod
+            src="/images/shapes/shape-5.png"
+            alt="Shape"
+            data-aos="fade-up-right-sm"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

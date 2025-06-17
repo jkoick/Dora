@@ -1,0 +1,80 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import TeamGalleryImage from "@/components/TeamGalleryImage.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+let gallery_content;
+
+const { gallery } = Astro.props;
+
+if (gallery) {
+  gallery_content = gallery;
+} else {
+  const { gallery } = (
+    (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+  ).data;
+  gallery_content = gallery;
+}
+---
+
+{
+  gallery_content && gallery_content.enable && (
+    <section class="section">
+      <div class="container-sm">
+        <div>
+          {gallery_content.subtitle && (
+            <div class="flex justify-center" data-aos="fade-up-sm">
+              <DotTitle title={gallery_content.subtitle} />
+            </div>
+          )}
+
+          {gallery_content.title && (
+            <h2
+              class="mb-6 lg:mb-12 text-center 2xl:col-10 mx-auto"
+              data-aos="fade-up-sm"
+              data-aos-delay="100"
+              set:html={markdownify(gallery_content.title)}
+            />
+          )}
+        </div>
+
+        {gallery_content.images && (
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="flex flex-col gap-y-5 justify-between">
+              {gallery_content.images.map(
+                (
+                  { position, src }: { position: string; src: string },
+                  index: number
+                ) =>
+                  position === "left" && (
+                    <TeamGalleryImage
+                      src={src}
+                      alt="office images"
+                      delay={index * 100}
+                    />
+                  )
+              )}
+            </div>
+            <div class="flex flex-col gap-y-5 justify-between">
+              {gallery_content.images.map(
+                (
+                  { position, src }: { position: string; src: string },
+                  index: number
+                ) =>
+                  position === "right" && (
+                    <TeamGalleryImage
+                      src={src}
+                      alt="office images"
+                      delay={index * 100}
+                    />
+                  )
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,195 @@
+---
+import UserImage from "@/components/UserImage.astro";
+import DotTitle from "@/components/DotTitle.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const featuresBanner = (await getEntry(
+  "features",
+  "-index"
+)) as CollectionEntry<"features">;
+const { banner } = featuresBanner.data;
+---
+
+{
+  banner && banner.enable && (
+    <section class="pb-20 2xl:pb-28">
+      <div class="container bg-light">
+        <div class="py-10 md:py-5 2xl:px-28">
+          <div class="row items-center">
+            <div class="lg:col-7">
+              {banner.subtitle && (
+                <div data-aos="fade-left-sm">
+                  <DotTitle title={banner.subtitle} />
+                </div>
+              )}
+
+              {banner.title && (
+                <h1
+                  class="mb-6"
+                  data-aos="fade-left-sm"
+                  data-aos-delay="100"
+                  set:html={markdownify(banner.title)}
+                />
+              )}
+
+              {banner.description && (
+                <p
+                  class="mb-8"
+                  data-aos="fade-left-sm"
+                  data-aos-delay="150"
+                  set:html={markdownify(banner.description)}
+                />
+              )}
+              <hr
+                class="divider my-5 !w-full"
+                data-aos="fade-left-sm"
+                data-aos-delay="200"
+              />
+              {banner.stats && (
+                <div
+                  class="grid sm:grid-cols-2 lg:col-9"
+                  data-aos="fade-left-sm"
+                  data-aos-delay="250">
+                  {banner.stats.map((stat) => (
+                    <div class="text-h3 font-bold align-middle text-text-dark flex items-center">
+                      {stat.value}
+                      <span
+                        class="text-primary"
+                        set:html={markdownify(stat.suffix)}
+                      />
+                      <span
+                        class="text-base font-normal ml-2"
+                        set:html={markdownify(stat.title)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div
+              class="lg:col-5 bg-white p-4 md:p-7 mt-8"
+              data-aos="zoom-out-sm">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-light text-text-dark px-4 py-5 md:px-8 flex items-center justify-center sm:gap-x-10 lg:gap-x-0 lg:justify-between col-span-2">
+                  <div class="sm:mr-3 xl:mr-0">
+                    {banner.leads.title && (
+                      <p
+                        class="text-base md:text-h6 font-bold leading-tight"
+                        set:html={markdownify(banner.leads.title)}
+                      />
+                    )}
+                    {banner.leads.description && (
+                      <p
+                        class="text-text-dark text-base-sm block"
+                        set:html={markdownify(banner.leads.description)}
+                      />
+                    )}
+                    {banner.leads.value && (
+                      <p
+                        class="text-h2 text-text-dark md:text-h1 font-bold block leading-tight"
+                        set:html={markdownify(banner.leads.value)}
+                      />
+                    )}
+                  </div>
+                  <div class="w-px bg-border h-full mx-2 hidden xl:block" />
+                  <div class="w-[180px] min-w-[140px] grid place-items-center relative">
+                    <svg
+                      id="progressCircle"
+                      viewBox="0 0 100 100"
+                      data-circle-progress="88">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="transparent"
+                        stroke="#EEEEEE"
+                        stroke-width="10"
+                      />
+                      <circle
+                        id="progress"
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="transparent"
+                        stroke="#6EE272"
+                        stroke-width="10"
+                        stroke-dasharray="251.2"
+                        stroke-dashoffset="251.2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+
+                    <div class="text-center absolute inset-0 grid place-items-center z-10">
+                      <div>
+                        {banner.graph.value && (
+                          <span
+                            class="text-h6 font-bold block leading-none"
+                            set:html={markdownify(banner.graph.value)}
+                          />
+                        )}
+                        {banner.graph.title && (
+                          <span class="text-base-sm block">
+                            {banner.graph.title}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {banner.team_members.map((member) => (
+                  <UserImage name={member.name} img={member.image} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  function circleAnimInit() {
+    function animateProgress(): void {
+      setTimeout(() => {
+        const circle = document.getElementById("progress") as SVGElement | null;
+        const progressCircle = document.getElementById(
+          "progressCircle"
+        ) as HTMLElement | null;
+
+        if (!circle || !progressCircle) {
+          return;
+        }
+
+        const progressAttr = progressCircle.getAttribute(
+          "data-circle-progress"
+        );
+        if (progressAttr === null) {
+          return;
+        }
+
+        const progress = parseFloat(progressAttr);
+        const circumferenceAttr = circle.getAttribute("stroke-dasharray");
+        if (circumferenceAttr === null) {
+          return;
+        }
+
+        const circumference = parseFloat(circumferenceAttr);
+        const offset = circumference - (progress / 100) * circumference;
+
+        circle.style.transition = "stroke-dashoffset 1s ease-in-out";
+        circle.style.strokeDashoffset = offset.toString();
+      }, 300); // 300ms delay
+    }
+
+    // Initial animation
+    const circleSvg = document.getElementById("progress");
+    if (circleSvg) {
+      animateProgress();
+    }
+  }
+
+  document.addEventListener("astro:page-load", circleAnimInit);
+</script>

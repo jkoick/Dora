@@ -1,0 +1,67 @@
+---
+import DynamicIcon from "@/helpers/DynamicIcon";
+import TeamMemberCard from "@/components/TeamMemberCard.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  members: CollectionEntry<"about">["data"]["team"]["members"];
+};
+
+const { members } = Astro.props;
+---
+
+<div class="relative" data-aos="fade-up-sm">
+  <div class="swiper team-member-slider mb-5">
+    <div class="swiper-wrapper">
+      {
+        members.map((member) => (
+          <div class="swiper-slide">
+            <TeamMemberCard {...member} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <button
+    class="bg-white hover:bg-primary transition-colors w-12 h-12 rounded-full grid place-items-center text-text-dark absolute top-1/2 -translate-y-1/2 xl:-translate-x-1/2 left-0 z-10 shadow-xl team-swiper-prev"
+    id="team-slider-prev">
+    <DynamicIcon icon="FaArrowLeft" />
+  </button>
+  <button
+    class="bg-white hover:bg-primary transition-colors w-12 h-12 rounded-full grid place-items-center text-text-dark absolute top-1/2 -translate-y-1/2 xl:translate-x-1/2 right-0 z-10 shadow-xl team-swiper-next">
+    <DynamicIcon icon="FaArrowRight" />
+  </button>
+</div>
+
+<script>
+  import { Swiper } from "swiper";
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+  function sliderInit() {
+    new Swiper(".team-member-slider", {
+      modules: [Navigation, Autoplay, Pagination],
+      spaceBetween: 24,
+      loop: true,
+      speed: 800,
+      slidesPerView: 1,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+        },
+      },
+      navigation: {
+        nextEl: ".team-swiper-next",
+        prevEl: ".team-swiper-prev",
+      },
+    });
+  }
+
+  document.addEventListener("astro:page-load", sliderInit);
+</script>

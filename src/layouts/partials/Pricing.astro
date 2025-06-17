@@ -1,0 +1,95 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { enable, title, subtitle, pricing, pricing_types } = (
+  (await getEntry(
+    "pricingSection",
+    "pricing"
+  )) as CollectionEntry<"pricingSection">
+).data;
+---
+
+{
+  enable && (
+    <section class="section">
+      <div class="container">
+        {subtitle && (
+          <div class="flex justify-center" data-aos="fade-up-sm">
+            <DotTitle title={subtitle} />
+          </div>
+        )}
+        {title && (
+          <h2
+            class="text-center mb-8 lg:mb-6"
+            set:html={markdownify(title)}
+            data-aos="fade-up-sm"
+            data-aos-delay="100"
+          />
+        )}
+
+        <div class="c-tab" data-tab-group="pricing">
+          <div class="flex justify-center">
+            {pricing_types && (
+              <ul
+                class="c-tab-nav bg-white shadow p-2 flex items-center"
+                data-tab-nav
+                data-aos="fade-up-sm"
+                data-aos-delay="100">
+                {pricing_types.map((type, index) => (
+                  <li
+                    class={`c-tab-nav-item ${index === 0 ? "active" : ""}`}
+                    tabindex="0"
+                    data-tab={index}>
+                    <span
+                      class="c-tab-nav-item-text"
+                      set:html={markdownify(type)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div
+            class="c-tab-content relative p-2 md:p-8 lg:p-11 lg:col-11 mx-auto"
+            data-tab-content
+            data-aos="fade-up-sm">
+            {pricing && (
+              <div
+                class="c-tab-content-panel active space-y-12"
+                data-tab-panel="0">
+                {pricing
+                  .filter((item) => item.type === "monthly")
+                  .map((item) => (
+                    <PricingCard {...item} />
+                  ))}
+              </div>
+            )}
+            {pricing && (
+              <div
+                class="c-tab-content-panel active space-y-12"
+                data-tab-panel="1">
+                {pricing
+                  .filter((item) => item.type === "yearly")
+                  .map((item) => (
+                    <PricingCard {...item} />
+                  ))}
+              </div>
+            )}
+
+            <ImageMod
+              src="/images/shapes/bottom-left-triangles.png"
+              alt="Shape"
+              class="absolute bottom-0 left-0 -z-10"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

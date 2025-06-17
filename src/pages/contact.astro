@@ -1,0 +1,25 @@
+---
+import Base from "@/layouts/Base.astro";
+import CallToAction from "@/partials/CallToAction.astro";
+import ContactSection from "@/partials/ContactSection.astro";
+import OfficeLocation from "@/partials/OfficeLocation.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const contact = (await getEntry(
+  "contact",
+  "-index"
+)) as CollectionEntry<"contact">;
+---
+
+<Base {...contact.data}>
+  <ContactSection />
+
+  <hr class="divider" />
+
+  <OfficeLocation />
+
+  <hr class="divider" />
+
+  <CallToAction />
+</Base>

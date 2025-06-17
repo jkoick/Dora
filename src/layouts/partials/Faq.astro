@@ -1,0 +1,100 @@
+---
+import AnimatedCircles from "@/components/AnimatedCircles.astro";
+import DotTitle from "@/components/DotTitle.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const faqSection = (await getEntry(
+  "faqSection",
+  "faq"
+)) as CollectionEntry<"faqSection">;
+const { enable, title, subtitle, description, list, button } = faqSection.data;
+---
+
+{
+  enable && (
+    <section class="section overflow-hidden isolate">
+      <div class="container-light relative">
+        <div class="row">
+          <div class="lg:col-6 pr-8">
+            {subtitle && (
+              <div data-aos="fade-left-sm">
+                <DotTitle title={subtitle} />
+              </div>
+            )}
+
+            {title && (
+              <h2
+                class="mb-6"
+                data-aos="fade-left-sm"
+                data-aos-delay="100"
+                set:html={markdownify(title)}
+              />
+            )}
+            {description && (
+              <p
+                data-aos="fade-left-sm"
+                data-aos-delay="150"
+                set:html={markdownify(description)}
+              />
+            )}
+
+            {button && button.enable && (
+              <div data-aos="fade-left-sm" data-aos-delay="200">
+                <a
+                  href={button.link}
+                  class="btn btn-primary mt-6"
+                  set:html={markdownify(button.label)}
+                />
+              </div>
+            )}
+          </div>
+          {list && (
+            <div class="lg:col-6 mt-10">
+              {list.map(({ title, content }) => (
+                <div class="accordion">
+                  {title && (
+                    <div class="accordion-header" data-accordion>
+                      <span> {title} </span>
+                      <div class="accordion-icon">
+                        <div class="absolute inset-0 w-[2px] h-4/5 bg-text-dark m-auto" />
+                        <div class="absolute inset-0 w-[2px] h-4/5 bg-text-dark m-auto rotate-90" />
+                      </div>
+                    </div>
+                  )}
+                  {content && (
+                    <div
+                      class="accordion-content"
+                      set:html={markdownify(content)}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div
+          class="absolute left-0 bottom-0 translate-y-1/2 -translate-x-1/2 -z-10"
+          data-aos="fade-in">
+          <AnimatedCircles />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const accordion = document.querySelectorAll("[data-accordion]");
+    accordion.forEach((header) => {
+      header.addEventListener("click", () => {
+        const accordionItem = header.parentElement;
+        if (accordionItem) {
+          accordionItem.classList.toggle("active");
+        }
+      });
+    });
+  });
+</script>

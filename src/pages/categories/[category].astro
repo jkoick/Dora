@@ -1,0 +1,54 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import AnimatedCircles from "@/components/AnimatedCircles.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import Base from "@/layouts/Base.astro";
+
+// get static paths for all categories
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const categories = await getTaxonomy(BLOG_FOLDER, "categories");
+
+  return categories.map((category) => {
+    return {
+      params: { category },
+    };
+  });
+}
+
+const { category } = Astro.params;
+
+// get posts by category
+const BLOG_FOLDER = "blog";
+const posts = await getSinglePage(BLOG_FOLDER);
+const filterByCategories = taxonomyFilter(posts, "categories", category!);
+const sortedPosts = sortByDate(filterByCategories);
+---
+
+<Base title={category}>
+  <PageHeader title={category} />
+
+  <section class="section overflow-hidden">
+    <div class="container">
+      <div class="row gx-4 gy-4 relative z-20 bg-body">
+        {
+          sortedPosts.map((post) => (
+            <div class="lg:col-4">
+              <BlogCard layout="boxed" post={post} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div
+        class="absolute left-0 bottom-0 translate-y-1/2 -translate-x-1/2 -z-10"
+        data-aos="fade-in">
+        <AnimatedCircles />
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,116 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
+
+const { post } = Astro.props;
+const { hours, location, sidebar } = post.data;
+
+const { Content } = await render(post);
+---
+
+<section class="section">
+  <div class="container-sm p-8 lg:px-16 lg:py-20 bg-light mx-6 xl:mx-auto">
+    <div class="row space-y-10 lg:space-y-0">
+      <div class="lg:col-8 space-y-10">
+        <div class="content">
+          <Content />
+        </div>
+      </div>
+      <div class="lg:col-4">
+        <div class="bg-white p-5 lg:p-5 text-center sticky top-32">
+          {
+            sidebar.title && (
+              <h6
+                class="text-h6 mb-5 text-text-dark/90"
+                set:html={markdownify(sidebar.title)}
+              />
+            )
+          }
+
+          {
+            sidebar.description && (
+              <p
+                class="my-3 text-base-sm"
+                set:html={markdownify(sidebar.description)}
+              />
+            )
+          }
+
+          <div class="flex justify-center gap-10 font-sans mt-3 mb-5">
+            {
+              location && (
+                <div class="flex gap-x-1 items-center">
+                  <span class="w-5 h-5">
+                    <svg
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_3650_16570)">
+                        <path
+                          d="M20.0007 3.33325C13.5507 3.33325 8.33398 8.54992 8.33398 14.9999C8.33398 23.7499 20.0007 36.6666 20.0007 36.6666C20.0007 36.6666 31.6673 23.7499 31.6673 14.9999C31.6673 8.54992 26.4507 3.33325 20.0007 3.33325ZM11.6673 14.9999C11.6673 10.3999 15.4007 6.66659 20.0007 6.66659C24.6007 6.66659 28.334 10.3999 28.334 14.9999C28.334 19.7999 23.534 26.9833 20.0007 31.4666C16.534 27.0166 11.6673 19.7499 11.6673 14.9999Z"
+                          fill="#6EE272"
+                        />
+                        <path
+                          d="M20.0007 19.1666C22.3018 19.1666 24.1673 17.3011 24.1673 14.9999C24.1673 12.6987 22.3018 10.8333 20.0007 10.8333C17.6995 10.8333 15.834 12.6987 15.834 14.9999C15.834 17.3011 17.6995 19.1666 20.0007 19.1666Z"
+                          fill="#6EE272"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_3650_16570">
+                          <rect width="40" height="40" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
+                  <span
+                    class="text-text-dark text-base"
+                    set:html={markdownify(location)}
+                  />
+                </div>
+              )
+            }
+            {
+              hours && (
+                <div class="flex gap-x-1 items-center">
+                  <span class="w-5 h-5">
+                    <svg
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_3650_16576)">
+                        <path
+                          d="M19.984 3.33325C10.784 3.33325 3.33398 10.7999 3.33398 19.9999C3.33398 29.1999 10.784 36.6666 19.984 36.6666C29.2007 36.6666 36.6673 29.1999 36.6673 19.9999C36.6673 10.7999 29.2007 3.33325 19.984 3.33325ZM20.0007 33.3333C12.634 33.3333 6.66732 27.3666 6.66732 19.9999C6.66732 12.6333 12.634 6.66659 20.0007 6.66659C27.3673 6.66659 33.334 12.6333 33.334 19.9999C33.334 27.3666 27.3673 33.3333 20.0007 33.3333ZM20.834 11.6666H18.334V21.6666L27.084 26.9166L28.334 24.8666L20.834 20.4166V11.6666Z"
+                          fill="#6EE272"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_3650_16576">
+                          <rect width="40" height="40" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
+                  <span
+                    class="text-text-dark text-base"
+                    set:html={markdownify(hours)}
+                  />
+                </div>
+              )
+            }
+          </div>
+          {
+            sidebar.button.enable && (
+              <a
+                href={sidebar.button.link}
+                class="btn btn-primary w-full hover:shadow"
+                target="_blank"
+                rel="noopener noreferrer"
+                set:html={sidebar.button.label}
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

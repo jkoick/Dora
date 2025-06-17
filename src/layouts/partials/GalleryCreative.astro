@@ -1,0 +1,72 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import TeamGalleryImage from "@/components/TeamGalleryImage.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+let gallery_content;
+
+const { gallery } = Astro.props;
+
+if (gallery) {
+  gallery_content = gallery;
+} else {
+  const gallery = (
+    (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+  ).data;
+  gallery_content = gallery;
+}
+---
+
+{
+  gallery_content && gallery_content.enable && (
+    <section class="section relative">
+      <div class="container-sm">
+        <div class="grid md:grid-cols-2 gap-5 md:gap-10">
+          <div class="flex flex-col gap-y-5 md:gap-y-10">
+            <div>
+              {gallery_content.subtitle && (
+                <DotTitle title={gallery_content.subtitle} />
+              )}
+
+              {gallery_content.title && (
+                <h2 class="mb-6 lg:mb-12" set:html={gallery_content.title} />
+              )}
+            </div>
+            {gallery_content.images.map(
+              (
+                { position, src }: { position: string; src: string },
+                index: number
+              ) =>
+                position === "left" && (
+                  <TeamGalleryImage
+                    src={src}
+                    alt="office images"
+                    delay={index * 100}
+                  />
+                )
+            )}
+          </div>
+
+          <div class="flex flex-col gap-y-5 md:gap-y-10">
+            {gallery_content.images.map(
+              (
+                { position, src }: { position: string; src: string },
+                index: number
+              ) =>
+                position === "right" && (
+                  <TeamGalleryImage
+                    src={src}
+                    alt="office images"
+                    delay={index * 100}
+                  />
+                )
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div class="w-[680px] h-[680px] bg-light absolute right-0 top-1/2 -translate-y-1/2 -z-10 hidden xl:block" />
+    </section>
+  )
+}

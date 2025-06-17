@@ -1,0 +1,30 @@
+---
+import Base from "@/layouts/Base.astro";
+import CallToAction from "@/partials/CallToAction.astro";
+import FeaturesSection from "@/partials/Features.astro";
+import FeaturesBanner from "@/partials/FeaturesBanner.astro";
+import Integration from "@/partials/Integration.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const featuresIndex = (await getEntry(
+  "features",
+  "-index"
+)) as CollectionEntry<"features">;
+---
+
+<Base {...featuresIndex.data}>
+  <FeaturesBanner />
+
+  <hr class="divider" />
+
+  <FeaturesSection />
+
+  <hr class="divider" />
+
+  <Integration />
+
+  <hr class="divider" />
+
+  <CallToAction />
+</Base>

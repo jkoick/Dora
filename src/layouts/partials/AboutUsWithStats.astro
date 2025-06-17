@@ -1,0 +1,71 @@
+---
+import DotTitle from "@/components/DotTitle.astro";
+import RatingsStarCard from "@/components/RatingsStarCard.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { aboutUs } = (
+  (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+).data;
+---
+
+{
+  aboutUs && (
+    <section class="section">
+      <div class="container-sm mb-14 xl:mb-20 xl:px-14">
+        <div class="row gap-y-8">
+          <div class="lg:col-6">
+            {aboutUs.subtitle && (
+              <div data-aos="fade-up-sm">
+                <DotTitle title={aboutUs.subtitle} />
+              </div>
+            )}
+            {aboutUs.title && (
+              <h2
+                class="mb-6 lg:mb-10"
+                data-aos="fade-up-sm"
+                data-aos-delay="100"
+                set:html={markdownify(aboutUs.title)}
+              />
+            )}
+            {aboutUs.button && aboutUs.button.enable && (
+              <div data-aos="fade-up-sm" data-aos-delay="200">
+                <a
+                  href={aboutUs.button.link}
+                  class="btn btn-primary"
+                  set:html={markdownify(aboutUs.button.label)}
+                />
+              </div>
+            )}
+          </div>
+
+          {aboutUs.description && (
+            <div
+              class="lg:col-6 [&>*]:mb-4 [&>*]:text-base last:mb-0"
+              data-aos="fade-up-sm"
+              set:html={markdownify(aboutUs.description)}
+            />
+          )}
+        </div>
+      </div>
+
+      {aboutUs.stats && (
+        <div class="container-sm">
+          <div class="gap-3 md:gap-6 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {aboutUs.stats.map((stat) => (
+              <RatingsStarCard
+                title={stat.count}
+                rating_description={stat.rating_description}
+                img={stat.image}
+                alt={stat.alt}
+                delay={100}
+                rating={5}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}

@@ -1,0 +1,83 @@
+{
+  "site": {
+    "title": "Atemp Astro",
+    "base_url": "https://atemp-astro.vercel.app/",
+    "base_path": "/",
+    "trailing_slash": true,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_width": "150",
+    "logo_height": "46",
+    "logo_text": "Atemp"
+  },
+
+  "settings": {
+    "sticky_header": true,
+    "pagination": 2,
+    "summary_length": 150,
+    "blog_folder": "blog"
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "© {year} By Your Company | Design and Developed By [Themefisher](https://themefisher.com/)",
+
+    "locations": [
+      {
+        "title": "France",
+        "address": "45 rue Ernest Renan, Chelles+33 01.45.40.19.99",
+        "email": "france@trendtrail.com"
+      },
+      {
+        "title": "Spain",
+        "address": "Plaza Maior 15, Pozos De Hinojo+34 641 749 4325",
+        "email": "spain@trendtrail.com"
+      }
+    ]
+  },
+
+  "subscription": {
+    "enable": true,
+    "enable_in_pages": ["footer", "blog"],
+    "form_action": "#",
+    "title": "Subscribe To Our Weekly Newsletter",
+    "description": "Join the **1500+** students that uses"
+  },
+
+  "feedback": {
+    "enable": true,
+    "visible_page": ["integration", "blog"],
+    "title": "We started a single mission Help grow",
+    "description": "If Not Your Can Contact To Our [Support](/contact/) Now.",
+    "form_action": "#",
+    "buttons": [
+      {
+        "enable": true,
+        "value": "Positive",
+        "label": "Yes, Thanks!"
+      },
+      {
+        "enable": true,
+        "value": "Negative",
+        "label": "Not Really"
+      }
+    ]
+  },
+
+  "announcement": {
+    "enable": true,
+    "content": "Connect with a Atemp Expert to create a website using this template [Learn More Details](https://themefisher.com/custom-development/)"
+  },
+
+  "navigation_button": {
+    "enable": true,
+    "label": "Get Started",
+    "link": "/contact/"
+  },
+
+  "metadata": {
+    "meta_author": "Themefisher",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Atemp - SaaS Multipurpose Template"
+  }
+}

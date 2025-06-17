@@ -1,0 +1,42 @@
+---
+import AnimatedCircles from "@/components/AnimatedCircles.astro";
+import DotTitle from "@/components/DotTitle.astro";
+import TestimonialTab from "@/components/TestimonialTab.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+
+const { testimonials } = (
+  (await getEntry("homepage", "-index")) as CollectionEntry<"homepage">
+).data;
+---
+
+{
+  testimonials && (
+    <section class="section overflow-hidden isolate">
+      <div class="container-light relative">
+        {testimonials.subtitle && (
+          <div class="flex justify-center">
+            <div data-aos="fade-up-sm">
+              <DotTitle title={testimonials.subtitle} />
+            </div>
+          </div>
+        )}
+
+        {testimonials.title && (
+          <h2
+            class="mb-8 lg:mb-10 text-center 2xl:col-8 mx-auto md:px-10"
+            data-aos="fade-up-sm"
+            set:html={markdownify(testimonials.title)}
+          />
+        )}
+
+        <TestimonialTab {testimonials} />
+
+        <div class="absolute right-0 bottom-0 translate-y-1/2 translate-x-1/2 -z-10">
+          <AnimatedCircles />
+        </div>
+      </div>
+    </section>
+  )
+}

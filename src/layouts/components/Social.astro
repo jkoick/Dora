@@ -1,0 +1,28 @@
+---
+const { source, className } = Astro.props;
+import { markdownify } from "@/lib/utils/textConverter";
+import DynamicIcon from "@/helpers/DynamicIcon";
+
+export interface ISocial {
+  name: string;
+  icon: string;
+  link: string;
+}
+---
+
+<ul class={className}>
+  {
+    source.map((social: ISocial) => (
+      <li>
+        <a
+          aria-label={social.name}
+          href={social.link}
+          target="_blank"
+          rel="noopener noreferrer nofollow">
+          <span class="sr-only" set:html={markdownify(social.name)} />
+          <DynamicIcon className="inline-block" icon={social.icon} />
+        </a>
+      </li>
+    ))
+  }
+</ul>

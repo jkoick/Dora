@@ -1,0 +1,350 @@
+---
+import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
+import { ClientRouter } from "astro:transitions";
+import config from "@/config/config.json";
+import theme from "@/config/theme.json";
+import { plainify } from "@/lib/utils/textConverter";
+import Footer from "@/partials/Footer.astro";
+import Header from "@/partials/Header.astro";
+import "@/styles/main.css";
+import { AstroFont } from "astro-font";
+
+// font families
+const pf = theme.fonts.font_family.primary;
+
+let fontPrimary;
+if (theme.fonts.font_family.primary) {
+  fontPrimary = theme.fonts.font_family.primary
+    .replace(/\+/g, " ")
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
+}
+
+// types for frontmatters
+export interface Props {
+  title?: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+// destructure frontmatter
+const { title, meta_title, description, image, noindex, canonical } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- theme meta -->
+    <meta name="theme-name" content="atemp-astro" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#000"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- google font css -->
+    <AstroFont
+      config={[
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: fontPrimary!,
+          fallback: "sans-serif",
+          cssVariable: "font-primary",
+          googleFontsURL: `https://fonts.googleapis.com/css2?family=${pf}&display=swap`,
+        },
+      ]}
+    />
+
+    <!-- responsive meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+
+    <!-- title -->
+    <title>
+      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+    </title>
+
+    <!-- canonical url -->
+    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+
+    <!-- noindex robots -->
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- meta-description -->
+    <meta
+      name="description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <!-- author from config.json -->
+    <meta name="author" content={config.metadata.meta_author} />
+
+    <ClientRouter />
+
+    <!-- og-title -->
+    <meta
+      property="og:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : config.site.title
+      )}
+    />
+
+    <!-- og-description -->
+    <meta
+      property="og:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+    />
+
+    <!-- twitter-title -->
+    <meta
+      name="twitter:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : config.site.title
+      )}
+    />
+
+    <!-- twitter-description -->
+    <meta
+      name="twitter:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <!-- og-image -->
+    <meta
+      property="og:image"
+      content={`${config.site.base_url}${
+        image ? image : config.metadata.meta_image
+      }`}
+    />
+
+    <!-- twitter-image -->
+    <meta
+      name="twitter:image"
+      content={`${config.site.base_url}${
+        image ? image : config.metadata.meta_image
+      }`}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <TwSizeIndicator />
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import AOS from "aos";
+      import "aos/dist/aos.css";
+
+      let scrollRef = 0;
+
+      // Fix `not animating although in viewport` issue
+      window.addEventListener("scroll", function () {
+        scrollRef <= 10 ? scrollRef++ : AOS.refresh();
+      });
+
+      function aosInit() {
+        AOS.init({
+          duration: 450,
+          once: true,
+        });
+      }
+      function scriptInit() {
+        // Dropdown Menu Toggler For Mobile
+        // ----------------------------------------
+        const dropdownMenuToggler: NodeListOf<HTMLElement> =
+          document.querySelectorAll(".nav-dropdown > .nav-link");
+
+        dropdownMenuToggler.forEach((toggler) => {
+          toggler?.addEventListener("click", (e: Event) => {
+            const target = e.target as HTMLElement;
+            target && target.parentElement?.classList.toggle("active");
+          });
+        });
+
+        // CLOSE HEADER
+        // ----------------------------------------
+        const headerPopupParent = document.getElementById(
+          "close-header-parent"
+        );
+        const headerPopupCloseBtn = document.getElementById(
+          "close-header-learn-more"
+        );
+
+        headerPopupCloseBtn &&
+          headerPopupCloseBtn.addEventListener("click", () => {
+            if (headerPopupParent) headerPopupParent.style.display = "none";
+          });
+
+        // Tab
+        // ----------------------------------------
+        function setActiveTab(tabGroup: Element, tabName: string): void {
+          const tabsNav = tabGroup.querySelector("[data-tab-nav]");
+          const tabsContent = tabGroup.querySelector("[data-tab-content]");
+
+          if (!tabsNav || !tabsContent) {
+            return;
+          }
+
+          tabsNav.querySelectorAll("[data-tab]").forEach((tabNavItem) => {
+            tabNavItem.classList.remove("active");
+          });
+          tabsContent
+            .querySelectorAll("[data-tab-panel]")
+            .forEach((tabPane) => {
+              tabPane.classList.remove("active");
+            });
+
+          const selectedTabNavItem = tabsNav.querySelector(
+            `[data-tab="${tabName}"]`
+          );
+          if (selectedTabNavItem) {
+            selectedTabNavItem.classList.add("active");
+          }
+          const selectedTabPane = tabsContent.querySelector(
+            `[data-tab-panel="${tabName}"]`
+          );
+          if (selectedTabPane) {
+            selectedTabPane.classList.add("active");
+          }
+        }
+
+        const tabGroups = document.querySelectorAll("[data-tab-group]");
+        tabGroups.forEach((tabGroup) => {
+          const tabsNav = tabGroup.querySelector("[data-tab-nav]");
+          const tabsNavItem = tabsNav?.querySelectorAll("[data-tab]") || [];
+
+          if (tabsNavItem.length > 0) {
+            const activeTabName = tabsNavItem[0].getAttribute("data-tab");
+            if (activeTabName) {
+              setActiveTab(tabGroup, activeTabName);
+            }
+
+            tabsNavItem.forEach((tabNavItem) => {
+              tabNavItem.addEventListener("click", () => {
+                const tabName = tabNavItem.getAttribute("data-tab");
+                if (tabName) {
+                  setActiveTab(tabGroup, tabName);
+                }
+              });
+            });
+          }
+        });
+
+        const tablist: NodeListOf<HTMLElement> = document.querySelectorAll(
+          "[data-tab-nav] [data-tab]"
+        );
+        function tabsHandler(event: KeyboardEvent): void {
+          const index = Array.from(tablist).indexOf(
+            event.currentTarget as HTMLElement
+          );
+          const numbTabs = tablist.length;
+          let nextId: Element | undefined;
+
+          if (numbTabs > 1) {
+            if (event.key === "ArrowRight") {
+              nextId = tablist[(index + 1) % numbTabs];
+              if (index === numbTabs - 1) {
+                nextId = tablist[0];
+              }
+
+              if (nextId instanceof HTMLElement) nextId.focus();
+
+              nextId.dispatchEvent(new Event("click"));
+            }
+            if (event.key === "ArrowLeft") {
+              nextId = tablist[(index - 1 + numbTabs) % numbTabs];
+              if (index === 0) {
+                nextId = tablist[numbTabs - 1];
+              }
+
+              if (nextId instanceof HTMLElement) nextId.focus();
+
+              nextId.dispatchEvent(new Event("click"));
+            }
+          }
+        }
+
+        tablist.forEach(function (tab) {
+          tab.addEventListener("keydown", tabsHandler);
+        });
+
+        // ########################## Modal ##############################
+        const openModalButtons = document.querySelectorAll("[data-modal-open]");
+        const closeModalButtons =
+          document.querySelectorAll("[data-modal-close]");
+
+        function openModal(modal: Element | null): void {
+          if (modal === null) {
+            return;
+          }
+          const overlay = modal.querySelector("[data-modal-overlay]");
+          if (overlay) {
+            modal.setAttribute("style", "display: block");
+            overlay.setAttribute("style", "display: block");
+          }
+        }
+
+        function closeModal(modal: Element | null): void {
+          if (modal === null) {
+            return;
+          }
+          const overlay = modal.querySelector("[data-modal-overlay]");
+          if (overlay) {
+            modal.setAttribute("style", "display: none");
+            overlay.setAttribute("style", "display: none");
+          }
+        }
+
+        openModalButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.nextElementSibling as HTMLElement;
+            openModal(modal);
+          });
+        });
+
+        closeModalButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest("[data-modal]") as HTMLElement;
+            closeModal(modal);
+          });
+        });
+      }
+
+      document.addEventListener("astro:page-load", () => {
+        aosInit();
+        scriptInit();
+      });
+    </script>
+  </body>
+</html>

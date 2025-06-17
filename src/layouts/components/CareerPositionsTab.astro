@@ -1,0 +1,93 @@
+---
+import OpenPositionCard from "@/components/OpenPositionCard.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { humanize } from "@/lib/utils/textConverter";
+
+const career = await getSinglePage("careers");
+const categories = career
+  .filter((c) => c.data.categories)
+  .map((c) => c.data.categories);
+
+const uniqueCategories: string[] = [];
+categories.filter((value) => {
+  // Check if value is unique
+  value?.filter((val: string) => {
+    const isExist = uniqueCategories.find((item) => item === val);
+    if (!isExist) uniqueCategories.push(val);
+  });
+});
+---
+
+<div>
+  {
+    uniqueCategories && (
+      <ul class="flex justify-center flex-wrap gap-4 lg:gap-7 text-text-dark pb-10">
+        <li data-aos="fade-up-sm" data-aos-delay="0">
+          <button
+            class="btn shuffle-filter-btn bg-primary shadow"
+            data-filter="all">
+            All
+          </button>
+        </li>
+        {uniqueCategories.map((category, index) => (
+          <li data-aos="fade-up-sm" data-aos-delay={index * 50}>
+            <button
+              class="btn shuffle-filter-btn shadow"
+              data-filter={category}>
+              {humanize(category)}
+            </button>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    career && (
+      <ul class="shuffle-container row g-4">
+        {career.map((job) => (
+          <OpenPositionCard {...job} />
+        ))}
+      </ul>
+    )
+  }
+</div>
+
+<script>
+  import Shuffle from "shufflejs";
+
+  // ########################## SHUFFLE FILTER ##########################
+  const shuffleContainer = document.querySelector(
+    ".shuffle-container"
+  ) as HTMLElement | null;
+  if (shuffleContainer) {
+    const shuffle = new Shuffle(shuffleContainer, {
+      itemSelector: ".shuffle-item",
+    });
+
+    const filterButtons = document.querySelectorAll(
+      ".shuffle-filter-btn"
+    ) as NodeListOf<HTMLElement>;
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", (e: Event) => {
+        const target = e.currentTarget as HTMLElement;
+
+        // Remove 'bg-primary' class from all buttons
+        filterButtons.forEach((btn) => btn.classList.remove("bg-primary"));
+
+        // Add 'bg-primary' class to the clicked button
+        target.classList.add("bg-primary");
+
+        const filter = target.getAttribute("data-filter");
+        if (filter === "all") {
+          shuffle.filter();
+        } else {
+          shuffle.filter((element: HTMLElement) => {
+            const groups = element.getAttribute("data-groups") || "";
+            return filter ? groups.includes(filter) : false;
+          });
+        }
+      });
+    });
+  }
+</script>

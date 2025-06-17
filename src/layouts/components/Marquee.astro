@@ -1,0 +1,113 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+
+type Props = {
+  marqueeContents: any;
+  className?: string;
+  layout?: "boxed";
+  reverse?: boolean;
+  gutter?: number | string;
+};
+
+const {
+  marqueeContents,
+  className,
+  layout,
+  reverse,
+  gutter = "20",
+} = Astro.props;
+---
+
+<div class={`marquee-container ${className ? className : ""}`}>
+  <div
+    class={`flex relative ${layout === "boxed" ? "gap-4" : `gap-${gutter}`}`}>
+    <div
+      class={`flex items-center marquee-wrapper justify-around min-w-full shrink-0 gap-${gutter} ${reverse ? "reverse" : ""}`}>
+      {
+        layout === "boxed"
+          ? marqueeContents &&
+            marqueeContents.map(
+              ({
+                title,
+                image,
+                link,
+                alt,
+                direction,
+              }: {
+                title: string;
+                image: string;
+                link: string;
+                alt: string;
+                direction: string;
+              }) =>
+                direction == "right" && (
+                  <div class="flex flex-col justify-center items-center gap-y-4 mx-4 bg-white shadow py-8 w-[150px] md:w-[200px]">
+                    <a href={link} class="rounded-full border inline-block">
+                      <ImageMod
+                        src={image}
+                        alt={alt}
+                        width={80}
+                        height={80}
+                        class="max-md:w-10"
+                      />
+                    </a>
+                    <h3 class="text-base-sm md:text-base font-medium">
+                      {title}
+                    </h3>
+                  </div>
+                )
+            )
+          : marqueeContents &&
+            marqueeContents.map(
+              ({ image, alt }: { image: string; alt: string }) => (
+                <ImageMod class="h-8 w-auto" src={image} alt={alt} />
+              )
+            )
+      }
+    </div>
+    <div
+      class={`flex items-center marquee-wrapper justify-around min-w-full shrink-0 gap-${gutter} ${reverse ? "reverse" : ""}`}>
+      {
+        layout === "boxed"
+          ? marqueeContents &&
+            marqueeContents.map(
+              ({
+                title,
+                image,
+                link,
+                alt,
+                direction,
+              }: {
+                title: string;
+                image: string;
+                link: string;
+                alt: string;
+                direction: string;
+              }) =>
+                direction == "right" && (
+                  <div class="flex flex-col justify-center items-center gap-y-4 mx-4 bg-white shadow py-8 w-[150px] md:w-[200px]">
+                    <a href={link} class="rounded-full border inline-block">
+                      <ImageMod
+                        src={image}
+                        alt={alt}
+                        width={80}
+                        height={80}
+                        class="max-md:w-10"
+                      />
+                    </a>
+                    <h3 class="text-base-sm md:text-base font-medium">
+                      {title}
+                    </h3>
+                  </div>
+                )
+            )
+          : marqueeContents &&
+            marqueeContents.map(
+              ({ image, alt }: { image: string; alt: string }) => (
+                <ImageMod class="h-8 w-auto" src={image} alt={alt} />
+              )
+            )
+      }
+    </div>
+  </div>
+</div>
