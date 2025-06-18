@@ -1,13 +1,13 @@
 ---
-import DotTitle from "@/components/DotTitle.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import OurStrengthCard from "@/components/OurStrengthCard.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import DotTitle from '@/components/DotTitle.astro';
+import ImageMod from '@/components/ImageMod.astro';
+import OurStrengthCard from '@/components/OurStrengthCard.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 const { whyJoinUs } = (
-  (await getEntry("about", "-index")) as CollectionEntry<"about">
+  (await getEntry('about', '-index')) as CollectionEntry<'about'>
 ).data;
 ---
 

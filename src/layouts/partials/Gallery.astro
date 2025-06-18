@@ -1,9 +1,9 @@
 ---
-import DotTitle from "@/components/DotTitle.astro";
-import TeamGalleryImage from "@/components/TeamGalleryImage.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import DotTitle from '@/components/DotTitle.astro';
+import TeamGalleryImage from '@/components/TeamGalleryImage.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 let gallery_content;
 
@@ -13,7 +13,7 @@ if (gallery) {
   gallery_content = gallery;
 } else {
   const { gallery } = (
-    (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+    (await getEntry('careers', '-index')) as CollectionEntry<'careers'>
   ).data;
   gallery_content = gallery;
 }
@@ -48,7 +48,7 @@ if (gallery) {
                   { position, src }: { position: string; src: string },
                   index: number
                 ) =>
-                  position === "left" && (
+                  position === 'left' && (
                     <TeamGalleryImage
                       src={src}
                       alt="office images"
@@ -63,7 +63,7 @@ if (gallery) {
                   { position, src }: { position: string; src: string },
                   index: number
                 ) =>
-                  position === "right" && (
+                  position === 'right' && (
                     <TeamGalleryImage
                       src={src}
                       alt="office images"

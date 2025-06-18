@@ -1,13 +1,13 @@
 ---
-import AnimatedCircles from "@/components/AnimatedCircles.astro";
-import DotTitle from "@/components/DotTitle.astro";
-import TestimonialTab from "@/components/TestimonialTab.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import AnimatedCircles from '@/components/AnimatedCircles.astro';
+import DotTitle from '@/components/DotTitle.astro';
+import TestimonialTab from '@/components/TestimonialTab.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 const { testimonials } = (
-  (await getEntry("homepage", "-index")) as CollectionEntry<"homepage">
+  (await getEntry('homepage', '-index')) as CollectionEntry<'homepage'>
 ).data;
 ---
 
@@ -18,7 +18,7 @@ const { testimonials } = (
         {testimonials.subtitle && (
           <div class="flex justify-center">
             <div data-aos="fade-up-sm">
-              <DotTitle title={testimonials.subtitle} />
+              <DotTitle title="We work flexibly, allowing you to choose the engagement model that best fits your advisory practice" />
             </div>
           </div>
         )}
@@ -27,7 +27,7 @@ const { testimonials } = (
           <h2
             class="mb-8 lg:mb-10 text-center 2xl:col-8 mx-auto md:px-10"
             data-aos="fade-up-sm"
-            set:html={markdownify(testimonials.title)}
+            set:html="Models of Collaboration"
           />
         )}
 

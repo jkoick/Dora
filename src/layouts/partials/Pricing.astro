@@ -1,95 +1,102 @@
 ---
-import DotTitle from "@/components/DotTitle.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import PricingCard from "@/components/PricingCard.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import ImageMod from '@/components/ImageMod.astro';
+import PricingCard from '@/components/PricingCard.astro';
 
-const { enable, title, subtitle, pricing, pricing_types } = (
-  (await getEntry(
-    "pricingSection",
-    "pricing"
-  )) as CollectionEntry<"pricingSection">
-).data;
+const processSteps = [
+  {
+    title_prefix: 'Step 1',
+    title: 'Scoping & Classification',
+    plan_prefix: 'Entity Classification Summary + Testing Plan Outline',
+    plan: 'We begin by assessing the financial entity’s size, risk profile, and ICT maturity, in line with the proportionality principle under DORA (Article 4 and Recital 43). Based on this classification, we determine the appropriate type and frequency of testing.',
+    list: [
+      'Microenterprise / simplified regime',
+      'General compliance scope',
+      'Entities subject to threat-led penetration testing (TLPT) under Article 26',
+    ],
+    button: { enable: true, label: 'Download Template', link: '#' },
+  },
+  {
+    title_prefix: 'Step 2',
+    title: 'Test Design & Planning',
+    plan_prefix: 'Testing Execution Plan + Data Handling & Access Framework',
+    plan: 'We prepare a customised test plan tailored to the client’s regulatory obligations and ICT environment. The plan sets out. All plans are risk-based, proportionate, and designed for minimal operational disruption.',
+    list: [
+      'Scope of testing',
+      'Tools and methods used',
+      'Timeframes and execution sequence',
+      'Mapping to DORA provisions',
+    ],
+    button: { enable: true, label: 'View Sample Plan', link: '#' },
+  },
+  {
+    title_prefix: 'Step 3',
+    title: 'Execution with Qualified Methodology',
+    plan_prefix: 'Technical Findings + Evidence Record',
+    plan: 'All testing is conducted by independent, qualified entity in accordance with DORA. Strict confidentiality and data security measures are maintained throughout.',
+    list: [
+      'Automated or semi-automated vulnerability scans',
+      'Manual review of code, configurations, or network components',
+      'Realistic adversary simulations (for TLPT scope)',
+      'Scenario-based functional and performance testing',
+    ],
+    button: { enable: true, label: 'Explore Methods', link: '#' },
+  },
+  {
+    title_prefix: 'Step 4',
+    title: 'Reporting & Regulatory Mapping',
+    plan_prefix: 'Final Report + DORA Compliance Mapping Sheet',
+    plan: 'We compile a structured report that aligns with DORA’s regulatory expectations. Reports are formatted to support both internal governance documentation and external supervisory inspection.',
+    list: [
+      'Test scope and methodology',
+      'Identified vulnerabilities and risk classification',
+      'Mapping to relevant DORA requirements',
+      'Recommendations for mitigation and response',
+    ],
+    button: { enable: true, label: 'See Report Format', link: '#' },
+  },
+  {
+    title_prefix: 'Step 5',
+    title: 'Ongoing Support (Optional)',
+    plan_prefix: 'Ad-hoc analyses + Annual Compliance Review Summary',
+    plan: 'Upon request, we offer ongoing support services. This ensures that the entity’s digital operational resilience remains current, effective, and demonstrably maintained.',
+    list: [
+      'Periodic retesting or validations',
+      'Ad-hoc regulatory advisory',
+      'Clarifications for national competent authorities',
+    ],
+    button: { enable: false, label: 'Contact Support', link: '#' },
+  },
+];
 ---
 
-{
-  enable && (
-    <section class="section">
-      <div class="container">
-        {subtitle && (
-          <div class="flex justify-center" data-aos="fade-up-sm">
-            <DotTitle title={subtitle} />
-          </div>
-        )}
-        {title && (
-          <h2
-            class="text-center mb-8 lg:mb-6"
-            set:html={markdownify(title)}
-            data-aos="fade-up-sm"
-            data-aos-delay="100"
-          />
-        )}
+<section class="section">
+  <div class="container">
+    <h2
+      class="text-center mb-8 lg:mb-6"
+      data-aos="fade-up-sm"
+      data-aos-delay="100"
+    >
+      How It Works
+    </h2>
 
-        <div class="c-tab" data-tab-group="pricing">
-          <div class="flex justify-center">
-            {pricing_types && (
-              <ul
-                class="c-tab-nav bg-white shadow p-2 flex items-center"
-                data-tab-nav
-                data-aos="fade-up-sm"
-                data-aos-delay="100">
-                {pricing_types.map((type, index) => (
-                  <li
-                    class={`c-tab-nav-item ${index === 0 ? "active" : ""}`}
-                    tabindex="0"
-                    data-tab={index}>
-                    <span
-                      class="c-tab-nav-item-text"
-                      set:html={markdownify(type)}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+    <p
+      class="flex justify-center mb-12 max-w-4xl mx-auto"
+      data-aos="fade-up-sm"
+    >
+      Our service model follows the regulatory expectations set out in Chapter
+      IV of Regulation&nbsp;(EU)&nbsp;2022/2554 (DORA). Whether working directly
+      with a financial entity or supporting a compliance consultant, we employ a
+      process that ensures independence, proportionality, and auditability.
+    </p>
 
-          <div
-            class="c-tab-content relative p-2 md:p-8 lg:p-11 lg:col-11 mx-auto"
-            data-tab-content
-            data-aos="fade-up-sm">
-            {pricing && (
-              <div
-                class="c-tab-content-panel active space-y-12"
-                data-tab-panel="0">
-                {pricing
-                  .filter((item) => item.type === "monthly")
-                  .map((item) => (
-                    <PricingCard {...item} />
-                  ))}
-              </div>
-            )}
-            {pricing && (
-              <div
-                class="c-tab-content-panel active space-y-12"
-                data-tab-panel="1">
-                {pricing
-                  .filter((item) => item.type === "yearly")
-                  .map((item) => (
-                    <PricingCard {...item} />
-                  ))}
-              </div>
-            )}
+    <div class="flex flex-col gap-12">
+      {processSteps.map((step) => <PricingCard {...step} />)}
+    </div>
 
-            <ImageMod
-              src="/images/shapes/bottom-left-triangles.png"
-              alt="Shape"
-              class="absolute bottom-0 left-0 -z-10"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+    <ImageMod
+      src="/images/shapes/bottom-left-triangles.png"
+      alt="Shape"
+      class="absolute bottom-0 left-0 -z-10"
+    />
+  </div>
+</section>

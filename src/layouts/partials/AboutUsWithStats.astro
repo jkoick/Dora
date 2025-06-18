@@ -1,12 +1,12 @@
 ---
-import DotTitle from "@/components/DotTitle.astro";
-import RatingsStarCard from "@/components/RatingsStarCard.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import DotTitle from '@/components/DotTitle.astro';
+import RatingsStarCard from '@/components/RatingsStarCard.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 const { aboutUs } = (
-  (await getEntry("careers", "-index")) as CollectionEntry<"careers">
+  (await getEntry('careers', '-index')) as CollectionEntry<'careers'>
 ).data;
 ---
 

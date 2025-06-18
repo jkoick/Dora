@@ -1,10 +1,10 @@
 ---
-import Base from "@/layouts/Base.astro";
-import IntegrationSingle from "@/layouts/IntegrationSingle.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import Base from '@/layouts/Base.astro';
+import IntegrationSingle from '@/layouts/IntegrationSingle.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
 
 export async function getStaticPaths() {
-  const BLOG_FOLDER = "integration";
+  const BLOG_FOLDER = 'integration';
   const integrations = await getSinglePage(BLOG_FOLDER);
 
   const paths = integrations.map((integration) => ({

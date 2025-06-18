@@ -1,5 +1,5 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify } from '@/lib/utils/textConverter';
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ const { title } = Astro.props;
 {
   title && (
     <div class="flex items-center gap-x-3 mb-5">
-      <div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+      <div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0" />
       <span class="text-sm text-text-dark" set:html={markdownify(title)} />
     </div>
   )

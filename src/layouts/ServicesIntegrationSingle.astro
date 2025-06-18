@@ -1,0 +1,170 @@
+---
+import DotTitle from '@/components/DotTitle.astro';
+import ImageMod from '@/components/ImageMod.astro';
+import IntegrationCard from '@/components/IntegrationCard.astro';
+import config from '@/config/config.json';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import CallToAction from '@/partials/CallToAction.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
+const { feedback } = config;
+const { integration } = Astro.props;
+
+const integrationIndex = (
+  (await getEntry('integration', '-index')) as CollectionEntry<'integration'>
+).data;
+const { other_integration } = integrationIndex;
+
+const all_integrations = await getSinglePage('integration');
+const other_integrations = all_integrations
+  .filter((integration) => integration.id !== integration.id)
+  .slice(0, other_integration?.number_of_items);
+
+const { title, brief, image } = integration;
+
+const { Content } = await render(integration);
+---
+
+{
+  brief && (
+    <section class="pt-10">
+      <div class="container-sm bg-light relative isolate">
+        <div class="py-8 lg:py-16 lg:px-14" data-aos="fade-up-sm">
+          {image && (
+            <ImageMod
+              src={image}
+              alt={`${title} logo`}
+              width={80}
+              height={80}
+              class="mb-6"
+            />
+          )}
+          {brief.title && (
+            <h2 class="mb-4 text-h2" set:html={markdownify(brief.title)} />
+          )}
+          {brief.description && (
+            <p class="mb-6" set:html={markdownify(brief.description)} />
+          )}
+          {brief.button && brief.button.enable && (
+            <a
+              href={brief.button.link}
+              class="btn btn-primary"
+              set:html={markdownify(brief.button.label)}
+            />
+          )}
+        </div>
+        <ImageMod
+          src="/images/svg/shapes/triangles-1.svg"
+          alt="Shape"
+          width={203}
+          height={220}
+          class="absolute top-0 right-0 -z-10 hidden xl:block"
+          data-aos="fade-down-left"
+        />
+      </div>
+    </section>
+  )
+}
+
+<section class="section-sm">
+  <div class="container-sm">
+    <div class="content lg:px-14">
+      <Content />
+    </div>
+
+    {
+      feedback && feedback.enable && (
+        <div class="bg-light md:px-10 py-12 inline-block mt-11 lg:ml-14 px-5">
+          <div class="flex flex-col md:flex-row md:items-center w-full">
+            {feedback.title && (
+              <h2
+                class="h6 md:pr-10 mb-5 md:mb-0"
+                set:html={markdownify(feedback.title)}
+              />
+            )}
+            <form
+              action={feedback.form_action}
+              id="feedback-form"
+              method="post"
+              class="flex items-center"
+            >
+              <input type="text" hidden name="feedback" value="" />
+              <input
+                type="text"
+                hidden
+                name="page-url"
+                value={Astro.url.href}
+              />
+              {feedback.buttons.map(
+                (button, index) =>
+                  button.enable && (
+                    <button
+                      type="submit"
+                      value={button.value}
+                      class={`btn mr-5 ${index === 0 ? 'btn-primary' : 'btn-outline-primary'}`}
+                    >
+                      {button.label}
+                    </button>
+                  )
+              )}
+            </form>
+          </div>
+          <hr class="my-6 border-border" />
+          {feedback.description && (
+            <p
+              class="text-base-sm font-normal has-link"
+              set:html={markdownify(feedback.description)}
+            />
+          )}
+        </div>
+      )
+    }
+  </div>
+</section>
+<hr class="divider" />
+
+{
+  other_integration && other_integration.enable && (
+    <section class="section">
+      <div class="container-sm">
+        {other_integration.subtitle && (
+          <div class="flex justify-center" data-aos="fade-up-sm">
+            <DotTitle title={other_integration.subtitle} />
+          </div>
+        )}
+        {other_integration.title && (
+          <h2
+            class="mb-9 lg:mb-10 text-center lg:col-8 mx-auto md:px-10"
+            data-aos="fade-up-sm"
+            set:html={markdownify(other_integration.title)}
+          />
+        )}
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-x-5 lg:gap-y-7">
+          {other_integrations.map((integration) => (
+            <IntegrationCard slug={integration.id} data={integration.data} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<hr class="divider" />
+
+<!-- <CallToAction /> -->
+
+<script>
+  const feedbackform = document.querySelector('#feedback-form');
+  const feedbackInput = feedbackform?.querySelector("input[name='feedback']");
+  const feedbackButtons = feedbackform?.querySelectorAll('button');
+
+  // Set Feedback value to hidden input tag
+  feedbackButtons?.forEach((button: any) => {
+    button?.addEventListener('click', (e: any) => {
+      const value = e.target?.getAttribute('value');
+      feedbackInput?.setAttribute('value', value);
+    });
+  });
+</script>

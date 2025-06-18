@@ -7,7 +7,4 @@ buttons:
   - enable: true
     label: 'Contact Us'
     link: '/pricing/'
-  - enable: true
-    label: 'Contact Sales'
-    link: '/contact/'
 ---

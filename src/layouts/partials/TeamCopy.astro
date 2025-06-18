@@ -13,12 +13,11 @@ const { team } = (
 
 const exampleList = [
   {
-    heading: 'Our outputs are designed for plug-and-play integration into',
+    heading: 'In addition to core testing, we can support your practice with',
     items: [
-      'ICT risk management frameworks',
-      'Internal control reports and governance files',
-      'Regulatory inspection documentation',
-      'Business continuity and incident response policies',
+      'Written advisory on any DORA obligations, ad-hoc & tailored to specific businesses',
+      'Mapping matrices linking testing results to DORA requirements',
+      'Best practices guidance from both regulatory and business point of view.',
     ],
   },
 ];
@@ -29,35 +28,28 @@ const exampleList = [
     <section class="section overflow-hidden">
       <div class="container-light relative">
         <div>
-          {team.subtitle && (
-            <div class="flex justify-center" data-aos="fade-up-sm">
-              <DotTitle
-                title={'Regulatory Alignment Without Infrastructure Burden'}
-              />
-            </div>
-          )}
           {team.title && (
             <h2
               class="mb-6 lg:mb-12 text-center 2xl:col-10 mx-auto"
               data-aos="fade-up-sm"
               data-aos-delay="100"
             >
-              Why Partner With Us
+              Additional Consultant Services
             </h2>
           )}
-          <div class="mb-6 lg:mb-12 text-center 2xl:col-10 mx-auto">
-            <p>Seamless Integration With Compliance Deliverables</p>
+
+          <div class="2xl:col-10 mx-auto">
             {exampleList.map((group, groupIndex) => (
-              <div class="mb-10" key={group.heading}>
+              <div class="mb-10 text-left" key={group.heading}>
                 <h4 class="h5 mb-6 text-primary" data-aos="fade-up-sm">
                   {group.heading}
                 </h4>
                 <ul
-                  class="text-text-dark font-normal flex flex-col justify-center"
+                  class="text-text-dark font-normal"
                   data-aos={`${groupIndex % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
                 >
                   {group.items.map((item, itemIndex) => (
-                    <li class="relative mb-4 flex" key={itemIndex}>
+                    <li class="relative mb-4 flex items-start" key={itemIndex}>
                       <div class="pr-2 mt-[5px]">
                         <span class="bg-primary w-5 h-5 grid place-items-center rounded-full">
                           <DynamicIcon

@@ -33,12 +33,16 @@ const { enable, title, image, subtitle, buttons } = ctaSection.data;
               {subtitle && (
                 <div class="flex items-center gap-x-3 mb-5">
                   <div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                  <span class="text-sm" set:html={markdownify(subtitle)} />
+                  <span class="text-sm">Become a Partner</span>
                 </div>
               )}
 
               {title && (
-                <h2 class="mb-8 text-white" set:html={markdownify(title)} />
+                <h2 class="mb-8 text-white">
+                  Interested in offering DORA-aligned ICT testing through your
+                  advisory business? Contact us to request a partner kit,
+                  onboarding documentation, and pricing schedule.
+                </h2>
               )}
 
               <div class="flex items-center gap-x-5 gap-y-2 flex-wrap">

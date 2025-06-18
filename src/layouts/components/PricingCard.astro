@@ -1,6 +1,6 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
-import ImageMod from "./ImageMod.astro";
+import { markdownify } from '@/lib/utils/textConverter';
+import ImageMod from './ImageMod.astro';
 
 const {
   image,
@@ -16,9 +16,9 @@ const {
 ---
 
 <div
-  class="px-6 2xl:px-12 py-8 md:py-10 bg-light hover:bg-white hover:shadow gap-y-5 group transition-all duration-300">
-  <div class="row gy-4 items-center">
-    <!-- COLUMN 1 -->
+  class="px-6 py-8 md:py-10 bg-light hover:bg-white hover:shadow gap-y-5 group transition-all duration-300"
+>
+  <div class="row gy-4 items-center 2xl:justify-center">
     <div class="md:col-6 2xl:col-3">
       {image && <ImageMod src={image} alt={title} />}
       <div class="mt-10 md:mt-12">
@@ -29,19 +29,48 @@ const {
         }
         {title && <span class="block h5" set:html={markdownify(title)} />}
       </div>
+
+      {
+        list && (
+          <ul class="space-y-3 mt-8 hidden 2xl:block">
+            {list.map((item: string) => (
+              <li class="relative flex items-center gap-x-2">
+                <svg
+                  class="shrink-0"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <circle cx="9" cy="9" r="9" fill="#6EE272" />
+                  <path
+                    d="M4.91 9l2.864 2.864L13.092 6.546"
+                    stroke="#fff"
+                    stroke-width="3"
+                  />
+                </svg>
+                <span
+                  class="font-text-light text-base-sm text-wrap"
+                  set:html={markdownify(item)}
+                />
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </div>
 
-    <!-- COLUMN 2 -->
     <div class="md:col-6 2xl:col-3">
       <div class="flex flex-col gap-y-10 justify-between">
         <div>
           {
             plan_prefix && (
-              <p class="pb-2" set:html={markdownify(plan_prefix)} />
+              <p class="pb-2 h5" set:html={markdownify(plan_prefix)} />
             )
           }
-          {plan && <span class="block h5" set:html={markdownify(plan)} />}
+          {plan && <span class="block p" set:html={markdownify(plan)} />}
         </div>
+
         <div>
           {price && <strong class="inline h2" set:html={markdownify(price)} />}
           {
@@ -50,31 +79,41 @@ const {
             )
           }
         </div>
+
+        {
+          button && button.enable && (
+            <a
+              href={button.link}
+              class="btn btn-sm btn-outline-primary group-hover:bg-primary hover:text-text-dark group-hover:border-transparent hidden 2xl:block 2xl:w-fit"
+              set:html={markdownify(button.label)}
+            />
+          )
+        }
       </div>
     </div>
 
     {
       list && (
-        <div class="md:col-6 2xl:col-3">
+        <div class="md:col-6 2xl:col-3 2xl:hidden">
           <ul class="space-y-3">
             {list.map((item: string) => (
-              <li class="relative flex items-center gap-x-2 min-w-max">
+              <li class="relative flex items-center gap-x-2">
                 <svg
+                  class="shrink-0"
                   width="18"
                   height="18"
                   viewBox="0 0 18 18"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
+                >
                   <circle cx="9" cy="9" r="9" fill="#6EE272" />
                   <path
-                    d="M4.91016 9.00044L7.77379 11.8641L13.092 6.5459"
-                    stroke="white"
+                    d="M4.91 9l2.864 2.864L13.092 6.546"
+                    stroke="#fff"
                     stroke-width="3"
                   />
                 </svg>
-
                 <span
-                  class="font-text-light text-base-sm"
+                  class="font-text-light text-base-sm text-wrap"
                   set:html={markdownify(item)}
                 />
               </li>
@@ -86,7 +125,7 @@ const {
 
     {
       button && button.enable && (
-        <div class="md:col-6 2xl:col-3">
+        <div class="md:col-6 2xl:col-3 2xl:hidden">
           <a
             href={button.link}
             class="btn btn-sm btn-outline-primary group-hover:bg-primary hover:text-text-dark group-hover:border-transparent"

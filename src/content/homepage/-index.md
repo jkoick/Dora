@@ -106,35 +106,29 @@ testimonials:
   list:
     - tab_button:
         icon: 'FaUserGroup' # choose only icon that has Fa, Bs, Tfi prefix. Take icons from https://react-icons.github.io/react-icons/
-        title: Understand Audience
+        title: Backend Technical Partner
       tab_content:
-        - title: Customer Andrew Achieved 12s ROI In The First Month!
+        - title: Backend Technical Partner
           image: '/images/features/best-time-to-post.png'
           description: |
-            The Secret To Your Growth Is In The Data You're Overlooking. Maximize Reach And Impact With Detailed Reports On Content Marketing And Customer 
-            Engagement. Track Your Performance
-
-            Across Channels With An Easy To Use Smm Software.create A Navigate Through Tonnes Of Data With Custom, Generated.
+            We perform the tests; you remain the primary point of contact for your client. Reports can be delivered under your branding or co-branded. If requested, we can remain in the background, supplying only the final outputs and not appearing in the client relationship.
     - tab_button:
         icon: 'FaPaperPlane' # choose only icon that has Fa, Bs, Tfi prefix. Take icons from https://react-icons.github.io/react-icons/
-        title: Easy-To-Use Planner
+        title: Joint Delivery
       tab_content:
-        - title: Customer David Achieved 10s Roi In The First Month!
+        - title: Joint Delivery
           image: '/images/features/follower-growth.png'
           description: |
-            The Secret To Your Growth Is In The Data You're Overlooking. Maximize Reach And Impact With Detailed Reports On Content Marketing And Customer 
-            Engagement. Track Your Performance
+            We engage directly with your client under a tripartite structure, with clear delineation between regulatory/legal advisory (you) and ICT testing (us).
+    # - tab_button:
+    #     icon: 'FaUserGroup' # choose only icon that has Fa, Bs, Tfi prefix. Take icons from https://react-icons.github.io/react-icons/
+    #     title: Understand Audience
+    #   tab_content:
+    #     - title: Customer Andrew Achieved 12s ROI In The First Month!
+    #       image: '/images/features/best-time-to-post.png'
+    #       description: |
+    #         The Secret To Your Growth Is In The Data You're Overlooking. Maximize Reach And Impact With Detailed Reports On Content Marketing And Customer
+    #         Engagement. Track Your Performance
 
-            Across Channels With An Easy To Use Smm Software.create A Navigate Through Tonnes Of Data With Custom, Generated.
-    - tab_button:
-        icon: 'FaUserGroup' # choose only icon that has Fa, Bs, Tfi prefix. Take icons from https://react-icons.github.io/react-icons/
-        title: Understand Audience
-      tab_content:
-        - title: Customer Andrew Achieved 12s ROI In The First Month!
-          image: '/images/features/best-time-to-post.png'
-          description: |
-            The Secret To Your Growth Is In The Data You're Overlooking. Maximize Reach And Impact With Detailed Reports On Content Marketing And Customer 
-            Engagement. Track Your Performance
-
-            Across Channels With An Easy To Use Smm Software.create A Navigate Through Tonnes Of Data With Custom, Generated.
+    #         Across Channels With An Easy To Use Smm Software.create A Navigate Through Tonnes Of Data With Custom, Generated.
 ---
