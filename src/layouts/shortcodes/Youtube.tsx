@@ -1,6 +1,5 @@
-import React from "react";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import React, { useEffect, useRef } from "react";
+import "lite-youtube-embed/src/lite-yt-embed.css";
 
 const Youtube = ({
   id,
@@ -11,13 +10,26 @@ const Youtube = ({
   title: string;
   [key: string]: any;
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const loadLiteYoutube = async () => {
+      if (typeof window !== "undefined") {
+        await import("lite-youtube-embed");
+      }
+    };
+    
+    loadLiteYoutube();
+  }, []);
+
   return (
-    <LiteYouTubeEmbed
-      wrapperClass="yt-lite rounded-lg"
-      id={id}
-      title={title}
-      {...rest}
-    />
+    <div ref={ref} className="yt-lite rounded-lg">
+      <lite-youtube
+        videoid={id}
+        playlabel={title}
+        {...rest}
+      />
+    </div>
   );
 };
 
