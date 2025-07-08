@@ -1,7 +1,6 @@
 ---
 title: Pre-Deployment & Maintenance Testing of ICT Systems
 meta_title: 'Testing ICT Systems Before Deployment or Maintenance'
-image: '/images/svg/security/ict-testing.svg'
 description: 'Ensure stability, security, and operational readiness by testing ICT systems before deployment or scheduled maintenance.'
 short_description: 'Learn how to validate changes to ICT environments through structured pre-deployment and maintenance testing procedures.'
 date: 2025-07-04T00:00:00Z

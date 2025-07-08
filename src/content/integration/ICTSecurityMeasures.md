@@ -1,7 +1,6 @@
 ---
 title: DORA Testing
 meta_title: 'Testování bezpečnostních opatření IKT – DORA Compliance'
-image: '/images/svg/security/dora-compliance.svg'
 description: 'Understand the importance and methodology of testing IKT security measures under the Digital Operational Resilience Act (DORA).'
 short_description: 'Explore how structured DORA testing ensures digital operational resilience for financial and ICT services across the EU.'
 date: 2025-07-04T00:00:00Z

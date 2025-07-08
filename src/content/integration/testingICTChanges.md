@@ -1,7 +1,6 @@
 ---
 title: ICT Change Testing
 meta_title: 'Testing ICT Changes – Reduce Risk During Digital Transformation'
-image: '/images/svg/security/ict-change-testing.svg'
 description: 'Explore how structured testing of ICT changes reduces risk, ensures system stability, and supports secure digital transformation.'
 short_description: 'Validate infrastructure and application changes to maintain service continuity, security, and compliance.'
 date: 2025-07-04T00:00:00Z

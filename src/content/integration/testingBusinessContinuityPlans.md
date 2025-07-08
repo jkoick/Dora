@@ -1,7 +1,6 @@
 ---
 title: Business Continuity & Disaster Recovery Testing
 meta_title: 'Testing BCP and DRP – Ensuring Organizational Resilience'
-image: '/images/svg/security/bcp-drp-testing.svg'
 description: 'Discover how testing business continuity and disaster recovery plans ensures preparedness, minimizes downtime, and strengthens organizational resilience.'
 short_description: 'Learn how BCP/DRP testing validates your ability to respond to operational disruptions and IT system failures.'
 date: 2025-07-04T00:00:00Z
