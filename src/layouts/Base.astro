@@ -1,13 +1,13 @@
 ---
-import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
-import { ClientRouter } from "astro:transitions";
-import config from "@/config/config.json";
-import theme from "@/config/theme.json";
-import { plainify } from "@/lib/utils/textConverter";
-import Footer from "@/partials/Footer.astro";
-import Header from "@/partials/Header.astro";
-import "@/styles/main.css";
-import { AstroFont } from "astro-font";
+import TwSizeIndicator from '@/components/TwSizeIndicator.astro';
+import { ClientRouter } from 'astro:transitions';
+import config from '@/config/config.json';
+import theme from '@/config/theme.json';
+import { plainify } from '@/lib/utils/textConverter';
+import Footer from '@/partials/Footer.astro';
+import Header from '@/partials/Header.astro';
+import '@/styles/main.css';
+import { AstroFont } from 'astro-font';
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -15,8 +15,8 @@ const pf = theme.fonts.font_family.primary;
 let fontPrimary;
 if (theme.fonts.font_family.primary) {
   fontPrimary = theme.fonts.font_family.primary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
+    .replace(/\+/g, ' ')
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, '');
 }
 
 // types for frontmatters
@@ -61,10 +61,10 @@ const { title, meta_title, description, image, noindex, canonical } =
         {
           src: [],
           preload: false,
-          display: "swap",
+          display: 'swap',
           name: fontPrimary!,
-          fallback: "sans-serif",
-          cssVariable: "font-primary",
+          fallback: 'sans-serif',
+          cssVariable: 'font-primary',
           googleFontsURL: `https://fonts.googleapis.com/css2?family=${pf}&display=swap`,
         },
       ]}
@@ -118,7 +118,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      content={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`}
     />
 
     <!-- twitter-title -->
@@ -163,13 +163,13 @@ const { title, meta_title, description, image, noindex, canonical } =
     <Footer />
 
     <script>
-      import AOS from "aos";
-      import "aos/dist/aos.css";
+      import AOS from 'aos';
+      import 'aos/dist/aos.css';
 
       let scrollRef = 0;
 
       // Fix `not animating although in viewport` issue
-      window.addEventListener("scroll", function () {
+      window.addEventListener('scroll', function () {
         scrollRef <= 10 ? scrollRef++ : AOS.refresh();
       });
 
@@ -183,76 +183,76 @@ const { title, meta_title, description, image, noindex, canonical } =
         // Dropdown Menu Toggler For Mobile
         // ----------------------------------------
         const dropdownMenuToggler: NodeListOf<HTMLElement> =
-          document.querySelectorAll(".nav-dropdown > .nav-link");
+          document.querySelectorAll('.nav-dropdown > .nav-link');
 
         dropdownMenuToggler.forEach((toggler) => {
-          toggler?.addEventListener("click", (e: Event) => {
+          toggler?.addEventListener('click', (e: Event) => {
             const target = e.target as HTMLElement;
-            target && target.parentElement?.classList.toggle("active");
+            target && target.parentElement?.classList.toggle('active');
           });
         });
 
         // CLOSE HEADER
         // ----------------------------------------
         const headerPopupParent = document.getElementById(
-          "close-header-parent"
+          'close-header-parent'
         );
         const headerPopupCloseBtn = document.getElementById(
-          "close-header-learn-more"
+          'close-header-learn-more'
         );
 
         headerPopupCloseBtn &&
-          headerPopupCloseBtn.addEventListener("click", () => {
-            if (headerPopupParent) headerPopupParent.style.display = "none";
+          headerPopupCloseBtn.addEventListener('click', () => {
+            if (headerPopupParent) headerPopupParent.style.display = 'none';
           });
 
         // Tab
         // ----------------------------------------
         function setActiveTab(tabGroup: Element, tabName: string): void {
-          const tabsNav = tabGroup.querySelector("[data-tab-nav]");
-          const tabsContent = tabGroup.querySelector("[data-tab-content]");
+          const tabsNav = tabGroup.querySelector('[data-tab-nav]');
+          const tabsContent = tabGroup.querySelector('[data-tab-content]');
 
           if (!tabsNav || !tabsContent) {
             return;
           }
 
-          tabsNav.querySelectorAll("[data-tab]").forEach((tabNavItem) => {
-            tabNavItem.classList.remove("active");
+          tabsNav.querySelectorAll('[data-tab]').forEach((tabNavItem) => {
+            tabNavItem.classList.remove('active');
           });
           tabsContent
-            .querySelectorAll("[data-tab-panel]")
+            .querySelectorAll('[data-tab-panel]')
             .forEach((tabPane) => {
-              tabPane.classList.remove("active");
+              tabPane.classList.remove('active');
             });
 
           const selectedTabNavItem = tabsNav.querySelector(
             `[data-tab="${tabName}"]`
           );
           if (selectedTabNavItem) {
-            selectedTabNavItem.classList.add("active");
+            selectedTabNavItem.classList.add('active');
           }
           const selectedTabPane = tabsContent.querySelector(
             `[data-tab-panel="${tabName}"]`
           );
           if (selectedTabPane) {
-            selectedTabPane.classList.add("active");
+            selectedTabPane.classList.add('active');
           }
         }
 
-        const tabGroups = document.querySelectorAll("[data-tab-group]");
+        const tabGroups = document.querySelectorAll('[data-tab-group]');
         tabGroups.forEach((tabGroup) => {
-          const tabsNav = tabGroup.querySelector("[data-tab-nav]");
-          const tabsNavItem = tabsNav?.querySelectorAll("[data-tab]") || [];
+          const tabsNav = tabGroup.querySelector('[data-tab-nav]');
+          const tabsNavItem = tabsNav?.querySelectorAll('[data-tab]') || [];
 
           if (tabsNavItem.length > 0) {
-            const activeTabName = tabsNavItem[0].getAttribute("data-tab");
+            const activeTabName = tabsNavItem[0].getAttribute('data-tab');
             if (activeTabName) {
               setActiveTab(tabGroup, activeTabName);
             }
 
             tabsNavItem.forEach((tabNavItem) => {
-              tabNavItem.addEventListener("click", () => {
-                const tabName = tabNavItem.getAttribute("data-tab");
+              tabNavItem.addEventListener('click', () => {
+                const tabName = tabNavItem.getAttribute('data-tab');
                 if (tabName) {
                   setActiveTab(tabGroup, tabName);
                 }
@@ -262,7 +262,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         });
 
         const tablist: NodeListOf<HTMLElement> = document.querySelectorAll(
-          "[data-tab-nav] [data-tab]"
+          '[data-tab-nav] [data-tab]'
         );
         function tabsHandler(event: KeyboardEvent): void {
           const index = Array.from(tablist).indexOf(
@@ -272,7 +272,7 @@ const { title, meta_title, description, image, noindex, canonical } =
           let nextId: Element | undefined;
 
           if (numbTabs > 1) {
-            if (event.key === "ArrowRight") {
+            if (event.key === 'ArrowRight') {
               nextId = tablist[(index + 1) % numbTabs];
               if (index === numbTabs - 1) {
                 nextId = tablist[0];
@@ -280,9 +280,9 @@ const { title, meta_title, description, image, noindex, canonical } =
 
               if (nextId instanceof HTMLElement) nextId.focus();
 
-              nextId.dispatchEvent(new Event("click"));
+              nextId.dispatchEvent(new Event('click'));
             }
-            if (event.key === "ArrowLeft") {
+            if (event.key === 'ArrowLeft') {
               nextId = tablist[(index - 1 + numbTabs) % numbTabs];
               if (index === 0) {
                 nextId = tablist[numbTabs - 1];
@@ -290,28 +290,28 @@ const { title, meta_title, description, image, noindex, canonical } =
 
               if (nextId instanceof HTMLElement) nextId.focus();
 
-              nextId.dispatchEvent(new Event("click"));
+              nextId.dispatchEvent(new Event('click'));
             }
           }
         }
 
         tablist.forEach(function (tab) {
-          tab.addEventListener("keydown", tabsHandler);
+          tab.addEventListener('keydown', tabsHandler);
         });
 
         // ########################## Modal ##############################
-        const openModalButtons = document.querySelectorAll("[data-modal-open]");
+        const openModalButtons = document.querySelectorAll('[data-modal-open]');
         const closeModalButtons =
-          document.querySelectorAll("[data-modal-close]");
+          document.querySelectorAll('[data-modal-close]');
 
         function openModal(modal: Element | null): void {
           if (modal === null) {
             return;
           }
-          const overlay = modal.querySelector("[data-modal-overlay]");
+          const overlay = modal.querySelector('[data-modal-overlay]');
           if (overlay) {
-            modal.setAttribute("style", "display: block");
-            overlay.setAttribute("style", "display: block");
+            modal.setAttribute('style', 'display: block');
+            overlay.setAttribute('style', 'display: block');
           }
         }
 
@@ -319,29 +319,29 @@ const { title, meta_title, description, image, noindex, canonical } =
           if (modal === null) {
             return;
           }
-          const overlay = modal.querySelector("[data-modal-overlay]");
+          const overlay = modal.querySelector('[data-modal-overlay]');
           if (overlay) {
-            modal.setAttribute("style", "display: none");
-            overlay.setAttribute("style", "display: none");
+            modal.setAttribute('style', 'display: none');
+            overlay.setAttribute('style', 'display: none');
           }
         }
 
         openModalButtons.forEach((button) => {
-          button.addEventListener("click", () => {
+          button.addEventListener('click', () => {
             const modal = button.nextElementSibling as HTMLElement;
             openModal(modal);
           });
         });
 
         closeModalButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const modal = button.closest("[data-modal]") as HTMLElement;
+          button.addEventListener('click', () => {
+            const modal = button.closest('[data-modal]') as HTMLElement;
             closeModal(modal);
           });
         });
       }
 
-      document.addEventListener("astro:page-load", () => {
+      document.addEventListener('astro:page-load', () => {
         aosInit();
         scriptInit();
       });

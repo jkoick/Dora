@@ -4,6 +4,7 @@ import IntegrationCard from '@/components/IntegrationCard.astro';
 import Base from '@/layouts/Base.astro';
 import { getSinglePage } from '@/lib/contentParser.astro';
 import { markdownify } from '@/lib/utils/textConverter';
+import AboutCallToAction from '@/partials/AboutCallToAction.astro';
 import CallToAction from '@/partials/CallToAction.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
@@ -52,5 +53,5 @@ const { integration } = integrationIndex.data;
   }
   <hr class="divider" />
 
-  <CallToAction />
+  <AboutCallToAction />
 </Base>

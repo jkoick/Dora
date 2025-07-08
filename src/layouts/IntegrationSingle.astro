@@ -1,23 +1,24 @@
 ---
-import DotTitle from "@/components/DotTitle.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import IntegrationCard from "@/components/IntegrationCard.astro";
-import config from "@/config/config.json";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import CallToAction from "@/partials/CallToAction.astro";
-import type { CollectionEntry } from "astro:content";
-import { getEntry, render } from "astro:content";
+import DotTitle from '@/components/DotTitle.astro';
+import ImageMod from '@/components/ImageMod.astro';
+import IntegrationCard from '@/components/IntegrationCard.astro';
+import config from '@/config/config.json';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import CallToAction from '@/partials/CallToAction.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+import AboutCallToAction from './partials/AboutCallToAction.astro';
 
 const { feedback } = config;
 const { integration } = Astro.props;
 
 const integrationIndex = (
-  (await getEntry("integration", "-index")) as CollectionEntry<"integration">
+  (await getEntry('integration', '-index')) as CollectionEntry<'integration'>
 ).data;
 const { other_integration } = integrationIndex;
 
-const all_integrations = await getSinglePage("integration");
+const all_integrations = await getSinglePage('integration');
 const other_integrations = all_integrations
   .filter((integration) => integration.id !== integration.id)
   .slice(0, other_integration?.number_of_items);
@@ -88,7 +89,8 @@ const { Content } = await render(integration);
               action={feedback.form_action}
               id="feedback-form"
               method="post"
-              class="flex items-center">
+              class="flex items-center"
+            >
               <input type="text" hidden name="feedback" value="" />
               <input
                 type="text"
@@ -102,7 +104,8 @@ const { Content } = await render(integration);
                     <button
                       type="submit"
                       value={button.value}
-                      class={`btn mr-5 ${index === 0 ? "btn-primary" : "btn-outline-primary"}`}>
+                      class={`btn mr-5 ${index === 0 ? 'btn-primary' : 'btn-outline-primary'}`}
+                    >
                       {button.label}
                     </button>
                   )
@@ -123,7 +126,7 @@ const { Content } = await render(integration);
 </section>
 <hr class="divider" />
 
-{
+<!-- {
   other_integration && other_integration.enable && (
     <section class="section">
       <div class="container-sm">
@@ -147,22 +150,22 @@ const { Content } = await render(integration);
       </div>
     </section>
   )
-}
+} -->
 
 <hr class="divider" />
 
-<CallToAction />
+<!-- <AboutCallToAction /> -->
 
 <script>
-  const feedbackform = document.querySelector("#feedback-form");
+  const feedbackform = document.querySelector('#feedback-form');
   const feedbackInput = feedbackform?.querySelector("input[name='feedback']");
-  const feedbackButtons = feedbackform?.querySelectorAll("button");
+  const feedbackButtons = feedbackform?.querySelectorAll('button');
 
   // Set Feedback value to hidden input tag
   feedbackButtons?.forEach((button: any) => {
-    button?.addEventListener("click", (e: any) => {
-      const value = e.target?.getAttribute("value");
-      feedbackInput?.setAttribute("value", value);
+    button?.addEventListener('click', (e: any) => {
+      const value = e.target?.getAttribute('value');
+      feedbackInput?.setAttribute('value', value);
     });
   });
 </script>

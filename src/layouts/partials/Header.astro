@@ -1,9 +1,9 @@
 ---
-import Logo from "@/components/Logo.astro";
-import MegaMenuItem from "@/components/MegaMenuItem.astro";
-import config from "@/config/config.json";
-import menu from "@/config/menu.json";
-import { markdownify } from "@/lib/utils/textConverter";
+import Logo from '@/components/Logo.astro';
+import MegaMenuItem from '@/components/MegaMenuItem.astro';
+import config from '@/config/config.json';
+import menu from '@/config/menu.json';
+import { markdownify } from '@/lib/utils/textConverter';
 
 export interface ChildNavigationLink {
   icon: string;
@@ -28,8 +28,8 @@ const { announcement, navigation_button, settings } = config;
 const { pathname } = Astro.url;
 ---
 
-<div class={`z-30 ${settings.sticky_header && "sticky top-0"}`}>
-  {
+<div class={`z-30 ${settings.sticky_header && 'sticky top-0'}`}>
+  <!-- {
     announcement.enable && (
       <div
         class="bg-text-dark text-white py-2 md:py-1 relative"
@@ -64,7 +64,7 @@ const { pathname } = Astro.url;
         </button>
       </div>
     )
-  }
+  } -->
   <header class="header">
     <nav class="navbar container">
       <!-- logo -->
@@ -76,22 +76,26 @@ const { pathname } = Astro.url;
       <input id="nav-toggle" type="checkbox" class="hidden" />
       <label
         for="nav-toggle"
-        class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark lg:order-1">
+        class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark lg:order-1"
+      >
         <svg
           id="show-button"
           class="h-6 fill-current block"
-          viewBox="0 0 20 20">
+          viewBox="0 0 20 20"
+        >
           <title>Menu Open</title>
           <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
         </svg>
         <svg
           id="hide-button"
           class="h-6 fill-current hidden"
-          viewBox="0 0 20 20">
+          viewBox="0 0 20 20"
+        >
           <title>Menu Close</title>
           <polygon
             points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-            transform="rotate(45 10 10)">
+            transform="rotate(45 10 10)"
+          >
           </polygon>
         </svg>
       </label>
@@ -100,23 +104,26 @@ const { pathname } = Astro.url;
       <!-- Navigation Menu -->
       <ul
         id="nav-menu"
-        class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:pb-0">
+        class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:pb-0"
+      >
         <!-- Main Menu -->
         {
           main.map((menu) => (
             <>
               {menu.hasChildren || menu.hasMegaMenu || menu.hasExtraMenu ? (
                 <li
-                  class={`nav-item nav-dropdown group ${menu.hasChildren ? "relative" : ""}`}>
+                  class={`nav-item nav-dropdown group ${menu.hasChildren ? 'relative' : ''}`}
+                >
                   <span
                     class={`nav-link inline-flex items-center middle ${
                       menu.children?.map(({ url }) => url).includes(pathname) ||
                       menu.children
                         ?.map(({ url }) => `${url}/`)
                         .includes(pathname)
-                        ? "active"
-                        : ""
-                    }`}>
+                        ? 'active'
+                        : ''
+                    }`}
+                  >
                     {menu.name}
                     <span class="arrow-icon">
                       <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
@@ -128,13 +135,16 @@ const { pathname } = Astro.url;
                   {(menu.hasMegaMenu || menu.hasExtraMenu) &&
                     !menu.hasChildren && (
                       <div
-                        class={`mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? "max-w-[500px]" : !menu.hasExtraMenu && menu.hasMegaMenu ? "max-w-[800px]" : ""}`}>
+                        class={`mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? 'max-w-[500px]' : !menu.hasExtraMenu && menu.hasMegaMenu ? 'max-w-[800px]' : ''}`}
+                      >
                         <div
-                          class={`grid ${menu.hasExtraMenu && menu.hasMegaMenu ? "grid-cols-3" : !menu.hasMegaMenu || !menu.hasExtraMenu ? "grid-cols-1" : ""}`}>
+                          class={`grid ${menu.hasExtraMenu && menu.hasMegaMenu ? 'grid-cols-3' : !menu.hasMegaMenu || !menu.hasExtraMenu ? 'grid-cols-1' : ''}`}
+                        >
                           {menu.hasMegaMenu && (
                             <div
-                              class={`col-span-2 grid grid-cols-2 ${menu.hasExtraMenu ? "mr-3 border-border border-r" : ""}`}
-                              data-aos="fade-in">
+                              class={`col-span-2 grid grid-cols-2 ${menu.hasExtraMenu ? 'mr-3 border-border border-r' : ''}`}
+                              data-aos="fade-in"
+                            >
                               {menu.children?.map((child) => (
                                 <MegaMenuItem
                                   image={child.icon}
@@ -149,9 +159,10 @@ const { pathname } = Astro.url;
                           {/* Extra Menu For Desktop Devices */}
                           {menu.hasExtraMenu && (
                             <div
-                              class={`${menu.hasMegaMenu ? "p-5" : ""}`}
+                              class={`${menu.hasMegaMenu ? 'p-5' : ''}`}
                               data-aos="fade-in"
-                              data-aos-delay="200">
+                              data-aos-delay="200"
+                            >
                               {menu.extraMenuTitle && (
                                 <span
                                   class="pb-6 font-semibold h6 inline-block"
@@ -168,7 +179,7 @@ const { pathname } = Astro.url;
                                         class={`mega-dropdown-list-link block ${
                                           (pathname === `${child.url}/` ||
                                             pathname === child.url) &&
-                                          "active"
+                                          'active'
                                         }`}
                                         set:html={markdownify(child.name)}
                                       />
@@ -189,7 +200,7 @@ const { pathname } = Astro.url;
                           class={`nav-dropdown-link block py-2 ${
                             (pathname === `${child.url}/` ||
                               pathname === child.url) &&
-                            "active"
+                            'active'
                           }`}
                           set:html={markdownify(child.name)}
                         />
@@ -210,7 +221,7 @@ const { pathname } = Astro.url;
                               class={`mega-dropdown-list-link block py-2 ${
                                 (pathname === `${child.url}/` ||
                                   pathname === child.url) &&
-                                "active"
+                                'active'
                               }`}
                               set:html={markdownify(child.name)}
                             />
@@ -225,8 +236,9 @@ const { pathname } = Astro.url;
                     href={menu.url}
                     class={`nav-link ${
                       (pathname === `${menu.url}/` || pathname === menu.url) &&
-                      "active"
-                    }`}>
+                      'active'
+                    }`}
+                  >
                     {menu.name}
                   </a>
                 </li>
@@ -254,7 +266,8 @@ const { pathname } = Astro.url;
             <div class="flex gap-x-2">
               <a
                 href={navigation_button.link}
-                class="btn btn-sm btn-primary hidden lg:inline-block">
+                class="btn btn-sm btn-primary hidden lg:inline-block"
+              >
                 {navigation_button.label}
               </a>
             </div>
