@@ -43,14 +43,14 @@ const exampleList = [
       <div class="container bg-light pb-10 lg:pb-0">
         <div class="container-inner">
           <div class="md:columns-2 md:gap-8 lg:gap-16">
-            <div class="mb-10" data-aos="fade-up-sm">
+            <div class="mb-12 lg:mb-16" data-aos="fade-up-sm">
               {features.subtitle && <DotTitle title={features.subtitle} />}
               {features.title && (
-                <h2 class="mb-6" set:html={markdownify(features.title)} />
+                <h2 class="mb-8" set:html={markdownify(features.title)} />
               )}
               {features.description && (
-                <p
-                  class="text-lg"
+                <div
+                  class="max-w-none text-lg leading-relaxed"
                   set:html={markdownify(features.description)}
                 />
               )}
@@ -112,16 +112,16 @@ const exampleList = [
             )} */}
 
             {exampleList.map((group, groupIndex) => (
-              <div class="mb-10" key={group.heading}>
-                <h4 class="h5 mb-6 text-primary" data-aos="fade-up-sm">
+              <div class="mb-12 lg:mb-16" key={group.heading}>
+                <h4 class="h5 mb-8 text-primary" data-aos="fade-up-sm">
                   {group.heading}
                 </h4>
                 <ul
-                  class="text-text-dark font-normal"
+                  class="text-text-dark font-normal space-y-3"
                   data-aos={`${groupIndex % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
                 >
                   {group.items.map((item, itemIndex) => (
-                    <li class="relative mb-4 flex items-start" key={itemIndex}>
+                    <li class="relative flex items-start" key={itemIndex}>
                       <div class="pr-2 mt-[5px]">
                         <span class="bg-primary w-5 h-5 grid place-items-center rounded-full">
                           <DynamicIcon
@@ -138,11 +138,14 @@ const exampleList = [
             ))}
 
             {features.cta.enable && (
-              <div class="relative isolate" data-aos="fade-up-sm">
-                <div class="bg-black py-7 lg:py-8 px-5 lg:px-10">
+              <div
+                class="relative isolate mt-12 lg:mt-16"
+                data-aos="fade-up-sm"
+              >
+                <div class="bg-black py-10 lg:py-12 px-6 lg:px-12">
                   {features.cta.title && (
                     <h4
-                      class="h5 text-white text-center mb-[32px]"
+                      class="h5 text-white text-center mb-8"
                       set:html={markdownify(features.cta.title)}
                     />
                   )}

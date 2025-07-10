@@ -4,13 +4,13 @@ banner:
   title: Digital Operational Resilience Testing Aligned with DORA
   buttons:
     - label: Partner With Us
-      link: '/pricing/'
-    - label: Explore Testing Plans
       link: '/contact/'
+    - label: Explore Testing Plans
+      link: '/tests/'
   benefits:
-    - Testy digitálni odolnosti
-    - Penetrační testy
-    - DORA dokumentace
+    - Digital Resilience Testing
+    - Penetration Testing
+    - DORA Documentation
 
 # Clients
 clients:
@@ -57,14 +57,18 @@ features:
     - The Secret Your Growth Is Data You're Overlooking
   subtitle: Delivering Proportionate and Compliant ICT Testing Across the EU
   description: |
-    We provide reliable, independent, and proportionate testing of digital operational resilience, in line with the requirements of DORA. Our services support financial entities of all sizes—from microenterprises subject to simplified obligations to ICT-mature institutions required to perform threat-led penetration testing (TLPT). All testing activities are aligned with Chapter IV of DORA and the expectations of national competent authorities across the Union.
+    We provide reliable, independent, and proportionate testing of digital operational resilience, in line with the requirements of DORA. 
+    
+    Our services support financial entities of all sizes—from microenterprises subject to simplified obligations to ICT-mature institutions required to perform threat-led penetration testing (TLPT). 
+    
+    All testing activities are aligned with Chapter IV of DORA and the expectations of national competent authorities across the Union.
   cta:
     enable: true
-    title: Zistite, čo vaša infraštruktúra potrebuje pre compliance.
+    title: Find out what your infrastructure needs for compliance.
     button:
       enable: true
-      label: 'Zobraziť všetky služby'
-      link: '/features/'
+      label: 'View All Services'
+      link: '/services/'
   list:
     - enable: true
       icon: '/images/svg/icons/audience.svg'
@@ -83,8 +87,13 @@ about:
     image: '/images/build-and-launch.png'
     title: Who We Serve
     subtitle: Supporting Consultants. Servicing Financial Entities. Completing the DORA Puzzle.
-    description:
-      We provide services directly to financial entities as well as in collaboration with regulatory, legal, and compliance consultants. For consultants, we act as the final technical component of the DORA compliance framework—delivering independent testing capabilities without requiring in-house infrastructure. For financial institutions, we offer a direct path to fulfilling ICT testing obligations under Chapter IV of DORA.
+    description: |
+      We provide services directly to financial entities as well as in collaboration with regulatory, legal, and compliance consultants. 
+      
+      For consultants, we act as the final technical component of the DORA compliance framework—delivering independent testing capabilities without requiring in-house infrastructure. 
+      
+      For financial institutions, we offer a direct path to fulfilling ICT testing obligations under Chapter IV of DORA.
+
       Our services integrate seamlessly with risk assessments, ICT governance policies, and compliance documentation, ensuring consistency, proportionality, and independence across the entire DORA framework.
     list:
       - Make Better Business Decisions With A Single One

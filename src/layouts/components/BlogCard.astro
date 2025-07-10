@@ -1,19 +1,12 @@
 ---
-import config from "@/config/config.json";
-import dateFormat from "@/lib/utils/dateFormat";
-import {
-  humanize,
-  markdownify,
-  plainify,
-  slugify,
-} from "@/lib/utils/textConverter";
-import Share from "@/components/Share.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import type { CollectionEntry } from "astro:content";
+import config from '@/config/config.json';
+import dateFormat from '@/lib/utils/dateFormat';
+import { humanize, markdownify, plainify } from '@/lib/utils/textConverter';
 
 interface Props {
-  post: CollectionEntry<"blog">;
-  layout?: "large" | "horizontal" | "boxed";
+  post: any;
+  layout?: 'large' | 'horizontal' | 'boxed';
+  collection?: string;
 }
 
 const {
@@ -21,107 +14,98 @@ const {
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 
-const { post, layout } = Astro.props;
-const { title, image, date, excerpt, categories } = post.data;
+const { post, layout, collection } = Astro.props;
+const { title, categories } = post.data;
+const folderPath = collection || blog_folder;
 ---
 
 {
-  layout === "horizontal" ? (
-    <article class="row gy-4 sm:items-center group">
-      <div class="sm:col-5">
-        {image && (
-          <div class="relative">
-            <a href={`/${blog_folder}/${post.id}/`}>
-              <ImageMod
-                src={image}
-                alt="Blog Image"
-                class={`w-full object-cover h-[225px]`}
-              />
-            </a>
-            <Share classname="group-hover:opacity-100 opacity-0" />
-          </div>
-        )}
-      </div>
-      <div class="sm:col-7">
+  layout === 'boxed' ? (
+    <a
+      href={`/${folderPath}/${post.id}/`}
+      class="block group h-full focus:outline-none"
+    >
+      <article class="test-card bg-light hover:bg-light/90 p-5 md:p-8 relative h-full cursor-pointer">
         {title && (
-          <h3 class={`md:mb-3 mb-2 inline-block h6`}>
-            <a
-              href={`/${blog_folder}/${post.id}/`}
-              set:html={markdownify(title)}
-            />
-          </h3>
-        )}
-
-        {excerpt && (
-          <p class="text-sm mb-2 text-text-dark/60">
-            {plainify(excerpt?.slice(0, Number(summary_length)))}
-          </p>
-        )}
-
-        {layout && (
-          <span
-            class="bg-text-dark/5 px-3 py-1 text-xs text-text-dark inline-block my-3"
-            set:html={dateFormat(date!)}
+          <h3
+            class="text-base font-medium mb-3 text-h6 transition-colors duration-300 group-hover:text-primary"
+            set:html={markdownify(title)}
           />
         )}
-      </div>
-    </article>
-  ) : (
-    <article
-      class={`group min-h-full ${layout === "boxed" ? "p-4 group border" : "mb-8 last:mb-0"}`}>
-      {image && (
-        <div class="relative">
-          <a href={`/${blog_folder}/${post.id}/`}>
-            <ImageMod
-              src={image}
-              alt="Blog Image"
-              class={`w-full object-cover mb-4 ${
-                layout === "large"
-                  ? "h-[400px]"
-                  : layout === "boxed"
-                    ? "h-[200px]"
-                    : "h-[225px]"
-              }`}
+
+        <div class="absolute top-4 right-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-primary"
+          >
+            <path
+              d="M7 17L17 7M17 7H7M17 7V17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
-          </a>
-          <Share classname="group-hover:opacity-100 opacity-0" />
+          </svg>
         </div>
-      )}
-      <div class={`${layout === "boxed" ? "md:p-4 pb-0" : ""}`}>
+      </article>
+    </a>
+  ) : (
+    <a
+      href={`/${folderPath}/${post.id}/`}
+      class="block group h-full focus:outline-none"
+    >
+      <article
+        class={`test-card bg-light hover:bg-light/90 relative h-full cursor-pointer transition-all duration-500 ${
+          layout === 'boxed' ? 'p-6' : 'p-5 md:p-8'
+        } ${layout === 'large' ? 'mb-8' : 'mb-6'}`}
+      >
         {categories && (
-          <span class="mb-2 inline-block">
+          <span class="mb-3 inline-block">
             {categories.map((category: string, index: number) => (
-              <a
-                href={`/categories/${slugify(category)}/`}
-                class="text-xs uppercase">
+              <span class="text-xs uppercase text-primary/80 transition-colors duration-300 group-hover:text-primary">
                 {humanize(category)}
-                {index !== categories.length - 1 && ` · `}
-              </a>
+                {index !== categories.length - 1 && (
+                  <span class="text-text-dark/40 mx-1">·</span>
+                )}
+              </span>
             ))}
           </span>
         )}
-        {title && (
-          <h3 class={`text-text-dark/90 ${layout === "large" ? "" : "h6"}`}>
-            <a
-              href={`/${blog_folder}/${post.id}/`}
-              set:html={markdownify(title)}
-            />
-          </h3>
-        )}
 
-        {layout && (
-          <span
-            class="bg-text-dark/5 px-3 py-1 text-xs text-text-dark inline-block my-4"
-            set:html={dateFormat(date!)}
+        {title && (
+          <h3
+            class={`text-text-dark transition-colors duration-300 group-hover:text-primary mb-4 ${
+              layout === 'large'
+                ? 'text-2xl font-semibold'
+                : 'text-lg font-medium'
+            }`}
+            set:html={markdownify(title)}
           />
         )}
 
-        {excerpt && layout && (
-          <p class="text-sm text-text-dark/60">
-            {plainify(excerpt?.slice(0, Number(summary_length)))}
-          </p>
-        )}
-      </div>
-    </article>
+        <div class="absolute top-4 right-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-primary"
+          >
+            <path
+              d="M7 17L17 7M17 7H7M17 7V17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </article>
+    </a>
   )
 }

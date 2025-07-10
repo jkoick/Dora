@@ -1,13 +1,13 @@
 ---
-title: "Legal"
-meta_title: "Legal"
-description: "Legal resources and documentation"
+title: 'Legal'
+meta_title: 'Legal'
+description: 'Legal resources and documentation'
 
 banner:
-  title: "Resources For Makers & Creatives To Learn"
-  subtitle: "Our Blog Posts"
+  title: 'Legal resources and documentation'
+  subtitle: 'Legal'
 
 recent_posts:
   enable: true
-  title: "More Related Articles"
+  title: 'More Related Articles'
 ---

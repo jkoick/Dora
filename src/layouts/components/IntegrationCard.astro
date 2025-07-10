@@ -10,32 +10,37 @@ const { title, image, short_description } = data;
   data-aos="zoom-out-sm"
   data-aos-delay={delay < 3 ? delay * 100 : (delay - 3) * 100}
 >
-  <div
-    class="bg-light hover:bg-light/80 hover:shadow transition-all duration-300 p-5 md:p-8 relative h-full"
-  >
-    {
-      image && (
-        <ImageMod src={image} alt="Shape" width={72} height={72} class="mb-4" />
-      )
-    }
-    {
-      title && (
-        <h3 class="text-base font-medium mb-3">
-          <a
-            href={`/tests/${id}/`}
-            class="mb-4 text-h6 link-card"
-            set:html={markdownify(title)}
+  <a href={`/tests/${id}/`} class="block group h-full focus:outline-none">
+    <div
+      class="test-card bg-light hover:bg-light/90 p-5 md:p-8 relative h-full cursor-pointer"
+    >
+      {
+        image && (
+          <div class="mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <ImageMod src={image} alt="Shape" width={72} height={72} />
+          </div>
+        )
+      }
+      {
+        title && (
+          <h3 class="text-base font-medium mb-3 text-h6 transition-colors duration-300 group-hover:text-primary" set:html={markdownify(title)} />
+        )
+      }
+      {
+        short_description && (
+          <p
+            class="text-base-sm font-medium text-text transition-colors duration-300 group-hover:text-text-dark"
+            set:html={markdownify(short_description)}
           />
-        </h3>
-      )
-    }
-    {
-      short_description && (
-        <p
-          class="text-base-sm font-medium"
-          set:html={markdownify(short_description)}
-        />
-      )
-    }
-  </div>
+        )
+      }
+      
+      <!-- Arrow indicator -->
+      <div class="absolute top-4 right-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-primary">
+          <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </a>
 </div>

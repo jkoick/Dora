@@ -48,6 +48,88 @@
   @apply py-8 md:py-16 xl:py-20;
 }
 
+/* Test Card Hover Effects */
+.test-card {
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.test-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(110, 226, 114, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.test-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #6ee272;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(110, 226, 114, 0.2),
+    inset 0 1px 0 rgba(110, 226, 114, 0.1);
+}
+
+.test-card:hover::before {
+  opacity: 1;
+}
+
+/* Additional glow effect */
+.test-card:hover::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(110, 226, 114, 0.1),
+    transparent
+  );
+  border-radius: 14px;
+  z-index: -2;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Focus states for accessibility */
+.test-card:focus-within {
+  outline: 2px solid #6ee272;
+  outline-offset: 2px;
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(110, 226, 114, 0.5);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(110, 226, 114, 0.15);
+}
+
+/* Keyboard navigation enhancement */
+.test-card a:focus {
+  outline: none;
+}
+
 .middle > * {
   vertical-align: middle;
 }
@@ -267,7 +349,7 @@
 .our-tools {
   @apply relative;
   &::before {
-    content: "";
+    content: '';
     background: rgb(255, 255, 255);
     background: linear-gradient(
       90deg,
@@ -278,7 +360,7 @@
     @apply absolute inset-y-0 left-0 w-5 md:w-20 h-full z-10;
   }
   &::after {
-    content: "";
+    content: '';
     background: rgb(255, 255, 255);
     background: linear-gradient(
       90deg,
@@ -295,11 +377,11 @@
   @apply relative max-md:text-h1-sm inline-block max-w-[900px];
 
   &::before {
-    content: "";
+    content: '';
     @apply absolute top-1/2 -translate-y-1/2 -left-16 lg:-left-24 hidden lg:block  lg:w-20 h-1 bg-dark/20;
   }
   &::after {
-    content: "";
+    content: '';
     @apply absolute top-1/2 -translate-y-1/2 -right-16 lg:-right-24 hidden lg:block  lg:w-20 h-1 bg-dark/20;
   }
 }
@@ -396,7 +478,7 @@
 .split-divider {
   @apply text-center w-full relative -z-10;
   &::before {
-    content: "";
+    content: '';
     @apply w-full h-[1px] absolute left-0 top-1/2 -translate-y-1/2 bg-dark/60;
   }
 }
@@ -415,7 +497,7 @@
 
 .link-card {
   &::before {
-    content: "";
+    content: '';
     @apply absolute inset-0 cursor-pointer;
   }
 }
