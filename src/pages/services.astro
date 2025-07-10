@@ -7,13 +7,13 @@ import Integration from '@/partials/Integration.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
-const featuresIndex = (await getEntry(
-  'features',
+const servicesIndex = (await getEntry(
+  'services',
   '-index'
-)) as CollectionEntry<'features'>;
+)) as CollectionEntry<'services'>;
 ---
 
-<Base {...featuresIndex.data}>
+<Base {...servicesIndex.data}>
   <FeaturesBanner />
 
   <hr class="divider" />

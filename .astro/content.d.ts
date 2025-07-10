@@ -158,23 +158,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"about": Record<string, {
-  id: string;
-  body?: string;
-  collection: "about";
-  data: InferEntrySchema<"about">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"blog": Record<string, {
-  id: string;
-  body?: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"careers": Record<string, {
+		"careers": Record<string, {
   id: string;
   body?: string;
   collection: "careers";
@@ -187,6 +171,14 @@ declare module 'astro:content' {
   body?: string;
   collection: "contact";
   data: InferEntrySchema<"contact">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"cooperation": Record<string, {
+  id: string;
+  body?: string;
+  collection: "cooperation";
+  data: InferEntrySchema<"cooperation">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -206,14 +198,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"features": Record<string, {
-  id: string;
-  body?: string;
-  collection: "features";
-  data: InferEntrySchema<"features">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "homepage": Record<string, {
   id: string;
   body?: string;
@@ -222,11 +206,11 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"integration": Record<string, {
+"howItWorks": Record<string, {
   id: string;
   body?: string;
-  collection: "integration";
-  data: InferEntrySchema<"integration">;
+  collection: "howItWorks";
+  data: InferEntrySchema<"howItWorks">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -238,6 +222,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"legal": Record<string, {
+  id: string;
+  body?: string;
+  collection: "legal";
+  data: InferEntrySchema<"legal">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "pages": Record<string, {
   id: string;
   body?: string;
@@ -246,19 +238,27 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"pricing": Record<string, {
-  id: string;
-  body?: string;
-  collection: "pricing";
-  data: InferEntrySchema<"pricing">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "pricingSection": Record<string, {
   id: string;
   body?: string;
   collection: "pricingSection";
   data: InferEntrySchema<"pricingSection">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"services": Record<string, {
+  id: string;
+  body?: string;
+  collection: "services";
+  data: InferEntrySchema<"services">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"tests": Record<string, {
+  id: string;
+  body?: string;
+  collection: "tests";
+  data: InferEntrySchema<"tests">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

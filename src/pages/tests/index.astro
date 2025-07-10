@@ -9,16 +9,16 @@ import CallToAction from '@/partials/CallToAction.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
-const integrationIndex = (await getEntry(
-  'integration',
+const testsIndex = (await getEntry(
+  'tests',
   '-index'
-)) as CollectionEntry<'integration'>;
-const integrations = await getSinglePage('integration');
+)) as CollectionEntry<'tests'>;
+const tests = await getSinglePage('tests');
 
-const { integration } = integrationIndex.data;
+const { integration } = testsIndex.data;
 ---
 
-<Base {...integrationIndex.data}>
+<Base {...testsIndex.data}>
   {
     integration && (
       <section class="section">
@@ -39,10 +39,10 @@ const { integration } = integrationIndex.data;
           )}
 
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-x-5 lg:gap-y-7">
-            {integrations.map((integration, index) => (
+            {tests.map((test, index) => (
               <IntegrationCard
-                id={integration.id}
-                data={integration.data}
+                id={test.id}
+                data={test.data}
                 delay={index}
               />
             ))}

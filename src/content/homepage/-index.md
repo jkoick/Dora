@@ -8,9 +8,9 @@ banner:
     - label: Explore Testing Plans
       link: '/contact/'
   benefits:
-    - Works Anywhere
-    - Get Rewarded
-    - No Hidden Fees
+    - Testy digitálni odolnosti
+    - Penetrační testy
+    - DORA dokumentace
 
 # Clients
 clients:
@@ -60,10 +60,10 @@ features:
     We provide reliable, independent, and proportionate testing of digital operational resilience, in line with the requirements of DORA. Our services support financial entities of all sizes—from microenterprises subject to simplified obligations to ICT-mature institutions required to perform threat-led penetration testing (TLPT). All testing activities are aligned with Chapter IV of DORA and the expectations of national competent authorities across the Union.
   cta:
     enable: true
-    title: Know What Audio Wants From Content. With The Rights
+    title: Zistite, čo vaša infraštruktúra potrebuje pre compliance.
     button:
       enable: true
-      label: 'Explore Service Offering'
+      label: 'Zobraziť všetky služby'
       link: '/features/'
   list:
     - enable: true

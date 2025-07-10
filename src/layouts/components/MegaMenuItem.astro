@@ -1,5 +1,5 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify } from '@/lib/utils/textConverter';
 
 interface Props {
   image: string;
@@ -10,7 +10,7 @@ interface Props {
 const { image, title, href, description } = Astro.props;
 ---
 
-<div class="mega-dropdown-item-lg">
+<div class="mega-dropdown-item-lg hover:bg-dark/10">
   {image && <img src={image} alt="Logo" />}
   <div>
     {

@@ -5,56 +5,56 @@
       "url": "/"
     },
     {
-      "name": "About Us",
-      "url": "/about/"
+      "name": "Cooperation",
+      "url": "/cooperation/"
     },
     {
-      "name": "Pricing",
-      "url": "/pricing/"
+      "name": "How It Works",
+      "url": "/how-it-works/"
     },
     {
       "name": "Pages",
       "hasMegaMenu": true,
       "children": [
         {
-          "icon": "/images/svg/icons/brifcase.svg",
-          "name": "Careers",
+          "icon": "/images/svg/icons/tag.svg",
+          "name": "Services",
           "description": "Better Business Decisions Platform The Collects",
-          "url": "/careers/"
+          "url": "/services/"
         },
         {
-          "icon": "/images/svg/icons/tag.svg",
-          "name": "Features",
+          "icon": "/images/svg/icons/brifcase.svg",
+          "name": "Tests",
           "description": "Better Business Decisions Platform The Collects",
-          "url": "/features/"
+          "url": "/tests/"
+        },
+        {
+          "icon": "/images/svg/icons/write.svg",
+          "name": "Legal",
+          "description": "Better Business Decisions Platform The Collects",
+          "url": "/legal/"
         },
         {
           "icon": "/images/svg/icons/message.svg",
           "name": "Contact",
           "description": "Better Business Decisions Platform The Collects",
           "url": "/contact/"
-        },
-        {
-          "icon": "/images/svg/icons/write.svg",
-          "name": "Blog",
-          "description": "Better Business Decisions Platform The Collects",
-          "url": "/blog/"
         }
       ],
-      "hasExtraMenu": true,
+      "hasExtraMenu": false,
       "extraMenuTitle": "Other Pages",
       "extraMenu": [
         {
-          "name": "Integration",
-          "url": "/integration/"
+          "name": "Tests",
+          "url": "/tests/"
         },
         {
-          "name": "Integration Single",
-          "url": "/integration/mailchimp/"
+          "name": "Tests Single",
+          "url": "/tests/mailchimp/"
         },
         {
-          "name": "Blog Single",
-          "url": "/blog/post-3/"
+          "name": "Legal Single",
+          "url": "/legal/post-3/"
         },
         {
           "name": "Terms & Conditions",
@@ -72,8 +72,8 @@
       "title": "Company",
       "links": [
         {
-          "name": "About us",
-          "url": "/about/"
+          "name": "Cooperation",
+          "url": "/cooperation/"
         },
         {
           "name": "Insurance",
@@ -84,8 +84,8 @@
           "url": "/contact/"
         },
         {
-          "name": "Blog",
-          "url": "/blog/"
+          "name": "Legal",
+          "url": "/legal/"
         }
       ]
     },
@@ -156,8 +156,8 @@
           "url": "#"
         },
         {
-          "name": "Pricing",
-          "url": "/pricing/"
+          "name": "How It Works",
+          "url": "/how-it-works/"
         },
         {
           "name": "Terminal",

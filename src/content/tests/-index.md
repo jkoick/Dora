@@ -1,7 +1,7 @@
 ---
-title: 'Integration'
-meta_title: ''
-description: 'this is meta description'
+title: 'Tests'
+meta_title: 'Tests'
+description: 'Our comprehensive testing solutions'
 
 # integration
 integration:

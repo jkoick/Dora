@@ -1,7 +1,7 @@
 ---
-title: "Blog Posts"
-meta_title: ""
-description: "this is meta description"
+title: "Legal"
+meta_title: "Legal"
+description: "Legal resources and documentation"
 
 banner:
   title: "Resources For Makers & Creatives To Learn"

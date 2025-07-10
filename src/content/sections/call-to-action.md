@@ -6,5 +6,5 @@ image: '/images/call-to-action.png'
 buttons:
   - enable: true
     label: 'Contact Us'
-    link: '/pricing/'
+    link: '/how-it-works/'
 ---

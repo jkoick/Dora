@@ -1,0 +1,33 @@
+---
+import config from '@/config/config.json';
+import BlogSingle from '@/layouts/BlogSingle.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { slugify } from '@/lib/utils/textConverter';
+import { getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getSinglePage('legal');
+
+  const paths = posts.map((post) => ({
+    params: {
+      single: post.id,
+    },
+    props: { post },
+  }));
+  return paths;
+}
+
+const { post } = Astro.props;
+const { title, description, meta_title, image, noindex, canonical } =
+  post.data;
+---
+
+<BlogSingle
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  noindex={noindex}
+  canonical={canonical}
+  post={post}
+/>

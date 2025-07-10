@@ -1,0 +1,33 @@
+---
+import config from '@/config/config.json';
+import IntegrationSingle from '@/layouts/IntegrationSingle.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { slugify } from '@/lib/utils/textConverter';
+import { getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tests = await getSinglePage('tests');
+
+  const paths = tests.map((test) => ({
+    params: {
+      single: test.id,
+    },
+    props: { integration: test },
+  }));
+  return paths;
+}
+
+const { integration } = Astro.props;
+const { title, description, meta_title, image, noindex, canonical } =
+  integration.data;
+---
+
+<IntegrationSingle
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  noindex={noindex}
+  canonical={canonical}
+  integration={integration}
+/>

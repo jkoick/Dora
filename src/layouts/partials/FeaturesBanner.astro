@@ -1,14 +1,14 @@
 ---
-import UserImage from "@/components/UserImage.astro";
-import DotTitle from "@/components/DotTitle.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import { getEntry } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import UserImage from '@/components/UserImage.astro';
+import DotTitle from '@/components/DotTitle.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import { getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 const featuresBanner = (await getEntry(
-  "features",
-  "-index"
-)) as CollectionEntry<"features">;
+  'services',
+  '-index'
+)) as CollectionEntry<'services'>;
 const { banner } = featuresBanner.data;
 ---
 
@@ -51,7 +51,8 @@ const { banner } = featuresBanner.data;
                 <div
                   class="grid sm:grid-cols-2 lg:col-9"
                   data-aos="fade-left-sm"
-                  data-aos-delay="250">
+                  data-aos-delay="250"
+                >
                   {banner.stats.map((stat) => (
                     <div class="text-h3 font-bold align-middle text-text-dark flex items-center">
                       {stat.value}
@@ -70,7 +71,8 @@ const { banner } = featuresBanner.data;
             </div>
             <div
               class="lg:col-5 bg-white p-4 md:p-7 mt-8"
-              data-aos="zoom-out-sm">
+              data-aos="zoom-out-sm"
+            >
               <div class="grid grid-cols-2 gap-4">
                 <div class="bg-light text-text-dark px-4 py-5 md:px-8 flex items-center justify-center sm:gap-x-10 lg:gap-x-0 lg:justify-between col-span-2">
                   <div class="sm:mr-3 xl:mr-0">
@@ -98,7 +100,8 @@ const { banner } = featuresBanner.data;
                     <svg
                       id="progressCircle"
                       viewBox="0 0 100 100"
-                      data-circle-progress="88">
+                      data-circle-progress="88"
+                    >
                       <circle
                         cx="50"
                         cy="50"
@@ -154,9 +157,9 @@ const { banner } = featuresBanner.data;
   function circleAnimInit() {
     function animateProgress(): void {
       setTimeout(() => {
-        const circle = document.getElementById("progress") as SVGElement | null;
+        const circle = document.getElementById('progress') as SVGElement | null;
         const progressCircle = document.getElementById(
-          "progressCircle"
+          'progressCircle'
         ) as HTMLElement | null;
 
         if (!circle || !progressCircle) {
@@ -164,14 +167,14 @@ const { banner } = featuresBanner.data;
         }
 
         const progressAttr = progressCircle.getAttribute(
-          "data-circle-progress"
+          'data-circle-progress'
         );
         if (progressAttr === null) {
           return;
         }
 
         const progress = parseFloat(progressAttr);
-        const circumferenceAttr = circle.getAttribute("stroke-dasharray");
+        const circumferenceAttr = circle.getAttribute('stroke-dasharray');
         if (circumferenceAttr === null) {
           return;
         }
@@ -179,17 +182,17 @@ const { banner } = featuresBanner.data;
         const circumference = parseFloat(circumferenceAttr);
         const offset = circumference - (progress / 100) * circumference;
 
-        circle.style.transition = "stroke-dashoffset 1s ease-in-out";
+        circle.style.transition = 'stroke-dashoffset 1s ease-in-out';
         circle.style.strokeDashoffset = offset.toString();
       }, 300); // 300ms delay
     }
 
     // Initial animation
-    const circleSvg = document.getElementById("progress");
+    const circleSvg = document.getElementById('progress');
     if (circleSvg) {
       animateProgress();
     }
   }
 
-  document.addEventListener("astro:page-load", circleAnimInit);
+  document.addEventListener('astro:page-load', circleAnimInit);
 </script>

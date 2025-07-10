@@ -1,7 +1,7 @@
 ---
-title: 'About'
-meta_title: ''
-description: 'this is meta description'
+title: 'Cooperation'
+meta_title: 'Cooperation'
+description: 'Learn about our cooperation opportunities and partnerships'
 draft: false
 
 # Banner

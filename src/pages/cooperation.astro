@@ -11,10 +11,10 @@ import WhyJoinUs from '@/partials/WhyJoinUs.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
-const about = (await getEntry('about', '-index')) as CollectionEntry<'about'>;
+const cooperation = (await getEntry('cooperation', '-index')) as CollectionEntry<'cooperation'>;
 ---
 
-<Base {...about.data}>
+<Base {...cooperation.data}>
   <AboutBanner />
 
   <hr class="divider mt-11 hidden md:block" />
@@ -27,7 +27,7 @@ const about = (await getEntry('about', '-index')) as CollectionEntry<'about'>;
 
   <hr class="divider" />
 
-  <!-- <Gallery gallery={about.data.gallery} /> -->
+  <!-- <Gallery gallery={cooperation.data.gallery} /> -->
 
   <Team />
   <hr class="divider" />

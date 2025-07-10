@@ -9,15 +9,15 @@ import PricingCompare from '@/partials/PricingCompare.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
-const pricing = (await getEntry(
-  'pricing',
+const howItWorks = (await getEntry(
+  'howItWorks',
   '-index'
-)) as CollectionEntry<'pricing'>;
-const { title } = pricing.data;
+)) as CollectionEntry<'howItWorks'>;
+const { title } = howItWorks.data;
 ---
 
-<Base {...pricing.data}>
-  <PageHeader title="Serivces" />
+<Base {...howItWorks.data}>
+  <PageHeader title="How It Works" />
 
   <PricingSection />
 

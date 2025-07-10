@@ -1,7 +1,7 @@
 ---
-title: "Pricing"
-meta_title: ""
-description: "this is meta description"
+title: "How It Works"
+meta_title: "How It Works"
+description: "Learn how our platform works and discover the process"
 draft: false
 
 pricing_compare:

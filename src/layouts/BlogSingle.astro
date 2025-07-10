@@ -9,11 +9,11 @@ import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 import { getEntry, render } from "astro:content";
 
-const COLLECTION_FOLDER = "blog";
+const COLLECTION_FOLDER = "legal";
 const postIndex = (await getEntry(
   COLLECTION_FOLDER,
   "-index"
-)) as CollectionEntry<"blog">;
+)) as CollectionEntry<"legal">;
 const posts = await getSinglePage(COLLECTION_FOLDER);
 
 const { post } = Astro.props;

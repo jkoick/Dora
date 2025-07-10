@@ -1,7 +1,7 @@
 ---
-title: "Features"
-meta_title: ""
-description: "this is meta description"
+title: "Services"
+meta_title: "Services"
+description: "Our professional services and solutions"
 draft: false
 
 # Banner

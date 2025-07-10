@@ -1,10 +1,10 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
-export const about = defineCollection({
+export const cooperation = defineCollection({
   loader: glob({
     pattern: "**/-*.{md,mdx}",
-    base: "src/content/about",
+    base: "src/content/cooperation",
   }),
   schema: z.object({
     banner: z.object({
@@ -89,10 +89,10 @@ export const about = defineCollection({
   }),
 });
 
-export const blog = defineCollection({
+export const legal = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "src/content/blog",
+    base: "src/content/legal",
   }),
   schema: z.object({
     banner: z
@@ -226,10 +226,10 @@ export const contact = defineCollection({
   }),
 });
 
-export const features = defineCollection({
+export const services = defineCollection({
   loader: glob({
     pattern: "**/-*.{md,mdx}",
-    base: "src/content/features",
+    base: "src/content/services",
   }),
   schema: z.object({
     banner: z.object({
@@ -375,10 +375,10 @@ export const homepage = defineCollection({
   }),
 });
 
-export const integration = defineCollection({
+export const tests = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "src/content/integration",
+    base: "src/content/tests",
   }),
   schema: z.object({
     integration: z
@@ -428,10 +428,10 @@ export const pages = defineCollection({
   }),
 });
 
-export const pricing = defineCollection({
+export const howItWorks = defineCollection({
   loader: glob({
     pattern: "**/-*.{md,mdx}",
-    base: "src/content/pricing",
+    base: "src/content/how-it-works",
   }),
   schema: z.object({
     title: z.string(),

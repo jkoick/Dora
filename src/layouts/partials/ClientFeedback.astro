@@ -6,7 +6,7 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const { clientFeedback } = (
-  (await getEntry("about", "-index")) as CollectionEntry<"about">
+  (await getEntry("cooperation", "-index")) as CollectionEntry<"cooperation">
 ).data;
 ---
 

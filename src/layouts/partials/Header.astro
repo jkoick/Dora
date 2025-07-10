@@ -135,7 +135,7 @@ const { pathname } = Astro.url;
                   {(menu.hasMegaMenu || menu.hasExtraMenu) &&
                     !menu.hasChildren && (
                       <div
-                        class={`mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? 'max-w-[500px]' : !menu.hasExtraMenu && menu.hasMegaMenu ? 'max-w-[800px]' : ''}`}
+                        class={`bg-light mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? 'max-w-[500px]' : !menu.hasExtraMenu && menu.hasMegaMenu ? 'max-w-[800px]' : ''}`}
                       >
                         <div
                           class={`grid ${menu.hasExtraMenu && menu.hasMegaMenu ? 'grid-cols-3' : !menu.hasMegaMenu || !menu.hasExtraMenu ? 'grid-cols-1' : ''}`}
