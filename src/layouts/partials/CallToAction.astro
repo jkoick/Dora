@@ -46,7 +46,7 @@ const { enable, title, image, subtitle, buttons } = ctaSection.data;
                   buttons.map((button, index) => (
                     <a
                       href={button.link}
-                      class={`${index === 0 ? 'btn-primary' : 'btn-outline-primary bg-white text-text-dark'} btn`}
+                      class={`${index === 0 ? 'btn-primary' : 'btn-outline-primary bg-white text-black hover:text-black'} btn`}
                       set:html={markdownify(button.label)}
                     />
                   ))}

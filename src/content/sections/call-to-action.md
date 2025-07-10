@@ -1,10 +1,13 @@
 ---
 enable: true
-subtitle: 'Your Call To Action Here'
-title: 'Join consultants and financial institutions across the EU in strengthening operational resilience through cost-effective and compliant ICT testing services.'
+subtitle: 'Ready to assess your digital operational resilience?'
+title: 'Explore our service packages or request a tailored proposal based on your DORA classification.'
 image: '/images/call-to-action.png'
 buttons:
   - enable: true
+    label: 'Explore Service Packages'
+    link: '/tests/'
+  - enable: true
     label: 'Contact Us'
-    link: '/how-it-works/'
+    link: '/contact/'
 ---

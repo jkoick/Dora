@@ -4,6 +4,7 @@ import CallToAction from '@/partials/CallToAction.astro';
 import FeaturesSection from '@/partials/Features.astro';
 import FeaturesBanner from '@/partials/FeaturesBanner.astro';
 import Integration from '@/partials/Integration.astro';
+import ServiceCategories from '@/partials/ServiceCategories.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
@@ -23,6 +24,10 @@ const servicesIndex = (await getEntry(
   <hr class="divider" />
 
   <Integration />
+
+  <hr class="divider" />
+
+  <ServiceCategories />
 
   <hr class="divider" />
 
