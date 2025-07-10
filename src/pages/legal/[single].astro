@@ -1,9 +1,8 @@
 ---
-import config from '@/config/config.json';
+import Base from '@/layouts/Base.astro';
 import BlogSingle from '@/layouts/BlogSingle.astro';
 import { getSinglePage } from '@/lib/contentParser.astro';
-import { slugify } from '@/lib/utils/textConverter';
-import { getEntry } from 'astro:content';
+import PageHeader from '@/partials/PageHeader.astro';
 
 export async function getStaticPaths() {
   const posts = await getSinglePage('legal');
@@ -18,16 +17,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { title, description, meta_title, image, noindex, canonical } =
-  post.data;
 ---
 
-<BlogSingle
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
-  noindex={noindex}
-  canonical={canonical}
-  post={post}
-/>
+<Base {...post.data}>
+  <PageHeader title={post.data.title} />
+  <BlogSingle post={post} />
+</Base>

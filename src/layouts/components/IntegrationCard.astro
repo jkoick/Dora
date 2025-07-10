@@ -1,6 +1,6 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
-import ImageMod from "./ImageMod.astro";
+import { markdownify } from '@/lib/utils/textConverter';
+import ImageMod from './ImageMod.astro';
 
 const { delay, id, data } = Astro.props;
 const { title, image, short_description } = data;
@@ -8,9 +8,11 @@ const { title, image, short_description } = data;
 
 <div
   data-aos="zoom-out-sm"
-  data-aos-delay={delay < 3 ? delay * 100 : (delay - 3) * 100}>
+  data-aos-delay={delay < 3 ? delay * 100 : (delay - 3) * 100}
+>
   <div
-    class="bg-light hover:bg-white hover:shadow transition-all duration-300 p-5 md:p-8 relative">
+    class="bg-light hover:bg-light/80 hover:shadow transition-all duration-300 p-5 md:p-8 relative"
+  >
     {
       image && (
         <ImageMod src={image} alt="Shape" width={72} height={72} class="mb-4" />
@@ -20,7 +22,7 @@ const { title, image, short_description } = data;
       title && (
         <h3 class="text-base font-medium mb-3">
           <a
-            href={`/integration/${id}/`}
+            href={`/tests/${id}/`}
             class="mb-4 text-h6 link-card"
             set:html={markdownify(title)}
           />
