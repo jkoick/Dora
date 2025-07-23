@@ -20,6 +20,11 @@ const exampleList = [
       'Network security assessments',
       'Gap analyses',
       'Physical security reviews',
+    ],
+  },
+  {
+    heading: 'Additional Test Types',
+    items: [
       'Source code reviews',
       'Scenario-based tests',
       'Compatibility testing',
@@ -42,19 +47,20 @@ const exampleList = [
     <section class="section overflow-hidden">
       <div class="container bg-light pb-10 lg:pb-0">
         <div class="container-inner">
-          <div class="md:columns-2 md:gap-8 lg:gap-16">
-            <div class="mb-12 lg:mb-16" data-aos="fade-up-sm">
-              {features.subtitle && <DotTitle title={features.subtitle} />}
-              {features.title && (
-                <h2 class="mb-8" set:html={markdownify(features.title)} />
-              )}
-              {features.description && (
-                <div
-                  class="max-w-none text-lg leading-relaxed"
-                  set:html={markdownify(features.description)}
-                />
-              )}
-            </div>
+          <div class="mb-12 lg:mb-16" data-aos="fade-up-sm">
+            {features.subtitle && <DotTitle title={features.subtitle} />}
+            {features.title && (
+              <h2 class="mb-8" set:html={markdownify(features.title)} />
+            )}
+            {features.description && (
+              <div
+                class="max-w-none text-lg leading-relaxed mb-12"
+                set:html={markdownify(features.description)}
+              />
+            )}
+          </div>
+
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
 
             {/* {features.list.map(
               (
@@ -112,17 +118,17 @@ const exampleList = [
             )} */}
 
             {exampleList.map((group, groupIndex) => (
-              <div class="mb-12 lg:mb-16" key={group.heading}>
-                <h4 class="h5 mb-8 text-primary" data-aos="fade-up-sm">
+              <div class="mb-8 lg:mb-12" key={group.heading}>
+                <h4 class="h5 mb-6 text-primary" data-aos="fade-up-sm">
                   {group.heading}
                 </h4>
                 <ul
-                  class="text-text-dark font-normal space-y-3"
-                  data-aos={`${groupIndex % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                  class="text-text-dark font-normal space-y-4"
+                  data-aos={`fade-up-sm`}
                 >
                   {group.items.map((item, itemIndex) => (
                     <li class="relative flex items-start" key={itemIndex}>
-                      <div class="pr-2 mt-[5px]">
+                      <div class="pr-3 mt-[5px] flex-shrink-0">
                         <span class="bg-primary w-5 h-5 grid place-items-center rounded-full">
                           <DynamicIcon
                             icon="FaCheck"
@@ -130,43 +136,44 @@ const exampleList = [
                           />
                         </span>
                       </div>
-                      <span set:html={markdownify(item)} class="text-lg" />
+                      <span set:html={markdownify(item)} class="text-base leading-relaxed" />
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+          </div>
 
-            {features.cta.enable && (
-              <div
-                class="relative isolate mt-12 lg:mt-16"
-                data-aos="fade-up-sm"
-              >
-                <div class="bg-black py-10 lg:py-12 px-6 lg:px-12">
-                  {features.cta.title && (
-                    <h4
-                      class="h5 text-white text-center mb-8"
-                      set:html={markdownify(features.cta.title)}
+          {features.cta.enable && (
+            <div
+              class="relative isolate mt-12 lg:mt-16"
+              data-aos="fade-up-sm"
+            >
+              <div class="bg-black py-10 lg:py-12 px-6 lg:px-12">
+                {features.cta.title && (
+                  <h4
+                    class="h5 text-white text-center mb-8"
+                    set:html={markdownify(features.cta.title)}
+                  />
+                )}
+                {features.cta.button.enable && (
+                  <div class="flex justify-center">
+                    <a
+                      href={features.cta.button.link}
+                      class="btn btn-primary"
+                      set:html={markdownify(features.cta.button.label)}
                     />
-                  )}
-                  {features.cta.button.enable && (
-                    <div class="flex justify-center">
-                      <a
-                        href={features.cta.button.link}
-                        class="btn btn-primary"
-                        set:html={markdownify(features.cta.button.label)}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div
-                  class="absolute bottom-0! left-1/2 -translate-x-1/2 translate-y-1/2 -z-10"
-                  data-aos="fade-in"
-                >
-                  <AnimatedCircles scale={75} />
-                </div>
+                  </div>
+                )}
               </div>
-            )}
+              <div
+                class="absolute bottom-0! left-1/2 -translate-x-1/2 translate-y-1/2 -z-10"
+                data-aos="fade-in"
+              >
+                <AnimatedCircles scale={75} />
+              </div>
+            </div>
+          )}
           </div>
         </div>
       </div>

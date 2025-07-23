@@ -51,10 +51,6 @@ clients:
 # Features
 features:
   title: Our Services
-  listOptions:
-    - Make Better Business Decisions With A Single One
-    - Create A Social Media Strategy That Works
-    - The Secret Your Growth Is Data You're Overlooking
   subtitle: Delivering Proportionate and Compliant ICT Testing Across the EU
   description: |
     We provide reliable, independent, and proportionate testing of digital operational resilience, in line with the requirements of DORA. 

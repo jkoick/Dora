@@ -14,7 +14,7 @@ banner:
 
   buttons:
     - enable: true
-      label: 'Join Our Team'
+      label: 'Partner With Us'
       link: '/careers/'
     - enable: true
       label: 'Learn More Details'
