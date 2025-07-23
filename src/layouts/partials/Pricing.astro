@@ -71,26 +71,28 @@ const processSteps = [
 
 <section class="section">
   <div class="container">
-    <h2
-      class="text-center mb-8 lg:mb-6"
-      data-aos="fade-up-sm"
-      data-aos-delay="100"
-    >
-      How It Works
-    </h2>
+    <div class="max-w-6xl mx-auto">
+      <h2
+        class="text-center mb-8 lg:mb-6"
+        data-aos="fade-up-sm"
+        data-aos-delay="100"
+      >
+        How It Works
+      </h2>
 
-    <p
-      class="flex justify-center mb-12 max-w-4xl mx-auto"
-      data-aos="fade-up-sm"
-    >
-      Our service model follows the regulatory expectations set out in Chapter
-      IV of Regulation&nbsp;(EU)&nbsp;2022/2554 (DORA). Whether working directly
-      with a financial entity or supporting a compliance consultant, we employ a
-      process that ensures independence, proportionality, and auditability.
-    </p>
+      <p
+        class="text-center mb-12 max-w-3xl mx-auto text-lg leading-relaxed"
+        data-aos="fade-up-sm"
+      >
+        Our service model follows the regulatory expectations set out in Chapter
+        IV of Regulation&nbsp;(EU)&nbsp;2022/2554 (DORA). Whether working directly
+        with a financial entity or supporting a compliance consultant, we employ a
+        process that ensures independence, proportionality, and auditability.
+      </p>
 
-    <div class="flex flex-col gap-12">
-      {processSteps.map((step) => <PricingCard {...step} />)}
+      <div class="flex flex-col gap-8">
+        {processSteps.map((step) => <PricingCard {...step} />)}
+      </div>
     </div>
 
     <ImageMod
