@@ -1,7 +1,7 @@
 ---
-title: "Services"
-meta_title: "Digital Operational Resilience Testing Services"
-description: "DORA-compliant ICT testing services for financial entities - independent, proportionate, and audit-ready"
+title: 'Services'
+meta_title: 'Digital Operational Resilience Testing Services'
+description: 'DORA-compliant ICT testing services for financial entities - independent, proportionate, and audit-ready'
 draft: false
 
 # Banner
@@ -14,16 +14,16 @@ banner:
   stats:
     - title: Financial Entities
       value: 500
-      suffix: "+"
+      suffix: '+'
     - title: Compliance Rate
       value: 100
-      suffix: "%"
+      suffix: '%'
     - title: Test Categories
       value: 4
-      suffix: ""
+      suffix: ''
     - title: Regulatory Standards
       value: 15
-      suffix: "+"
+      suffix: '+'
   leads:
     title: Tests Completed
     description: This year
@@ -44,15 +44,15 @@ banner:
 # Features
 features:
   enable: true
-  image: /images/campaigns.png
+  image: /images/campaigns-1.jpg
   title: Service Delivery Model
   subtitle: Flexible Engagement Options
   description: |
     We offer flexible engagement options based on client needs and market structure, ensuring seamless integration with your existing advisory relationships.
   list:
-    - "Direct Engagement (B2B): Financial entities contract us directly for testing services"
-    - "Consultant-Supported Delivery (B2B2B): We work with legal or compliance consultants to integrate our technical outputs into broader DORA advisory packages"
-    - "White-Labeling: Consultants may deliver our testing under their own brand, supported by backend service-level agreements"
+    - 'Direct Engagement (B2B): Financial entities contract us directly for testing services'
+    - 'Consultant-Supported Delivery (B2B2B): We work with legal or compliance consultants to integrate our technical outputs into broader DORA advisory packages'
+    - 'White-Labeling: Consultants may deliver our testing under their own brand, supported by backend service-level agreements'
 
 # integrations
 integrations:

@@ -8,7 +8,7 @@ draft: false
 banner:
   enable: true
   title: 'Complete Your DORA Offering with Independent ICT Testing'
-  image: '/images/about-banner.png'
+  image: '/images/about-banner-1.png'
   description: |
     Consulting firms providing regulatory, legal, or risk advisory services under the Digital Operational Resilience Act (DORA) often face a critical gap: the technical execution of ICT testing required under Chapter IV of Regulation (EU) 2022/2554. We bridge that gap—providing fully independent, certified, and proportionate ICT testing services that integrate seamlessly into your broader DORA compliance packages.
 

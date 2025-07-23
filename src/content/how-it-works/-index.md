@@ -1,13 +1,13 @@
 ---
-title: "How It Works"
-meta_title: "How It Works"
-description: "Learn how our platform works and discover the process"
+title: ''
+meta_title: ''
+description: 'Learn how our platform works and discover the process'
 draft: false
 
 pricing_compare:
   enable: true
-  title: "Compare Pricing Plans"
-  subtitle: "Plan Comparisons"
+  title: 'Compare Pricing Plans'
+  subtitle: 'Plan Comparisons'
   columns:
     - title: Credit cards
     - title: Basic Plan
@@ -40,51 +40,51 @@ pricing_compare:
     - title: Monthly Transactions
       basic:
         title: basic
-        icon: 
+        icon:
           value: FaCircleXmark
-          style: ""
+          style: ''
       standard:
         title: standard
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
       executive:
         title: executive
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
     - title: Advanced Reporting
       basic:
         title: basic
-        icon: 
+        icon:
           value: FaCircleXmark
-          style: ""
+          style: ''
       standard:
         title: standard
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
       executive:
         title: executive
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
     - title: Invest In Stock
       basic:
         title: basic
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
       standard:
         title: standard
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
       executive:
         title: executive
-        icon: 
+        icon:
           value: FaCircleCheck
-          style: "text-primary"
+          style: 'text-primary'
     - title: Investment Accounts
       basic:
         title: basic
@@ -101,20 +101,20 @@ pricing_compare:
         button:
           enable: true
           label: Get Started Now
-          link: "/contact/"
-          style: "btn-outline-primary" # default "btn-outline-primary"
+          link: '/contact/'
+          style: 'btn-outline-primary' # default "btn-outline-primary"
       standard:
         title: standard
         button:
           enable: true
           label: Get Started Now
-          link: "/contact/"
-          style: "btn-primary" # default "btn-outline-primary"
+          link: '/contact/'
+          style: 'btn-primary' # default "btn-outline-primary"
       executive:
         title: executive
         button:
           enable: true
           label: Get Started Now
-          link: "/contact/"
-          style: "btn-outline-primary" # default "btn-outline-primary"
+          link: '/contact/'
+          style: 'btn-outline-primary' # default "btn-outline-primary"
 ---

@@ -76,92 +76,34 @@
           "url": "/cooperation/"
         },
         {
-          "name": "Insurance",
-          "url": "#"
-        },
-        {
-          "name": "Contact us",
+          "name": "Contact",
           "url": "/contact/"
-        },
-        {
-          "name": "Legal",
-          "url": "/legal/"
         }
       ]
     },
     {
-      "title": "Resources",
+      "title": "Services",
       "links": [
         {
-          "name": "Changelog",
-          "url": "#"
-        },
-        {
-          "name": "Licenses",
-          "url": "#"
-        },
-        {
-          "name": "Styleguide",
-          "url": "#"
-        }
-      ]
-    },
-    {
-      "title": "Integrations",
-      "links": [
-        {
-          "name": "Startups",
-          "url": "#"
-        },
-        {
-          "name": "Enterprise",
-          "url": "#"
-        },
-        {
-          "name": "Platforms",
-          "url": "#"
-        },
-        {
-          "name": "Marketplace",
-          "url": "#"
-        }
-      ]
-    },
-    {
-      "title": "Solutions",
-      "links": [
-        {
-          "name": "Conference",
-          "url": "#"
-        },
-        {
-          "name": "Guide",
-          "url": "#"
-        },
-        {
-          "name": "Newsroom",
-          "url": "#"
-        },
-        {
-          "name": "Jobroom",
-          "url": "#"
-        }
-      ]
-    },
-    {
-      "title": "Support",
-      "links": [
-        {
-          "name": "Payment",
-          "url": "#"
+          "name": "Services",
+          "url": "/services/"
         },
         {
           "name": "How It Works",
           "url": "/how-it-works/"
         },
         {
-          "name": "Terminal",
-          "url": "#"
+          "name": "Tests",
+          "url": "/tests/"
+        }
+      ]
+    },
+    {
+      "title": "Legal",
+      "links": [
+        {
+          "name": "Legal Resources",
+          "url": "/legal/"
         }
       ]
     }
