@@ -341,6 +341,11 @@ const { title, meta_title, description, image, noindex, canonical } =
         });
       }
 
+      // Scroll to top on navigation (but preserve scroll position on refresh)
+      document.addEventListener('astro:before-preparation', () => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+
       document.addEventListener('astro:page-load', () => {
         aosInit();
         scriptInit();

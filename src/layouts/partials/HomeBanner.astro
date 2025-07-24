@@ -48,10 +48,10 @@ const { banner } = (
           </div>
           {banner.benefits && (
             <div class="col-10 2xl:col-6 mx-auto">
-              <ul class="flex items-center flex-wrap gap-y-4 justify-center text-text-dark/80 text-xs md:text-sm border-t border-border pt-5 mt-8">
+              <ul class="flex items-center flex-wrap gap-y-4 justify-center text-text-dark/80 text-sm border-t border-border pt-5 mt-8">
                 {banner.benefits.map((benefit, index) => (
                   <li
-                    class={`justify-center flex items-center gap-x-2 ${banner.benefits && index === banner.benefits.length - 1 ? '' : 'border-r border-border pr-2 mr-2 md:pr-5 md:mr-5'}`}
+                    class={`justify-center flex items-center gap-x-2 ${banner.benefits && index === banner.benefits.length - 1 ? '' : 'border-none sm:border-r border-border pr-2 mr-2 md:pr-5 md:mr-5'}`}
                     data-aos="fade-in"
                     data-aos-delay="350"
                   >
