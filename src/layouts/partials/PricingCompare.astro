@@ -6,7 +6,7 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const { pricing_compare } = (
-  (await getEntry("pricing", "-index")) as CollectionEntry<"pricing">
+  (await getEntry("howItWorks", "-index")) as CollectionEntry<"howItWorks">
 ).data;
 ---
 

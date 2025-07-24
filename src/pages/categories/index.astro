@@ -5,7 +5,7 @@ import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 
-const BLOG_FOLDER = "blog";
+const BLOG_FOLDER = "legal";
 
 const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");

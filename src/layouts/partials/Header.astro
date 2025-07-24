@@ -111,31 +111,33 @@ const { pathname } = Astro.url;
           main.map((menu) => (
             <>
               {menu.hasChildren || menu.hasMegaMenu || menu.hasExtraMenu ? (
-                <li
-                  class={`nav-item nav-dropdown group ${menu.hasChildren ? 'relative' : ''}`}
-                >
-                  <span
-                    class={`nav-link inline-flex items-center middle ${
-                      menu.children?.map(({ url }) => url).includes(pathname) ||
-                      menu.children
-                        ?.map(({ url }) => `${url}/`)
-                        .includes(pathname)
-                        ? 'active'
-                        : ''
-                    }`}
+                <>
+                  {/* Desktop dropdown menu */}
+                  <li
+                    class={`nav-item nav-dropdown group ${menu.hasChildren ? 'relative' : ''} hidden lg:block`}
                   >
-                    {menu.name}
-                    <span class="arrow-icon">
-                      <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
+                    <span
+                      class={`nav-link inline-flex items-center middle ${
+                        menu.children?.map(({ url }) => url).includes(pathname) ||
+                        menu.children
+                          ?.map(({ url }) => `${url}/`)
+                          .includes(pathname)
+                          ? 'active'
+                          : ''
+                      }`}
+                    >
+                      {menu.name}
+                      <span class="arrow-icon">
+                        <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
                     </span>
-                  </span>
 
                   {(menu.hasMegaMenu || menu.hasExtraMenu) &&
                     !menu.hasChildren && (
                       <div
-                        class={`mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? 'max-w-[500px]' : !menu.hasExtraMenu && menu.hasMegaMenu ? 'max-w-[800px]' : ''}`}
+                        class={`bg-light mega-dropdown hidden lg:group-hover:visible lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:block lg:transition-all lg:duration-200 mx-auto ${menu.hasExtraMenu && !menu.hasMegaMenu ? 'max-w-[500px]' : !menu.hasExtraMenu && menu.hasMegaMenu ? 'max-w-[800px]' : ''}`}
                       >
                         <div
                           class={`grid ${menu.hasExtraMenu && menu.hasMegaMenu ? 'grid-cols-3' : !menu.hasMegaMenu || !menu.hasExtraMenu ? 'grid-cols-1' : ''}`}
@@ -229,7 +231,23 @@ const { pathname } = Astro.url;
                         ))}
                     </ul>
                   )}
-                </li>
+                  </li>
+
+                  {/* Mobile: Display children directly */}
+                  {menu.children && menu.children.map((child) => (
+                    <li class="nav-item lg:hidden">
+                      <a
+                        href={child.url}
+                        class={`nav-link ${
+                          (pathname === `${child.url}/` || pathname === child.url) &&
+                          'active'
+                        }`}
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  ))}
+                </>
               ) : (
                 <li class="nav-item">
                   <a

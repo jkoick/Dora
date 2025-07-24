@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Atemp Astro",
+    "title": "Digitize",
     "base_url": "https://atemp-astro.vercel.app/",
     "base_path": "/",
     "trailing_slash": true,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo-1.png",
+    "favicon": "/images/favicon-1.png",
+    "logo": "/images/logo-2-dark.svg",
     "logo_width": "150",
     "logo_height": "46",
-    "logo_text": "Atemp"
+    "logo_text": "Digitize"
   },
 
   "settings": {
@@ -20,24 +20,19 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "© {year} By Your Company | Design and Developed By [Themefisher](https://themefisher.com/)",
+    "copyright": "© {year} Digitize s.r.o.",
 
     "locations": [
       {
-        "title": "France",
-        "address": "45 rue Ernest Renan, Chelles+33 01.45.40.19.99",
+        "title": "Czech Republic",
+        "address": "Primátorská 296/38, Libeň, 180 00 Praha 8",
         "email": "france@trendtrail.com"
-      },
-      {
-        "title": "Spain",
-        "address": "Plaza Maior 15, Pozos De Hinojo+34 641 749 4325",
-        "email": "spain@trendtrail.com"
       }
     ]
   },
 
   "subscription": {
-    "enable": true,
+    "enable": false,
     "enable_in_pages": ["footer", "blog"],
     "form_action": "#",
     "title": "Subscribe To Our Weekly Newsletter",

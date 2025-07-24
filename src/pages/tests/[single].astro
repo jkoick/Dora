@@ -1,0 +1,25 @@
+---
+import Base from '@/layouts/Base.astro';
+import IntegrationSingle from '@/layouts/IntegrationSingle.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import PageHeader from '@/partials/PageHeader.astro';
+
+export async function getStaticPaths() {
+  const tests = await getSinglePage('tests');
+
+  const paths = tests.map((test) => ({
+    params: {
+      single: test.id,
+    },
+    props: { integration: test },
+  }));
+  return paths;
+}
+
+const { integration } = Astro.props;
+---
+
+<Base {...integration.data}>
+  <PageHeader title={integration.data.title} />
+  <IntegrationSingle integration={integration} />
+</Base>

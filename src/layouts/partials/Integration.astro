@@ -5,9 +5,9 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const featuresIndex = (await getEntry(
-  "features",
+  "services",
   "-index"
-)) as CollectionEntry<"features">;
+)) as CollectionEntry<"services">;
 const { integrations } = featuresIndex.data;
 ---
 

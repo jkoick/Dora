@@ -1,13 +1,13 @@
 import {
-  about,
-  blog,
+  cooperation,
+  legal,
   careers,
   contact,
-  features,
+  services,
   homepage,
-  integration,
+  tests,
   pages,
-  pricing,
+  howItWorks,
 } from './types/pages.collections';
 import {
   ctaSection,
@@ -19,15 +19,15 @@ import {
 // Export collections
 export const collections = {
   // Pages
-  about,
-  blog,
+  cooperation,
+  legal,
   careers,
   contact,
-  features,
+  services,
   homepage,
-  integration,
+  tests,
   pages,
-  pricing,
+  howItWorks,
 
   // Sections
   ctaSection,

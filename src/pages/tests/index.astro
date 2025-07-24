@@ -1,0 +1,57 @@
+---
+import DotTitle from '@/components/DotTitle.astro';
+import IntegrationCard from '@/components/IntegrationCard.astro';
+import Base from '@/layouts/Base.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import AboutCallToAction from '@/partials/AboutCallToAction.astro';
+import CallToAction from '@/partials/CallToAction.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+
+const testsIndex = (await getEntry(
+  'tests',
+  '-index'
+)) as CollectionEntry<'tests'>;
+const tests = await getSinglePage('tests');
+
+const { integration } = testsIndex.data;
+---
+
+<Base {...testsIndex.data}>
+  {
+    integration && (
+      <section class="section">
+        <div class="container-sm">
+          {integration.subtitle && (
+            <div class="flex justify-center" data-aos="fade-up-sm">
+              <DotTitle title={integration.subtitle} />
+            </div>
+          )}
+
+          {integration.title && (
+            <h2
+              class="mb-8 lg:mb-8 text-center lg:col-8 mx-auto md:px-10"
+              data-aos="fade-up-sm"
+              data-aos-delay="100"
+              set:html={markdownify(integration.title)}
+            />
+          )}
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-x-5 lg:gap-y-7">
+            {tests.map((test, index) => (
+              <IntegrationCard
+                id={test.id}
+                data={test.data}
+                delay={index}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+  <hr class="divider" />
+
+  <AboutCallToAction />
+</Base>

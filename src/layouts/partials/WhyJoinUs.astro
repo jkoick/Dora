@@ -7,7 +7,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
 const { whyJoinUs } = (
-  (await getEntry('about', '-index')) as CollectionEntry<'about'>
+  (await getEntry('cooperation', '-index')) as CollectionEntry<'cooperation'>
 ).data;
 ---
 

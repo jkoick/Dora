@@ -1,19 +1,19 @@
 ---
-import BlogCard from "@/components/BlogCard.astro";
-import ImageMod from "@/components/ImageMod.astro";
-import Share from "@/components/Share.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import dateFormat from "@/lib/utils/dateFormat";
-import similarItems from "@/lib/utils/similarItems";
-import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry, render } from "astro:content";
+import BlogCard from '@/components/BlogCard.astro';
+import ImageMod from '@/components/ImageMod.astro';
+import Share from '@/components/Share.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import dateFormat from '@/lib/utils/dateFormat';
+import similarItems from '@/lib/utils/similarItems';
+import { humanize, markdownify, slugify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 
-const COLLECTION_FOLDER = "blog";
+const COLLECTION_FOLDER = 'legal';
 const postIndex = (await getEntry(
   COLLECTION_FOLDER,
-  "-index"
-)) as CollectionEntry<"blog">;
+  '-index'
+)) as CollectionEntry<'legal'>;
 const posts = await getSinglePage(COLLECTION_FOLDER);
 
 const { post } = Astro.props;
@@ -27,44 +27,10 @@ const { image, date, title, categories } = post.data;
   <div class="container">
     <div class="lg:col-8 mx-auto">
       <ul class="mb-4 flex flex-wrap gap-y-2">
-        {
-          date && (
-            <li class="mr-4 inline-block">
-              <span
-                class="bg-text-dark/5 px-3 py-1 text-xs text-text-dark inline-block"
-                set:html={dateFormat(date)}
-              />
-            </li>
-          )
-        }
-        <li class="mr-4 inline-block">
-          {
-            categories &&
-              categories.map((category: string, index: number) => (
-                <a
-                  href={`/categories/${slugify(category)}/`}
-                  class="text-base-sm uppercase">
-                  {humanize(category)}
-                  {index !== categories.length - 1 && "·"}
-                </a>
-              ))
-          }
-        </li>
+        <li class="mr-4 inline-block"></li>
       </ul>
 
       {title && <h1 class="mb-4 h3" set:html={markdownify(title)} />}
-      {
-        image && (
-          <div class="relative group mb-7">
-            <ImageMod
-              src={image}
-              alt="A Blog Post"
-              class="w-full object-cover"
-            />
-            <Share />
-          </div>
-        )
-      }
       <div class="content mt-8">
         <Content />
       </div>

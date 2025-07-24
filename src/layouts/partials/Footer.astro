@@ -2,10 +2,8 @@
 import AnimatedCircles from '@/components/AnimatedCircles.astro';
 import ImageMod from '@/components/ImageMod.astro';
 import Logo from '@/components/Logo.astro';
-import Social from '@/components/Social.astro';
 import config from '@/config/config.json';
 import menu from '@/config/menu.json';
-import social from '@/config/social.json';
 import { markdownify } from '@/lib/utils/textConverter';
 
 // Footer Menu Type
@@ -44,9 +42,9 @@ function replaceYear(text: string) {
           }
         </ul>
       </div>
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
+      <!-- <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
         <Social source={social.main} className="social-icons" />
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="border-t border-border py-7">
@@ -69,7 +67,7 @@ function replaceYear(text: string) {
             href="/"
           >
             <ImageMod
-              src="/images/logo-1.png"
+              src="/images/logo-2.svg"
               width={154}
               height={28}
               alt="Logo"
@@ -163,7 +161,7 @@ function replaceYear(text: string) {
   <div class="bg-[#0D193E] relative isolate">
     <div class="container-sm py-16 border-b border-[#343B51] z-10">
       <div
-        class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 gap-x-20"
+        class="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-x-12 lg:gap-x-20 max-w-2xl mx-auto lg:max-w-none"
       >
         <!-- MENU -->
         {

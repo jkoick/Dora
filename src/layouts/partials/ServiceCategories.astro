@@ -1,0 +1,153 @@
+---
+import DotTitle from '@/components/DotTitle.astro';
+import DynamicIcon from '@/helpers/DynamicIcon';
+---
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="lg:col-10">
+        <div class="text-center" data-aos="fade-up-sm">
+          <DotTitle title="Our Testing Portfolio" />
+        </div>
+        <h2
+          class="mb-8 lg:mb-12 text-center"
+          data-aos="fade-up-sm"
+          data-aos-delay="100"
+        >
+          Service Categories
+        </h2>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:gap-8">
+          <!-- Baseline Testing -->
+          <div
+            class="bg-light p-6 lg:p-8 relative"
+            data-aos="zoom-out-sm"
+            data-aos-delay="100"
+          >
+            <div class="flex items-start gap-4">
+              <div class="text-primary">
+                <DynamicIcon icon="FaCheck" className="text-2xl" />
+              </div>
+              <div>
+                <h3 class="mb-3 text-h5">1. Baseline Testing</h3>
+                <p class="text-base-sm">
+                  Foundational ICT testing covering essential system
+                  vulnerabilities, basic penetration testing, and compliance
+                  verification for smaller financial entities or low-risk
+                  operations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comprehensive Resilience Testing -->
+          <div
+            class="bg-light p-6 lg:p-8 relative"
+            data-aos="zoom-out-sm"
+            data-aos-delay="200"
+          >
+            <div class="flex items-start gap-4">
+              <div class="text-primary">
+                <DynamicIcon icon="FaShield" className="text-2xl" />
+              </div>
+              <div>
+                <h3 class="mb-3 text-h5">
+                  2. Comprehensive Resilience Testing
+                </h3>
+                <p class="text-base-sm">
+                  Advanced testing including stress testing, scenario-based
+                  assessments, business continuity validation, and end-to-end
+                  resilience evaluation for medium to large financial
+                  institutions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Threat-Led Penetration Testing (TLPT) -->
+          <div
+            class="bg-light p-6 lg:p-8 relative"
+            data-aos="zoom-out-sm"
+            data-aos-delay="300"
+          >
+            <div class="flex items-start gap-4">
+              <div class="text-primary">
+                <DynamicIcon icon="FaBug" className="text-2xl" />
+              </div>
+              <div>
+                <h3 class="mb-3 text-h5">
+                  3. Threat-Led Penetration Testing (TLPT)
+                </h3>
+                <p class="text-base-sm">
+                  Advanced red-team exercises simulating real-world attack
+                  scenarios, targeting critical systems and testing incident
+                  response capabilities for systemically important financial
+                  institutions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Regulatory Documentation Support -->
+          <div
+            class="bg-light p-6 lg:p-8 relative"
+            data-aos="zoom-out-sm"
+            data-aos-delay="400"
+          >
+            <div class="flex items-start gap-4">
+              <div class="text-primary">
+                <DynamicIcon icon="FaFile" className="text-2xl" />
+              </div>
+              <div>
+                <h3 class="mb-3 text-h5">
+                  4. Regulatory Documentation Support
+                </h3>
+                <p class="text-base-sm mb-4">
+                  Optional add-on service providing structured outputs for
+                  regulatory documentation integration:
+                </p>
+                <ul class="text-sm space-y-2">
+                  <li class="flex items-start gap-2">
+                    <DynamicIcon
+                      icon="FaCheck"
+                      className="text-primary text-xs mt-1"
+                    />
+                    <span>ICT risk management framework</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <DynamicIcon
+                      icon="FaCheck"
+                      className="text-primary text-xs mt-1"
+                    />
+                    <span
+                      >Incident response and business continuity documentation</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <DynamicIcon
+                      icon="FaCheck"
+                      className="text-primary text-xs mt-1"
+                    />
+                    <span>Governance and audit trails for NCA inspections</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 text-center"
+          data-aos="fade-up-sm"
+          data-aos-delay="500"
+        >
+          <p class="text-base-sm text-gray-600">
+            This service ensures full traceability and evidentiary sufficiency
+            in regulatory proceedings or supervisory reviews.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

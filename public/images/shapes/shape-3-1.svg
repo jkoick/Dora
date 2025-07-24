@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 465 276" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.02877,0,0,0.472106,-12.4212,27.8295)">
+        <g transform="matrix(0.97203,-0,-0,2.11817,12.0738,-58.9475)">
+            <use xlink:href="#_Image1" x="69.881" y="60.877" width="324px" height="135px"/>
+        </g>
+    </g>
+    <g transform="matrix(1.11622,0,0,1.11622,104.226,-149.402)">
+        <circle cx="25.408" cy="227.5" r="7.955" style="fill:rgb(110,226,114);"/>
+    </g>
+    <g transform="matrix(1.16622,0,0,1.11622,101.954,-149.402)">
+        <path d="M204.544,226.785L204.544,227.58C204.544,229.468 203.077,231 201.27,231L48.727,231C46.92,231 45.453,229.468 45.453,227.58L45.453,226.785C45.453,224.897 46.92,223.364 48.727,223.364L201.27,223.364C203.077,223.364 204.544,224.897 204.544,226.785Z" style="fill:rgb(135,135,135);"/>
+    </g>
+    <g transform="matrix(1.11622,0,0,1.11622,104.226,-149.402)">
+        <circle cx="25.408" cy="259.318" r="7.955" style="fill:rgb(196,153,255);"/>
+    </g>
+    <g transform="matrix(1.1625,0,0,1.11622,102.123,-149.402)">
+        <path d="M134.544,258.603L134.544,259.398C134.544,261.286 133.072,262.818 131.26,262.818L48.738,262.818C46.925,262.818 45.453,261.286 45.453,259.398L45.453,258.603C45.453,256.715 46.925,255.182 48.738,255.182L131.26,255.182C133.072,255.182 134.544,256.715 134.544,258.603Z" style="fill:rgb(135,135,135);"/>
+    </g>
+    <defs>
+        <image id="_Image1" width="324px" height="135px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACHCAYAAABu4SBoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABr0lEQVR4nO3UMRGAMADAwMIxYaP+ZWALWOKhHf4VZMox5/wGAPe5ugBgF4YIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFiiAAxRIAYIkAMESCGCBBDBIghAsQQAWKIADFEgBgiQAwRIIYIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFiiAAxRIAYIkAMESCGCBBDBIghAsQQAWKIADFEgBgiQAwRIIYIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFiiAAxRIAYIkAMESCGCBBDBIghAsQQAWKIADFEgBgiQAwRIIYIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFiiAAxRIAYIkAMESCGCBBDBIghAsQQAWKIADFEgBgiQAwRIIYIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFiiAAxRIAYIkAMESCGCBBDBIghAsQQAWKIADFEgBgiQAwRIIYIEEMEiCECxBABYogAMUSAGCJADBEghggQQwSIIQLEEAFyjTGe1REAG3h/7E4ERRQmLtkAAAAASUVORK5CYII="/>
+    </defs>
+</svg>

@@ -15,7 +15,7 @@ const { enable, title, image, subtitle, buttons } = ctaSection.data;
   enable && (
     <section class="section isolate">
       <div class="container-sm card-box">
-        <div class="bg-dark p-6 xl:p-14 text-white">
+        <div class="bg-light p-6 xl:p-14 text-white">
           <div class="row items-center justify-between">
             {image && (
               <div
@@ -46,7 +46,7 @@ const { enable, title, image, subtitle, buttons } = ctaSection.data;
                   buttons.map((button, index) => (
                     <a
                       href={button.link}
-                      class={`${index === 0 ? 'btn-primary' : 'btn-outline-primary bg-white text-text-dark'} btn`}
+                      class={`${index === 0 ? 'btn-primary' : 'btn-outline-primary'} btn`}
                       set:html={markdownify(button.label)}
                     />
                   ))}

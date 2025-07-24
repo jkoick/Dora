@@ -14,11 +14,11 @@ const { feedback } = config;
 const { integration } = Astro.props;
 
 const integrationIndex = (
-  (await getEntry('integration', '-index')) as CollectionEntry<'integration'>
+  (await getEntry('tests', '-index')) as CollectionEntry<'tests'>
 ).data;
 const { other_integration } = integrationIndex;
 
-const all_integrations = await getSinglePage('integration');
+const all_integrations = await getSinglePage('tests');
 const other_integrations = all_integrations
   .filter((integration) => integration.id !== integration.id)
   .slice(0, other_integration?.number_of_items);

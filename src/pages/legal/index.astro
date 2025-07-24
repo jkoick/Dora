@@ -1,0 +1,52 @@
+---
+import BlogCard from '@/components/BlogCard.astro';
+import DotTitle from '@/components/DotTitle.astro';
+import Base from '@/layouts/Base.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { markdownify } from '@/lib/utils/textConverter';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+
+const LEGAL_FOLDER = 'legal';
+
+const postIndex = (await getEntry(
+  LEGAL_FOLDER,
+  '-index'
+)) as CollectionEntry<'legal'>;
+const posts = await getSinglePage(LEGAL_FOLDER);
+const featuredPosts = posts.filter((post) => post.data.featured);
+---
+
+<Base
+  title={postIndex.data.title}
+  meta_title={postIndex.data.meta_title}
+  image={postIndex.data.image}
+  description={postIndex.data.description}
+>
+  <section class="section-sm">
+    <div class="container-sm">
+      {
+        postIndex.data.banner && postIndex.data.banner.subtitle && (
+          <div class="flex justify-center">
+            <DotTitle title={postIndex.data.banner.subtitle} />
+          </div>
+        )
+      }
+      {
+        postIndex.data.banner && postIndex.data.banner.title && (
+          <h2
+            class="mb-8 lg:mb-8 h1 text-center lg:col-8 mx-auto md:px-10"
+            set:html={markdownify(postIndex.data.banner.title)}
+          />
+        )
+      }
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {
+          featuredPosts.map((post) => (
+            <BlogCard post={post} collection="legal" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
