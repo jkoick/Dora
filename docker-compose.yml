@@ -1,0 +1,6 @@
+services:
+    frontend:
+        image: harbor.uniteqlab.sk/dora/dora:latest
+        restart: always
+        ports:
+            - ${DC_DORA_PORT}:80
