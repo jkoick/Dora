@@ -24,7 +24,7 @@ deploy:
     - apk add --update bash sshpass
   script:
     - echo "DC_DORA_PORT=${DC_DORA_PORT}" >> .env
-    - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "mkdir -p /docker/dora"
+    - sshpass -p $ULONE_PASSWORD ssh -oStrictHostKeyChecking=no $ULONE_USER@$ULONE_HOST "mkdir -p /docker/dora"
     - sshpass -p $ULONE_PASSWORD scp docker-compose.yml $ULONE_USER@$ULONE_HOST:/docker/dora/docker-compose.yml
     - sshpass -p $ULONE_PASSWORD scp .env $ULONE_USER@$ULONE_HOST:/docker/dora/.env
     - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "docker pull harbor.uniteqlab.sk/dora/dora:latest"
