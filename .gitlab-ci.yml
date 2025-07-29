@@ -15,7 +15,7 @@ build-dora:
     - docker build -t $HARBOR_REGISTRY/dora/dora:$IMAGE_TAG .
     - docker push $HARBOR_REGISTRY/dora/dora:$IMAGE_TAG
   only:
-    - dev
+    - master
 
 
 deploy:
@@ -30,4 +30,4 @@ deploy:
     - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "docker pull harbor.uniteqlab.sk/dora/dora:latest"
     - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "cd /docker/dora && docker-compose down -v && docker-compose --env-file .env up -d"
   only:
-    - dev
+    - master
