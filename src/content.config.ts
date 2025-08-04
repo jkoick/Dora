@@ -1,7 +1,6 @@
 import {
   cooperation,
   legal,
-  careers,
   contact,
   services,
   homepage,
@@ -21,7 +20,6 @@ export const collections = {
   // Pages
   cooperation,
   legal,
-  careers,
   contact,
   services,
   homepage,

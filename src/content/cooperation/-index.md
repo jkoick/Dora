@@ -15,10 +15,8 @@ banner:
   buttons:
     - enable: true
       label: 'Partner With Us'
-      link: '/careers/'
-    - enable: true
-      label: 'Learn More Details'
-      link: '/'
+      link: '/contact/'
+
   statistics:
     - title: '94%'
       description: 'Client Retention'

@@ -162,7 +162,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "careers";
-  data: InferEntrySchema<"careers">;
+  data: any;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
