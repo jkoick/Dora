@@ -1,0 +1,33 @@
+stages:
+  - build
+  - deploy
+
+build-dora:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    IMAGE_TAG: latest
+  script:
+    - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $HARBOR_REGISTRY
+    - docker build -t $HARBOR_REGISTRY/dora/dora:$IMAGE_TAG .
+    - docker push $HARBOR_REGISTRY/dora/dora:$IMAGE_TAG
+  only:
+    - main
+
+
+deploy:
+  stage: deploy
+  before_script:
+    - apk add --update bash sshpass
+  script:
+    - echo "DC_DORA_PORT=${DC_DORA_PORT}" >> .env
+    - sshpass -p $ULONE_PASSWORD ssh -oStrictHostKeyChecking=no $ULONE_USER@$ULONE_HOST "mkdir -p /docker/dora"
+    - sshpass -p $ULONE_PASSWORD scp docker-compose.yml $ULONE_USER@$ULONE_HOST:/docker/dora/docker-compose.yml
+    - sshpass -p $ULONE_PASSWORD scp .env $ULONE_USER@$ULONE_HOST:/docker/dora/.env
+    - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "docker pull harbor.uniteqlab.sk/dora/dora:latest"
+    - sshpass -p $ULONE_PASSWORD ssh $ULONE_USER@$ULONE_HOST "cd /docker/dora && docker-compose down -v && docker-compose --env-file .env up -d"
+  only:
+    - main
