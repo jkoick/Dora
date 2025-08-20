@@ -1,8 +1,8 @@
 ---
 enable: true
 subtitle: Choose Best Plan For You
-title: Try Atemp For Free Now
-description: ""
+title: Try Dora For Free Now
+description: ''
 
 pricing_types:
   - Monthly Plan
@@ -10,7 +10,7 @@ pricing_types:
 pricing:
   # Standard Pricing
   - type: monthly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Standard
     plan_prefix: Pricing Plan
@@ -28,7 +28,7 @@ pricing:
       - 5 Projects
       - 24/7 Support
   - type: yearly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Standard
     plan_prefix: Pricing Plan
@@ -48,7 +48,7 @@ pricing:
 
   # Business Pricing
   - type: monthly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Business
     plan_prefix: Pricing Plan
@@ -66,7 +66,7 @@ pricing:
       - 5 Projects
       - 24/7 Support
   - type: yearly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Business
     plan_prefix: Pricing Plan
@@ -86,7 +86,7 @@ pricing:
 
   # Enterprize Pricing
   - type: monthly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Enterprize
     plan_prefix: Pricing Plan
@@ -104,7 +104,7 @@ pricing:
       - 5 Projects
       - 24/7 Support
   - type: yearly
-    image: "/images/svg/icons/pricing.svg"
+    image: '/images/svg/icons/pricing.svg'
     title_prefix: Perfect For
     title: Standard
     plan_prefix: Pricing Plan

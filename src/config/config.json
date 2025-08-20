@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Digitize",
-    "base_url": "https://atemp-astro.vercel.app/",
+    "base_url": "https://dora-astro.vercel.app/",
     "base_path": "/",
     "trailing_slash": true,
     "favicon": "/images/favicon-1.png",
@@ -56,7 +56,7 @@
 
   "announcement": {
     "enable": true,
-    "content": "Connect with a Atemp Expert to create a website using this template [Learn More Details](https://themefisher.com/custom-development/)"
+    "content": "Connect with a Dora Expert"
   },
 
   "navigation_button": {
@@ -68,6 +68,6 @@
   "metadata": {
     "meta_author": "Themefisher",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Atemp - SaaS Multipurpose Template"
+    "meta_description": "Dora - Digital Operational Resilience Assessment Platform"
   }
 }
