@@ -1,5 +1,6 @@
 ---
 import TwSizeIndicator from '@/components/TwSizeIndicator.astro';
+import SmoothScroll from '@/components/SmoothScroll.astro';
 import { ClientRouter } from 'astro:transitions';
 import config from '@/config/config.json';
 import theme from '@/config/theme.json';
@@ -156,6 +157,7 @@ const { title, meta_title, description, image, noindex, canonical } =
   </head>
   <body>
     <TwSizeIndicator />
+    <SmoothScroll />
     <Header />
     <main id="main-content">
       <slot />

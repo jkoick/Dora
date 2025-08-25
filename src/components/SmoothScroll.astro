@@ -1,0 +1,74 @@
+---
+// SmoothScroll component using Lenis for smooth scrolling behavior
+// This component integrates Lenis smooth scroll library with Astro
+---
+
+<script>
+  import Lenis from 'lenis';
+
+  let lenis: Lenis | null = null;
+
+  function initLenis() {
+    // Initialize Lenis with optimized settings for Astro
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Default easing
+      smoothTouch: false, // Disable on touch devices for better performance
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    // Request animation frame loop
+    function raf(time: number) {
+      lenis?.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Optional: Listen to scroll events
+    lenis.on('scroll', () => {
+      // You can add custom scroll event handlers here if needed
+      // console.log('Lenis scroll event');
+    });
+  }
+
+  function destroyLenis() {
+    if (lenis) {
+      lenis.destroy();
+      lenis = null;
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', () => {
+    initLenis();
+  });
+
+  // Clean up on navigation
+  document.addEventListener('astro:before-preparation', () => {
+    destroyLenis();
+  });
+
+  // Initialize on first load (non-SPA navigation)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLenis);
+  } else {
+    initLenis();
+  }
+</script>
+
+<!-- Include Lenis CSS for better styling -->
+<style>
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+</style>
