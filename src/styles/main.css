@@ -1,22 +1,22 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "../tailwind-plugin/tw-theme.mjs";
 @plugin "../tailwind-plugin/tw-bs-grid.mjs";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
-@import "./safe.css";
-@import "./utilities.css";
+@import './safe.css';
+@import './utilities.css';
 
 @layer base {
-  @import "./base.css";
+  @import './base.css';
 }
 
 @layer components {
-  @import "./components.css";
-  @import "./navigation.css";
-  @import "./buttons.css";
-  @import "./safe.css";
-  @import "./animations.css";
+  @import './components.css';
+  @import './navigation.css';
+  @import './buttons.css';
+  @import './safe.css';
+  @import './animations.css';
 }
 
 @theme {
@@ -28,4 +28,8 @@
   --radius: 6px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+}
+
+p {
+  text-align: justify;
 }

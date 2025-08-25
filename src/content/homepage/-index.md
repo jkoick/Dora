@@ -57,7 +57,7 @@ features:
 
     Our services support financial entities of all sizes—from microenterprises subject to simplified obligations to ICT-mature institutions required to perform threat-led penetration testing (TLPT). 
 
-    All testing activities are aligned with Chapter IV of DORA and the expectations of national competent authorities across the Union.
+    All testing activities are aligned with Chapter IV of DORA and the supervisory expectations of national competent authorities across the Union.
   cta:
     enable: true
     title: Find out what your infrastructure needs for compliance.
@@ -82,7 +82,7 @@ about:
   - enable: true
     image: '/images/build-and-launch-1.jpg'
     title: Who We Serve
-    subtitle: Supporting Consultants. Servicing Financial Entities. Completing the DORA Puzzle.
+    subtitle: Completing the DORA Puzzle.
     description: |
       We provide services directly to financial entities as well as in collaboration with regulatory, legal, and compliance consultants. 
 
@@ -98,7 +98,7 @@ about:
   - enable: true
     image: '/images/improve-target-1.svg'
     title: Compliance Assurance
-    subtitle: Deliverables Aligned With DORA and Standards of National Competent Authorities
+    subtitle: Deliverables Aligned With DORA and Standards of NCAs
     description: |
       All deliverables are structured in alignment with Chapter IV of DORA and are prepared for supervisory review. Our outputs are designed to support auditability, traceability, and the principle of proportionality, in accordance with the entity’s classification under DORA and expectations of national competent authorities.
     video:

@@ -61,34 +61,46 @@ const {
     </div>
 
     <div class="md:col-7 lg:col-8">
-      <div class="flex flex-col gap-y-10 justify-between">
-        <div>
+      <div class="flex flex-col h-full">
+        <div class="flex-grow">
           {
             plan_prefix && (
-              <p class="pb-2 h5" set:html={markdownify(plan_prefix)} />
+              <p
+                class="pb-2 h5 !text-left min-h-[2.5rem] flex items-start"
+                set:html={markdownify(plan_prefix)}
+              />
             )
           }
-          {plan && <div class="text-base leading-relaxed max-w-none" set:html={markdownify(plan)} />}
-        </div>
-
-        <div>
-          {price && <strong class="inline h2" set:html={markdownify(price)} />}
           {
-            price_suffix && (
-              <span class="font-bold" set:html={markdownify(price_suffix)} />
+            plan && (
+              <div
+                class="text-base leading-relaxed max-w-none text-justify min-h-[6rem] flex items-start"
+                set:html={markdownify(plan)}
+              />
             )
           }
         </div>
 
-        {
-          button && button.enable && (
-            <a
-              href={button.link}
-              class="btn btn-sm btn-outline-primary group-hover:bg-primary hover:text-text-dark group-hover:border-transparent hidden lg:block w-fit"
-              set:html={markdownify(button.label)}
-            />
-          )
-        }
+        <div class="mt-auto pt-6">
+          <div class="mb-6">
+            {price && <strong class="inline h2" set:html={markdownify(price)} />}
+            {
+              price_suffix && (
+                <span class="font-bold" set:html={markdownify(price_suffix)} />
+              )
+            }
+          </div>
+
+          {
+            button && button.enable && (
+              <a
+                href={button.link}
+                class="btn btn-sm btn-outline-primary group-hover:bg-primary hover:text-text-dark group-hover:border-transparent hidden lg:block w-fit"
+                set:html={markdownify(button.label)}
+              />
+            )
+          }
+        </div>
       </div>
     </div>
 

@@ -17,97 +17,101 @@ const { about } = (
     <section class="section overflow-hidden">
       <div class="container">
         <div class="container-inner">
-        {about.map(
-          (
-            { enable, image, title, subtitle, description, list, video },
-            index
-          ) =>
-            enable && (
-              <div
-                class={`row gy-8 lg:gy-12 items-center justify-between ${index % 2 === 0 ? '' : 'mt-16 xl:mt-20'}`}
-              >
-                {image && (
-                  <div
-                    class={`md:col-5 lg:col-6 ${video && video.enable ? 'relative' : ''} ${index % 2 === 0 ? 'order-1 md:order-1' : 'order-2 md:order-2'}`}
-                  >
-                    <ImageMod
-                      src={image}
-                      alt={title}
-                      class="w-full object-cover"
-                      data-aos="zoom-out-sm"
-                    />
-                    {video && video.enable && (
-                      <div class="absolute inset-0 grid place-items-center">
-                        <button aria-label="Play Video" data-modal-open>
-                          <WavePlayButton />
-                        </button>
-                        <div class="modal" data-modal="">
-                          <div
-                            class="modal-overlay"
-                            data-modal-close=""
-                            data-modal-overlay=""
-                          />
-                          <div class="modal-content w-[950px]">
-                            <button
-                              class="modal-close grid place-items-center z-10"
+          {about.map(
+            (
+              { enable, image, title, subtitle, description, list, video },
+              index
+            ) =>
+              enable && (
+                <div
+                  class={`row gy-8 lg:gy-12 items-center justify-between ${index % 2 === 0 ? '' : 'mt-16 xl:mt-20'}`}
+                >
+                  {image && (
+                    <div
+                      class={`md:col-5 lg:col-6 ${video && video.enable ? 'relative' : ''} ${index % 2 === 0 ? 'order-1 md:order-1' : 'order-2 md:order-2'}`}
+                    >
+                      <ImageMod
+                        src={image}
+                        alt={title}
+                        class="w-full object-cover"
+                        data-aos="zoom-out-sm"
+                      />
+                      {video && video.enable && (
+                        <div class="absolute inset-0 grid place-items-center">
+                          <button aria-label="Play Video" data-modal-open>
+                            <WavePlayButton />
+                          </button>
+                          <div class="modal" data-modal="">
+                            <div
+                              class="modal-overlay"
                               data-modal-close=""
-                            >
-                              <DynamicIcon icon={'FaXmark'} />
-                            </button>
-                            <div class="video-container">
-                              <iframe
-                                id="youtube-iframe"
-                                src="https://www.youtube.com/embed/ResipmZmpDU"
-                                loading="lazy"
-                              />
+                              data-modal-overlay=""
+                            />
+                            <div class="modal-content w-[950px]">
+                              <button
+                                class="modal-close grid place-items-center z-10"
+                                data-modal-close=""
+                              >
+                                <DynamicIcon icon={'FaXmark'} />
+                              </button>
+                              <div class="video-container">
+                                <iframe
+                                  id="youtube-iframe"
+                                  src="https://www.youtube.com/embed/ResipmZmpDU"
+                                  loading="lazy"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-                <div
-                  class={`md:col-7 lg:col-6 ${index % 2 === 0 ? 'order-2 md:order-2' : 'order-1 md:order-1'}`}
-                >
-                  {subtitle && (
-                    <div
-                      data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
-                    >
-                      <DotTitle title={subtitle} />
+                      )}
                     </div>
                   )}
-                  {title && (
-                    <h2
-                      class="mb-8"
-                      data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
-                      set:html={markdownify(title)}
-                    />
-                  )}
-                  {description && (
-                    <div
-                      class="max-w-none leading-relaxed"
-                      data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
-                      set:html={markdownify(description)}
-                    />
-                  )}
+                  <div
+                    class={`md:col-7 lg:col-6 ${index % 2 === 0 ? 'order-2 md:order-2' : 'order-1 md:order-1'}`}
+                  >
+                    {subtitle && (
+                      <div
+                        data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                      >
+                        <DotTitle title={subtitle} />
+                      </div>
+                    )}
+                    {title && (
+                      <h2
+                        class="mb-8"
+                        data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                        set:html={markdownify(title)}
+                      />
+                    )}
+                    {description && (
+                      <div
+                        class="max-w-none leading-relaxed text-justify"
+                        data-aos={`${index % 2 === 0 ? 'fade-right-sm' : 'fade-left-sm'}`}
+                        set:html={markdownify(description)}
+                      />
+                    )}
 
-                  <div class="mt-8" data-aos="fade-up-sm" data-aos-delay="100">
-                    <a
-                      href={index === 0 ? '/cooperation/' : '/how-it-works/'}
-                      class={
-                        index === 0
-                          ? 'btn btn-primary'
-                          : 'btn btn-outline-primary'
-                      }
+                    <div
+                      class="mt-8"
+                      data-aos="fade-up-sm"
+                      data-aos-delay="100"
                     >
-                      {index === 0 ? 'Partner With Us' : 'Learn Our Process'}
-                    </a>
+                      <a
+                        href={index === 0 ? '/cooperation/' : '/how-it-works/'}
+                        class={
+                          index === 0
+                            ? 'btn btn-primary'
+                            : 'btn btn-outline-primary'
+                        }
+                      >
+                        {index === 0 ? 'Partner With Us' : 'Learn Our Process'}
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-        )}
+              )
+          )}
         </div>
       </div>
     </section>

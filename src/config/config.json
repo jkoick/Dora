@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Digitize",
-    "base_url": "https://dora-astro.vercel.app/",
+    "base_url": "https://www.doratesting.com/",
     "base_path": "/",
     "trailing_slash": true,
     "favicon": "/images/favicon-1.png",
@@ -24,9 +24,9 @@
 
     "locations": [
       {
-        "title": "Czech Republic",
-        "address": "Primátorská 296/38, Libeň, 180 00 Praha 8",
-        "email": "france@trendtrail.com"
+        "title": "Digitize s.r.o.",
+        "address": "Primátorská 296/38, Libeň, 180 00 Prague 8, Czech Republic",
+        "email": "support@doratesting.com"
       }
     ]
   },

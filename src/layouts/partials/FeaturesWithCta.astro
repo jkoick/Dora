@@ -54,14 +54,13 @@ const exampleList = [
             )}
             {features.description && (
               <div
-                class="max-w-none text-lg leading-relaxed mb-12"
+                class="max-w-none text-lg leading-relaxed mb-12 text-justify"
                 set:html={markdownify(features.description)}
               />
             )}
           </div>
 
-          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
-
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 items-start">
             {/* {features.list.map(
               (
                 {
@@ -117,9 +116,12 @@ const exampleList = [
                 )
             )} */}
 
-            {exampleList.map((group, groupIndex) => (
-              <div class="mb-8 lg:mb-12" key={group.heading}>
-                <h4 class="h5 mb-6 text-primary" data-aos="fade-up-sm">
+            {exampleList.map((group) => (
+              <div class="flex flex-col mb-8 lg:mb-12" key={group.heading}>
+                <h4
+                  class="h5 mb-6 text-primary flex-shrink-0 min-h-[3.5rem]"
+                  data-aos="fade-up-sm"
+                >
                   {group.heading}
                 </h4>
                 <ul
@@ -136,7 +138,10 @@ const exampleList = [
                           />
                         </span>
                       </div>
-                      <span set:html={markdownify(item)} class="text-base leading-relaxed" />
+                      <span
+                        set:html={markdownify(item)}
+                        class="text-base leading-relaxed"
+                      />
                     </li>
                   ))}
                 </ul>
@@ -145,10 +150,7 @@ const exampleList = [
           </div>
 
           {features.cta.enable && (
-            <div
-              class="relative isolate mt-12 lg:mt-16"
-              data-aos="fade-up-sm"
-            >
+            <div class="relative isolate mt-12 lg:mt-16" data-aos="fade-up-sm">
               <div class="bg-black py-10 lg:py-12 px-6 lg:px-12">
                 {features.cta.title && (
                   <h4
@@ -174,7 +176,6 @@ const exampleList = [
               </div>
             </div>
           )}
-          </div>
         </div>
       </div>
     </section>

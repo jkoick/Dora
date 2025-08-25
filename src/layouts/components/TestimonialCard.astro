@@ -1,5 +1,5 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify } from '@/lib/utils/textConverter';
 const { img, title, description } = Astro.props;
 ---
 
@@ -13,6 +13,10 @@ const { img, title, description } = Astro.props;
   }
   <div class="md:col-7">
     {title && <h2 class="mb-6" set:html={markdownify(title)} />}
-    {description && <p set:html={markdownify(description)} />}
+    {
+      description && (
+        <p class="text-justify" set:html={markdownify(description)} />
+      )
+    }
   </div>
 </div>
