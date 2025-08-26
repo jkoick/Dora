@@ -1,7 +1,7 @@
 ---
 title: 'Tests'
-meta_title: 'Tests'
-description: 'Our comprehensive testing solutions'
+meta_title: 'DORA Testing Services - ICT Testing Solutions'
+description: 'Comprehensive DORA-compliant ICT testing services including vulnerability assessments, penetration testing, and threat-led penetration testing (TLPT).'
 
 # integration
 integration:

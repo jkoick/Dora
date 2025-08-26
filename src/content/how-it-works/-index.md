@@ -1,7 +1,7 @@
 ---
-title: ''
-meta_title: ''
-description: 'Learn how our platform works and discover the process'
+title: 'How It Works'
+meta_title: 'How It Works - DORA Testing Process'
+description: 'Discover our streamlined DORA compliance testing process. Learn how we deliver independent, proportionate ICT testing for financial entities.'
 draft: false
 
 pricing_compare:

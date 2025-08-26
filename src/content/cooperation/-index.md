@@ -1,7 +1,7 @@
 ---
 title: 'Cooperation'
-meta_title: 'Cooperation'
-description: 'Learn about our cooperation opportunities and partnerships'
+meta_title: 'Partnership Opportunities - Digitize s.r.o.'
+description: 'Partner with Digitize to enhance your DORA consulting services. Independent ICT testing solutions for consulting firms and legal advisors.'
 draft: false
 
 # Banner

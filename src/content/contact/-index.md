@@ -1,7 +1,7 @@
 ---
 title: 'Contact'
-meta_title: ''
-description: 'this is meta description'
+meta_title: 'Contact Us - Digitize s.r.o.'
+description: 'Get in touch with Digitize for DORA compliance testing services. Contact our expert team for digital operational resilience testing consultation.'
 draft: false
 
 banner:
