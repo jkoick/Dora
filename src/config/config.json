@@ -47,6 +47,7 @@
     "form_action": "#",
     "buttons": [
       {
+        "link": "/contact/",
         "enable": true,
         "value": "Positive",
         "label": "Contact Us"

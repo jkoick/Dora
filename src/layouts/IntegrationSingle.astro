@@ -101,12 +101,12 @@ const { Content } = await render(integration);
               {feedback.buttons.map(
                 (button, index) =>
                   button.enable && (
-                    <button
-                      type="submit"
-                      value={button.value}
-                      class={`btn mr-5 ${index === 0 ? 'btn-primary' : 'btn-outline-primary'}`}
-                    >
-                      {button.label}
+                    <button>
+                      <a
+                        href={button.link}
+                        class={`${index === 0 ? 'btn-primary' : 'btn-outline-primary bg-white text-text-dark'} btn`}
+                        set:html={markdownify(button.label)}
+                      />
                     </button>
                   )
               )}
