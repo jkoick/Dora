@@ -1,20 +1,38 @@
 ---
 import Base from '@/layouts/Base.astro';
+import JsonLd from '@/components/JsonLd.astro';
 import CallToAction from '@/partials/CallToAction.astro';
 import FeaturesSection from '@/partials/Features.astro';
 import FeaturesBanner from '@/partials/FeaturesBanner.astro';
 import Integration from '@/partials/Integration.astro';
 import ServiceCategories from '@/partials/ServiceCategories.astro';
 import type { CollectionEntry } from 'astro:content';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const servicesIndex = (await getEntry(
   'services',
   '-index'
 )) as CollectionEntry<'services'>;
+
+// Get all legal services for JSON-LD
+const legalServices = await getCollection('legal');
+const services = legalServices
+  .filter((service) => !service.data.draft && service.id !== '-index.md')
+  .map((service) => ({
+    name: service.data.title,
+    description: service.data.description || service.data.excerpt || 'DORA compliance testing service',
+    url: `/legal/${service.id.replace('.md', '').toLowerCase().replace(/\s+/g, '-')}/`,
+  }));
 ---
 
 <Base {...servicesIndex.data}>
+  <JsonLd
+    schema="Service"
+    pageTitle={servicesIndex.data.meta_title}
+    pageDescription={servicesIndex.data.description}
+    services={services}
+    slot="head"
+  />
   <FeaturesBanner />
 
   <hr class="divider" />

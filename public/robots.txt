@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Disallow: /api/*
+
+Sitemap: https://www.doratesting.com/sitemap-index.xml

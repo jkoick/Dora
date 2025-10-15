@@ -1,0 +1,193 @@
+---
+import config from '@/config/config.json';
+
+export interface Props {
+  schema?: 'Organization' | 'WebSite' | 'WebPage' | 'Service' | 'FAQPage' | 'ContactPage' | 'BreadcrumbList';
+  pageTitle?: string;
+  pageDescription?: string;
+  pageUrl?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  services?: Array<{ name: string; description: string; url: string }>;
+  faqs?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  schema = 'Organization',
+  pageTitle,
+  pageDescription,
+  pageUrl,
+  breadcrumbs,
+  services,
+  faqs,
+} = Astro.props;
+
+const baseUrl = config.site.base_url;
+const currentUrl = pageUrl || `${baseUrl}${Astro.url.pathname}`;
+
+// Organization Schema (default for all pages)
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Digitize s.r.o.',
+  alternateName: 'Dora Testing',
+  url: baseUrl,
+  logo: `${baseUrl}${config.site.logo}`,
+  description: config.metadata.meta_description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Primátorská 296/38',
+    addressLocality: 'Prague',
+    addressRegion: 'Prague 8',
+    postalCode: '180 00',
+    addressCountry: 'CZ',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'support@doratesting.com',
+    contactType: 'customer support',
+    availableLanguage: ['English', 'Czech'],
+  },
+  sameAs: [
+    // Add social media profiles here if available
+  ],
+};
+
+// WebSite Schema
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: config.site.title,
+  url: baseUrl,
+  description: config.metadata.meta_description,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Digitize s.r.o.',
+  },
+};
+
+// WebPage Schema
+const webPageSchema = pageTitle
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: pageTitle,
+      description: pageDescription || config.metadata.meta_description,
+      url: currentUrl,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Digitize s.r.o.',
+      },
+      inLanguage: 'en',
+    }
+  : null;
+
+// Service Schema
+const serviceSchema =
+  services && services.length > 0
+    ? services.map((service) => ({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: service.name,
+        description: service.description,
+        provider: {
+          '@type': 'Organization',
+          name: 'Digitize s.r.o.',
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: 'European Union',
+        },
+        url: `${baseUrl}${service.url}`,
+      }))
+    : null;
+
+// FAQ Schema
+const faqSchema =
+  faqs && faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
+// ContactPage Schema
+const contactPageSchema =
+  schema === 'ContactPage'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: pageTitle || 'Contact Us',
+        description: pageDescription || 'Get in touch with Digitize',
+        url: currentUrl,
+        mainEntity: {
+          '@type': 'Organization',
+          name: 'Digitize s.r.o.',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Primátorská 296/38',
+            addressLocality: 'Prague',
+            addressRegion: 'Prague 8',
+            postalCode: '180 00',
+            addressCountry: 'CZ',
+          },
+          email: 'support@doratesting.com',
+        },
+      }
+    : null;
+
+// BreadcrumbList Schema
+const breadcrumbSchema =
+  breadcrumbs && breadcrumbs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: `${baseUrl}${crumb.url}`,
+        })),
+      }
+    : null;
+
+// Combine schemas based on page type
+let schemasToRender = [organizationSchema];
+
+if (schema === 'WebSite' || Astro.url.pathname === '/') {
+  schemasToRender.push(websiteSchema);
+}
+
+if (webPageSchema) {
+  schemasToRender.push(webPageSchema);
+}
+
+if (serviceSchema) {
+  schemasToRender.push(...serviceSchema);
+}
+
+if (faqSchema) {
+  schemasToRender = [faqSchema, organizationSchema];
+}
+
+if (contactPageSchema) {
+  schemasToRender = [contactPageSchema, organizationSchema];
+}
+
+if (breadcrumbSchema) {
+  schemasToRender.push(breadcrumbSchema);
+}
+---
+
+{
+  schemasToRender.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}

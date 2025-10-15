@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import JsonLd from '@/components/JsonLd.astro';
 import CallToAction from '@/partials/CallToAction.astro';
 import ContactSection from '@/partials/ContactSection.astro';
 import OfficeLocation from '@/partials/OfficeLocation.astro';
@@ -13,6 +14,12 @@ const contact = (await getEntry(
 ---
 
 <Base {...contact.data}>
+  <JsonLd
+    schema="ContactPage"
+    pageTitle={contact.data.meta_title}
+    pageDescription={contact.data.description}
+    slot="head"
+  />
   <ContactSection />
 
   <!-- <hr class="divider" /> -->
